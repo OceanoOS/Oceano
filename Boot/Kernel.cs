@@ -33,7 +33,7 @@ namespace Oceano.Boot
             switch (input)
             {
                 case "fs info": try { Filesystem.WriteInformation(@"0:\", Filesystem.fs); } catch { Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Error: Filesystem disabled or inaccessible."); Console.ForegroundColor = ConsoleColor.White; } break;
-                
+                case "gui":Graphics.Screen.Init();break;
             }
         }
     }
