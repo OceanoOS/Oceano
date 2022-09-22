@@ -15,16 +15,23 @@ namespace Oceano.Graphics
         public static Canvas canvas;
         public static void Init()
         {
-            canvas = new SVGAIICanvas(new Mode(800, 600, ColorDepth.ColorDepth32));
-            canvas.Clear(Color.Green);
+            try
+            {
+                canvas = new SVGAIICanvas(new Mode(800, 600, ColorDepth.ColorDepth32));
+                canvas.Clear(Color.Black);
 
 
-            Sys.MouseManager.ScreenWidth = 800;
-            Sys.MouseManager.ScreenHeight = 600;
+                Sys.MouseManager.ScreenWidth = 800;
+                Sys.MouseManager.ScreenHeight = 600;
 
-            Sys.MouseManager.X = (uint)((int)canvas.Mode.Columns / 2);
-            Sys.MouseManager.Y = (uint)((int)canvas.Mode.Rows / 2);
-            Update();
+                Sys.MouseManager.X = (uint)((int)canvas.Mode.Columns / 2);
+                Sys.MouseManager.Y = (uint)((int)canvas.Mode.Rows / 2);
+                Update();
+            }
+            catch
+            {
+                Console.WriteLine("Fatal Exception");
+            }
         }
         public static void Update()
         {
