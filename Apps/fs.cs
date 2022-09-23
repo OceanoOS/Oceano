@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Sys = Cosmos.System;
 
-namespace Oceano.Commands
+namespace Oceano.Apps
 {
-    public class Filesystem
+    public class fs
     {
-        public static CosmosVFS fs = new CosmosVFS();
+        public static CosmosVFS cosmosVFS = new CosmosVFS();
         public static void Init(CosmosVFS filesystem)
         {
-            Sys.FileSystem.VFS.VFSManager.RegisterVFS(filesystem);
+            VFSManager.RegisterVFS(filesystem);
         }
-        public static void WriteInformation(String drive, CosmosVFS filesystem)
+        public static void WriteInformation(string drive, CosmosVFS filesystem)
         {
             Console.WriteLine("===== Information for " + drive + "=====");
             Console.WriteLine();
@@ -27,7 +27,7 @@ namespace Oceano.Commands
             var fs_type = filesystem.GetFileSystemType(drive);
             Console.WriteLine("File System Type: " + fs_type);
         }
-        public static void CreateFile(String path)
+        public static void CreateFile(string path)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Oceano.Commands
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public static void WriteToFile(String path, String text)
+        public static void WriteToFile(string path, string text)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace Oceano.Commands
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public static void DeleteFile(String path)
+        public static void DeleteFile(string path)
         {
             try
             {
