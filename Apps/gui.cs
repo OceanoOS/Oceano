@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Sys = Cosmos.System;
 
-namespace Oceano.Graphics
+namespace Oceano.Apps
 {
-    public class Screen
+    public class gui
     {
         public static Canvas canvas;
         public static void Init()
@@ -24,8 +24,8 @@ namespace Oceano.Graphics
                 Sys.MouseManager.ScreenWidth = 800;
                 Sys.MouseManager.ScreenHeight = 600;
 
-                Sys.MouseManager.X = (uint)((int)canvas.Mode.Columns / 2);
-                Sys.MouseManager.Y = (uint)((int)canvas.Mode.Rows / 2);
+                Sys.MouseManager.X = (uint)(canvas.Mode.Columns / 2);
+                Sys.MouseManager.Y = (uint)(canvas.Mode.Rows / 2);
                 Update();
             }
             catch
@@ -40,12 +40,12 @@ namespace Oceano.Graphics
 
                 Pen pen = new(Color.Cyan);
 
-                canvas.DrawLine(pen, (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y,
-                    (int)Cosmos.System.MouseManager.X + 6, (int)Cosmos.System.MouseManager.Y);
-                canvas.DrawLine(pen, (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y,
-                    (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y + 6);
-                canvas.DrawLine(pen, (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y,
-                    (int)Cosmos.System.MouseManager.X + 12, (int)Cosmos.System.MouseManager.Y + 12);
+                canvas.DrawLine(pen, (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y,
+                    (int)Sys.MouseManager.X + 6, (int)Sys.MouseManager.Y);
+                canvas.DrawLine(pen, (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y,
+                    (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y + 6);
+                canvas.DrawLine(pen, (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y,
+                    (int)Sys.MouseManager.X + 12, (int)Sys.MouseManager.Y + 12);
 
                 canvas.Display();
                 canvas.Clear(Color.Black);
