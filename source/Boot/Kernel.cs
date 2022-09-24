@@ -9,14 +9,14 @@ namespace Oceano.Boot
     public class Kernel : Sys.Kernel
     {
 
+
         protected override void BeforeRun()
         {
-            
         }
 
         protected override void Run()
         {
-
+            
         }
     }
 }

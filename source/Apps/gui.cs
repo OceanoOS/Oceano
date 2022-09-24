@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sys = Cosmos.System;
+using DrawString;
+using RoundRect;
 
 namespace Oceano.Apps
 {
@@ -38,7 +40,7 @@ namespace Oceano.Apps
             try
             {
 
-                Pen pen = new(Color.Cyan);
+                Pen pen = new(Color.White);
 
                 canvas.DrawLine(pen, (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y,
                     (int)Sys.MouseManager.X + 6, (int)Sys.MouseManager.Y);
@@ -51,11 +53,14 @@ namespace Oceano.Apps
                 canvas.Clear(Color.Black);
                 Update();
             }
-            catch (Exception e)
+            catch
             {
                 Console.WriteLine("Fatal Exception");
             }
         }
-
+        public static void DrawDock()
+        {
+            
+        }
     }
 }

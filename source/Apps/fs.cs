@@ -11,12 +11,13 @@ namespace Oceano.Apps
 {
     public class fs
     {
-        public static CosmosVFS cosmosVFS = new CosmosVFS();
-        public static void Init(CosmosVFS filesystem)
+
+        public static CosmosVFS cosmosVFS = new();
+        public static void init(CosmosVFS filesystem)
         {
             VFSManager.RegisterVFS(filesystem);
         }
-        public static void WriteInformation(string drive, CosmosVFS filesystem)
+        public static void info(string drive, CosmosVFS filesystem)
         {
             Console.WriteLine("===== Information for " + drive + "=====");
             Console.WriteLine();
@@ -27,7 +28,7 @@ namespace Oceano.Apps
             var fs_type = filesystem.GetFileSystemType(drive);
             Console.WriteLine("File System Type: " + fs_type);
         }
-        public static void CreateFile(string path)
+        public static void create(string path)
         {
             try
             {
@@ -43,7 +44,7 @@ namespace Oceano.Apps
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public static void WriteToFile(string path, string text)
+        public static void write(string path, string text)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace Oceano.Apps
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public static void DeleteFile(string path)
+        public static void delete(string path)
         {
             try
             {
