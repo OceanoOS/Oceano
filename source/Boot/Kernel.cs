@@ -12,6 +12,7 @@ namespace Oceano.Boot
 
         protected override void BeforeRun()
         {
+            Apps.neofetch.init();
         }
 
         protected override void Run()
