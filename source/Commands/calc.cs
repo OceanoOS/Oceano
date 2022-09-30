@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oceano.Apps
+namespace Oceano.Commands
 {
-    public class calc
+    public class calc 
     {
         public static void Init()
         {
@@ -35,10 +35,10 @@ namespace Oceano.Apps
                     Console.WriteLine("Your result: = " + (num1 - num2));
                     break;
                 case "m":
-                    Console.WriteLine("Your result: = " + (num1 * num2));
+                    Console.WriteLine("Your result: = " + num1 * num2);
                     break;
                 case "d":
-                    Console.WriteLine("Your result: = " + (num1 / num2));
+                    Console.WriteLine("Your result: = " + num1 / num2);
                     break;
             }
         }
