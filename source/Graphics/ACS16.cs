@@ -1,6 +1,5 @@
 ﻿using Cosmos.System.Graphics;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Text;
 

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oceano.Commands
 {
@@ -15,7 +10,7 @@ namespace Oceano.Commands
         public static void Init()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write(@"  _.====.._               "); Console.Write("   "+ Boot.Kernel.currentPath); 
+            Console.Write(@"  _.====.._               "); Console.Write("   " + Boot.Kernel.currentPath);
             Console.WriteLine();
             Console.Write(@" ,:._       ~-_           "); Console.ForegroundColor = ConsoleColor.White; Console.Write("   ----------"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();

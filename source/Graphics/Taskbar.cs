@@ -1,31 +1,18 @@
 ﻿using Oceano.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using Mouse = Cosmos.System.MouseManager;
 using Cosmos.System;
+using System.Threading;
+using System.Security.Cryptography.X509Certificates;
+using Cosmos.System.Graphics;
+using System;
 
 namespace Oceano.Graphics
 {
     public class Taskbar
     {
-        static bool menuopened = false;
-
-        public static void DrawMenu()
+        public static void Main()
         {
-            gui.canvas.DrawFilledRectangle(new(Color.Black), 0, 0, 800, 16);
-            gui.canvas.DrawACSIIString(new(Color.White), "File", 0, 0);
-            if (Mouse.X == 0)
-            {
-                menuopened = true;
-            }
-            if (menuopened = true)
-            {
-                
-            }
         }
     }
 }
