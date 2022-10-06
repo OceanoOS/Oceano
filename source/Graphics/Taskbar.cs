@@ -13,6 +13,7 @@ namespace Oceano.Graphics
     {
         public static void Main()
         {
+            Console.WriteLine("Soon");
         }
     }
 }
