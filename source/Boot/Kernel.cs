@@ -38,6 +38,7 @@ namespace Oceano.Boot
                 case "deldir": Commands.fs.deldir(); break;
                 case "": break;
                 case "clear": Commands.clear.Init(); break;
+                case "miv":Commands.miv.StartMIV(); break; 
             }
         }
     }
