@@ -6,7 +6,7 @@ namespace Oceano.Boot
 {
     public class Kernel : Sys.Kernel
     {
-        public static string currentPath;
+        public static string file;
         protected override void BeforeRun()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -14,13 +14,12 @@ namespace Oceano.Boot
             Console.WriteLine("Welcome to Oceano!");
             Console.ForegroundColor = ConsoleColor.White;
             Commands.fs.Init(Commands.fs.cosmosVFS);
-            currentPath = @"0:\";
         }
 
         protected override void Run()
         {
             Console.WriteLine();
-            Console.Write(currentPath + ">");
+            Console.Write("");
             var input = Console.ReadLine();
             switch (input)
             {
@@ -33,12 +32,11 @@ namespace Oceano.Boot
                 case "fs delete": Commands.fs.delete(); break;
                 case "fs write": Commands.fs.write(); break;
                 case "clar": Commands.clear.Init(); break;
-                case "cd": Commands.fs.cd(); break;
                 case "mkdir": Commands.fs.mkdir(); break;
                 case "deldir": Commands.fs.deldir(); break;
                 case "": break;
                 case "clear": Commands.clear.Init(); break;
-                case "miv":Commands.miv.StartMIV(); break; 
+                case "miv":Commands.MIV.StartMIV(); break; 
             }
         }
     }

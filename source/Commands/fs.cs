@@ -31,7 +31,7 @@ namespace Oceano.Commands
             try
             {
 
-                System.IO.File.Create(Boot.Kernel.currentPath + filename);
+                System.IO.File.Create(filename);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("File created successfully.");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -51,7 +51,7 @@ namespace Oceano.Commands
             var text = Console.ReadLine();
             try
             {
-                System.IO.File.WriteAllText(Boot.Kernel.currentPath + filename, text);
+                System.IO.File.WriteAllText(filename, text);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Text writed successfully.");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -69,7 +69,7 @@ namespace Oceano.Commands
             var filename = Console.ReadLine();
             try
             {
-                System.IO.File.Delete(Boot.Kernel.currentPath + filename);
+                System.IO.File.Delete(filename);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("File deleted successfully.");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -82,29 +82,13 @@ namespace Oceano.Commands
             }
 
         }
-        public static void cd()
-        {
-            Console.Write("Move to:");
-            var input = Console.ReadLine();
-            if (File.Exists(input))
-            {
-                Boot.Kernel.currentPath = input;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Folder not found.");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-
-        }
         public static void mkdir()
         {
             try
             {
                 Console.Write("Folder name: ");
                 var dir = Console.ReadLine();
-                Directory.CreateDirectory(Boot.Kernel.currentPath + dir);
+                Directory.CreateDirectory(dir);
                 Console.WriteLine("Folder created successfully.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
@@ -121,7 +105,7 @@ namespace Oceano.Commands
             {
                 Console.Write("Folder name: ");
                 var dir = Console.ReadLine();
-                Directory.Delete(Boot.Kernel.currentPath + dir);
+                Directory.Delete(dir);
                 Console.WriteLine("Folder deleted successfully.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
