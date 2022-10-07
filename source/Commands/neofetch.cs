@@ -26,7 +26,7 @@ namespace Oceano.Commands
             Console.WriteLine();
             Console.Write(@"                          "); Console.Write("   CPU: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(cpu); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
-            Console.Write(@"                          "); Console.Write("   Memory: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(used + "/"); Console.Write(total+ "MB"); Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(@"                          "); Console.Write("   Memory: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(used + "/"); Console.Write(total + "MB"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

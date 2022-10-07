@@ -1,11 +1,4 @@
-﻿using Oceano.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MouseManager = Cosmos.System.MouseManager;
+﻿using MouseManager = Cosmos.System.MouseManager;
 
 namespace Oceano.Drivers
 {
@@ -36,7 +29,7 @@ namespace Oceano.Drivers
             {
                 MiddlePressed = true;
             }
-            else 
+            else
             {
                 MiddlePressed = false;
             }

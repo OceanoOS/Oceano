@@ -1,5 +1,4 @@
-﻿using Oceano.Commands;
-using System;
+﻿using System;
 using Sys = Cosmos.System;
 
 namespace Oceano.Boot
@@ -19,7 +18,6 @@ namespace Oceano.Boot
         {
             Console.WriteLine();
             Console.Write(">");
-            Console.ForegroundColor = ConsoleColor.White;
             var input = Console.ReadLine();
             switch (input)
             {
@@ -28,10 +26,11 @@ namespace Oceano.Boot
                 case "calc": Commands.calc.Init(); break;
                 case "": break;
                 case "clear": Commands.clear.Init(); break;
-                case "miv":Commands.MIV.StartMIV(); break;
+                case "miv": Commands.MIV.StartMIV(); break;
                 case "shutdown": Commands.power.Shutdown(); break;
-                case "reboot": Commands.power.Reboot();break;
+                case "reboot": Commands.power.Reboot(); break;
                 case "beep": Console.Beep(); break;
+                case "echo": break;
             }
         }
     }

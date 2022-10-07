@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KeyboardManager = Cosmos.System.KeyboardManager;
+﻿using KeyboardManager = Cosmos.System.KeyboardManager;
 
 namespace Oceano.Drivers
 {
@@ -28,7 +23,7 @@ namespace Oceano.Drivers
             }
             else
             {
-                AltPressed = false;    
+                AltPressed = false;
             }
             if (KeyboardManager.ShiftPressed)
             {
