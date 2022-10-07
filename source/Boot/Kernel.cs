@@ -8,6 +8,7 @@ namespace Oceano.Boot
     {
         public static string file;
         CosmosVFS fs = new();
+        public static string path;
         protected override void BeforeRun()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -15,12 +16,13 @@ namespace Oceano.Boot
             Console.WriteLine("Welcome to Oceano!");
             Console.ForegroundColor = ConsoleColor.White;
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
+            path = @"0:\";
         }
 
         protected override void Run()
         {
             Console.WriteLine();
-            Console.Write(">");
+            Console.Write(path+">");
             var input = Console.ReadLine();
             switch (input)
             {
@@ -33,10 +35,10 @@ namespace Oceano.Boot
                 case "shutdown": Commands.power.Shutdown(); break;
                 case "reboot": Commands.power.Reboot(); break;
                 case "beep": Console.Beep(); break;
-                case "echo": Commands.echo.Init(); break;
                 case "help": Commands.help.Init(); break;
                 case "touch":Commands.touch.Init(); break;
                 case "dir":Commands.dir.Init();break;
+                case "cd":Commands.cd.Init(); break;
             }
         }
     }

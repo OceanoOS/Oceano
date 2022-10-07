@@ -15,7 +15,7 @@ namespace Oceano.Commands
             var input = Console.ReadLine();
             try
             {
-                var file_stream = File.Create(input);
+                var file_stream = File.Create(Boot.Kernel.path+input);
             }
             catch (Exception e)
             {

@@ -13,11 +13,13 @@ namespace Oceano.Commands
             Console.WriteLine("======Help======");
             Console.WriteLine("help: show this message");
             Console.WriteLine("calc: open calculator");
-            Console.WriteLine("echo: write some text in console");
             Console.WriteLine("miv: open a file text editor");
             Console.WriteLine("shutdown: do a cpu shutdown");
             Console.WriteLine("reboot: do a cpu reboot");
-            Console.WriteLine("neofetch: shows some information about the system");
+            Console.WriteLine("neofetch: show some information about the system");
+            Console.WriteLine("touch: create a new file");
+            Console.WriteLine("dir: show the directory listing of the current folder");
+
         }
     }
 }

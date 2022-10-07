@@ -11,9 +11,20 @@ namespace Oceano.Commands
     {
         public static void Init()
         {
-            Console.Write(@"Folder name: ");
-            var input=Console.ReadLine();
-            var directoryList = Cosmos.System.FileSystem.VFS.VFSManager.GetDirectoryListing(input);
+            try
+            {
+                var directoryList = Cosmos.System.FileSystem.VFS.VFSManager.GetDirectoryListing(Boot.Kernel.path);
+                foreach (var directoryEntry in directoryList)
+                {
+                    Console.WriteLine(directoryEntry.mName);
+                }
+            }
+            catch
+            {
+                Console.ForegroundColor=ConsoleColor.Red;
+                Console.WriteLine("Error");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
     }
 }
