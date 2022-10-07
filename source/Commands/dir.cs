@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oceano.Commands
 {
@@ -21,7 +16,7 @@ namespace Oceano.Commands
             }
             catch
             {
-                Console.ForegroundColor=ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Error");
                 Console.ForegroundColor = ConsoleColor.White;
             }

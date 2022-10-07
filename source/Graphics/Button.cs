@@ -1,13 +1,8 @@
 ﻿using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
+using System.Drawing;
 using MouseManager = Cosmos.System.MouseManager;
 using MouseState = Cosmos.System.MouseState;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CosmosKernel1.UI
 {

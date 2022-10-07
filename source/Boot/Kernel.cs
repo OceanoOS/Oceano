@@ -22,7 +22,7 @@ namespace Oceano.Boot
         protected override void Run()
         {
             Console.WriteLine();
-            Console.Write(path+">");
+            Console.Write(path + ">");
             var input = Console.ReadLine();
             switch (input)
             {
@@ -36,9 +36,9 @@ namespace Oceano.Boot
                 case "reboot": Commands.power.Reboot(); break;
                 case "beep": Console.Beep(); break;
                 case "help": Commands.help.Init(); break;
-                case "touch":Commands.touch.Init(); break;
-                case "dir":Commands.dir.Init();break;
-                case "cd":Commands.cd.Init(); break;
+                case "touch": Commands.touch.Init(); break;
+                case "dir": Commands.dir.Init(); break;
+                case "cd": Commands.cd.Init(); break;
             }
         }
     }
