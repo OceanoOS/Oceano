@@ -4,13 +4,13 @@ namespace Oceano.Commands
 {
     public class neofetch
     {
-        static string cpu = Cosmos.Core.CPU.GetCPUBrandString();
-        static int total = (int)Cosmos.Core.CPU.GetAmountOfRAM();
-        static int used = (int)Cosmos.Core.GCImplementation.GetUsedRAM() / 10000;
+        static readonly string cpu = Cosmos.Core.CPU.GetCPUBrandString();
+        static readonly int total = (int)Cosmos.Core.CPU.GetAmountOfRAM();
+        static readonly int used = (int)Cosmos.Core.GCImplementation.GetUsedRAM() / 10000;
         public static void Init()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write(@"  _.====.._               "); Console.Write("   " + Boot.Kernel.currentPath);
+            Console.Write(@"  _.====.._               "); Console.Write("   Oceano");
             Console.WriteLine();
             Console.Write(@" ,:._       ~-_           "); Console.ForegroundColor = ConsoleColor.White; Console.Write("   ----------"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
@@ -26,7 +26,7 @@ namespace Oceano.Commands
             Console.WriteLine();
             Console.Write(@"                          "); Console.Write("   CPU: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(cpu); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
-            Console.Write(@"                          "); Console.Write("   Memory: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(used + "/"); Console.Write(total); Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(@"                          "); Console.Write("   Memory: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(used + "/"); Console.Write(total+ "MB"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
