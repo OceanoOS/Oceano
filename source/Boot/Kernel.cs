@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmos.System.FileSystem;
+using System;
 using Sys = Cosmos.System;
 
 namespace Oceano.Boot
@@ -6,12 +7,14 @@ namespace Oceano.Boot
     public class Kernel : Sys.Kernel
     {
         public static string file;
+        CosmosVFS fs = new();
         protected override void BeforeRun()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
             Console.WriteLine("Welcome to Oceano!");
             Console.ForegroundColor = ConsoleColor.White;
+            Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
         }
 
         protected override void Run()
@@ -30,7 +33,10 @@ namespace Oceano.Boot
                 case "shutdown": Commands.power.Shutdown(); break;
                 case "reboot": Commands.power.Reboot(); break;
                 case "beep": Console.Beep(); break;
-                case "echo": break;
+                case "echo": Commands.echo.Init(); break;
+                case "help": Commands.help.Init(); break;
+                case "touch":Commands.touch.Init(); break;
+                case "dir":Commands.dir.Init();break;
             }
         }
     }
