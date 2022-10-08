@@ -10,11 +10,7 @@ namespace Oceano.Commands
     {
         public static void Init()
         {
-
-        }
-        public static void Update()
-        {
-
+            Drivers.Display.Init();
         }
     }
 }
