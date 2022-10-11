@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Oceano.Commands
 {
-    public class gui
+    public class Graphics
     {
         public static void Init()
         {
