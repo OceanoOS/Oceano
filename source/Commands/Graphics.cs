@@ -10,7 +10,7 @@ namespace Oceano.Commands
     {
         public static void Init()
         {
-            Drivers.Display.Init();
+            Oceano.Graphics.SVGAII.Init();
         }
     }
 }

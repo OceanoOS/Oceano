@@ -1,16 +1,16 @@
 ﻿namespace Oceano.Commands
 {
-    public class power
+    public class ACPI
     {
         public static void Shutdown()
         {
             Cosmos.System.Power.Shutdown();
-            Cosmos.System.Power.QemuShutdown();
+            Cosmos.Core.ACPI.Shutdown();
         }
         public static void Reboot()
         {
             Cosmos.System.Power.Reboot();
-            Cosmos.System.Power.QemuReboot();
+            Cosmos.Core.ACPI.Reboot();
         }
     }
 }

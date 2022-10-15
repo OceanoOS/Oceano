@@ -32,14 +32,14 @@ namespace Oceano.Boot
                 case "": break;
                 case "clear": Commands.Text.Clear(); break;
                 case "miv": Commands.MIV.StartMIV(); break;
-                case "shutdown": Commands.power.Shutdown(); break;
-                case "reboot": Commands.power.Reboot(); break;
+                case "shutdown": Commands.ACPI.Shutdown(); break;
+                case "reboot": Commands.ACPI.Reboot(); break;
                 case "beep": Console.Beep(); break;
                 case "help": Commands.Text.Clear(); break;
                 case "touch": Commands.Filesystem.CreateFile(); break;
                 case "dir": Commands.Filesystem.DirectoryListing(); break;
                 case "cd": Commands.Filesystem.Cd(); break;
-                case "gui":Commands.Graphics.Init(); break;
+                case "gui":Commands.Graphics.Init();break;
             }
         }
     }
