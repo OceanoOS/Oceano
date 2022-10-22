@@ -1,8 +1,7 @@
 ﻿using Cosmos.System;
-using nifanfa.CosmosDrawString;
 using System.Drawing;
 
-namespace CosmosKernel1
+namespace Oceano.Graphics
 {
     class Notepad : App
     {
@@ -38,7 +37,7 @@ namespace CosmosKernel1
                 }
             }
 
-            Kernel.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(x, y, width, height, (uint)Color.Black.ToArgb());
+            Commands.Graphics.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(x, y, width, height, (uint)Color.Black.ToArgb());
 
             if (text.Length != 0)
             {
@@ -58,11 +57,11 @@ namespace CosmosKernel1
                     }
                 }
 
-                Kernel.vMWareSVGAII._DrawACSIIString(s, (uint)Color.White.ToArgb(), x, y);
+                Commands.Graphics.vMWareSVGAII._DrawACSIIString(s, (uint)Color.White.ToArgb(), x, y);
             }
             else
             {
-                Kernel.vMWareSVGAII._DrawACSIIString("Edit anything you want", (uint)Color.Gray.ToArgb(), x, y);
+                Commands.Graphics.vMWareSVGAII._DrawACSIIString("Edit anything you want", (uint)Color.Gray.ToArgb(), x, y);
             }
         }
     }

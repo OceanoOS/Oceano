@@ -1,9 +1,8 @@
-﻿using CosmosKernel1;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
-namespace nifanfa.CosmosDrawString
+namespace Oceano.Graphics
 {
     public static class ASC16
     {

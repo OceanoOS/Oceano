@@ -1,8 +1,7 @@
 ﻿using Cosmos.System;
-using nifanfa.CosmosDrawString;
 using System.Drawing;
 
-namespace CosmosKernel1
+namespace Oceano.Graphics
 {
     public class App
     {
@@ -49,7 +48,7 @@ namespace CosmosKernel1
 
             if (MouseManager.X > dockX && MouseManager.X < dockX + dockWidth && MouseManager.Y > dockY && MouseManager.Y < dockY + dockHeight)
             {
-                Kernel.vMWareSVGAII._DrawACSIIString(name, (uint)Color.White.ToArgb(), (uint)(dockX - ((name.Length * 8) / 2) + dockWidth / 2), dockY - 20);
+                Commands.Graphics.vMWareSVGAII._DrawACSIIString(name, (uint)Color.White.ToArgb(), (uint)(dockX - ((name.Length * 8) / 2) + dockWidth / 2), dockY - 20);
             }
 
             if (MouseManager.MouseState == MouseState.Left && _i == 0)
@@ -61,7 +60,7 @@ namespace CosmosKernel1
                 }
             }
 
-            if (Kernel.Pressed)
+            if (Commands.Graphics.Pressed)
             {
                 if (MouseManager.X > _x && MouseManager.X < _x + 22 && MouseManager.Y > _y && MouseManager.Y < _y + 22)
                 {
@@ -89,15 +88,15 @@ namespace CosmosKernel1
             Kernel.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(_x, _y, _width, _height, (uint)Color.FromArgb(200, 200, 200).ToArgb());
             Kernel.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(_x + 1, _y + 1, _width - 2, 20, (uint)Color.FromArgb(0, 0, 135).ToArgb());
             */
-            Kernel.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(_x, _y, _width, _height, (uint)Color.White.ToArgb());
-            Kernel.vMWareSVGAII.DoubleBuffer_DrawRectangle((uint)Kernel.avgCol.ToArgb(), (int)_x, (int)_y, (int)_width, (int)_height);
+            Commands.Graphics.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(_x, _y, _width, _height, (uint)Color.White.ToArgb());
+            Commands.Graphics.vMWareSVGAII.DoubleBuffer_DrawRectangle((uint)Commands.Graphics.avgCol.ToArgb(), (int)_x, (int)_y, (int)_width, (int)_height);
 
-            Kernel.vMWareSVGAII._DrawACSIIString(name, (uint)Color.Black.ToArgb(), _x + 2, _y + 2);
+            Commands.Graphics.vMWareSVGAII._DrawACSIIString(name, (uint)Color.Black.ToArgb(), _x + 2, _y + 2);
             //Kernel.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(_x + 22, _y, 1, 22, (uint)Color.FromArgb(200, 200, 200).ToArgb());
             //Kernel.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(x, y, 20, 20, (uint)Color.Gray.ToArgb());
             _Update();
 
-            end:;
+        end:;
         }
 
         public virtual void _Update()

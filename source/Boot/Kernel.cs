@@ -39,7 +39,7 @@ namespace Oceano.Boot
                 case "touch": Commands.Filesystem.CreateFile(); break;
                 case "dir": Commands.Filesystem.DirectoryListing(); break;
                 case "cd": Commands.Filesystem.Cd(); break;
-                case "gui":Commands.Graphics.Init();break;
+                case "gui": Commands.Graphics.Init(); break;
             }
         }
     }

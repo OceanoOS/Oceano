@@ -1,7 +1,6 @@
-﻿using nifanfa.CosmosDrawString;
-using System.Drawing;
+﻿using System.Drawing;
 
-namespace CosmosKernel1
+namespace Oceano.Graphics
 {
     class LogView : App
     {
@@ -17,7 +16,7 @@ namespace CosmosKernel1
 
         public override void _Update()
         {
-            Kernel.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(x, y, width, height, (uint)Color.Black.ToArgb());
+            Commands.Graphics.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(x, y, width, height, (uint)Color.Black.ToArgb());
 
             string s = string.Empty;
             int i = 0;
@@ -35,7 +34,7 @@ namespace CosmosKernel1
                 }
             }
 
-            Kernel.vMWareSVGAII._DrawACSIIString(s, (uint)Color.White.ToArgb(), x, y);
+            Commands.Graphics.vMWareSVGAII._DrawACSIIString(s, (uint)Color.White.ToArgb(), x, y);
         }
     }
 }

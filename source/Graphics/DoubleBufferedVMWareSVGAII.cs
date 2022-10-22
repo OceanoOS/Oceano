@@ -3,7 +3,7 @@ using Cosmos.HAL;
 using Cosmos.System.Graphics;
 using System;
 
-namespace CosmosKernel1
+namespace Oceano.Graphics
 {
     /// <summary>
     /// VMWareSVGAII class.

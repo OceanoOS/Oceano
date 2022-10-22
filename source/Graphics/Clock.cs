@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace CosmosKernel1
+namespace Oceano.Graphics
 {
     class Clock : App
     {
@@ -12,9 +12,9 @@ namespace CosmosKernel1
 
         public override void _Update()
         {
-            drawHand(Kernel.vMWareSVGAII, (uint)Color.Black.ToArgb(), (int)(x + width / 2), (int)(y + height / 2), DateTime.Now.Hour, 40);
-            drawHand(Kernel.vMWareSVGAII, (uint)Color.Black.ToArgb(), (int)(x + width / 2), (int)(y + height / 2), DateTime.Now.Minute, 60);
-            drawHand(Kernel.vMWareSVGAII, (uint)Color.Red.ToArgb(), (int)(x + width / 2), (int)(y + height / 2), DateTime.Now.Second, 80);
+            drawHand(Commands.Graphics.vMWareSVGAII, (uint)Color.Black.ToArgb(), (int)(x + width / 2), (int)(y + height / 2), DateTime.Now.Hour, 40);
+            drawHand(Commands.Graphics.vMWareSVGAII, (uint)Color.Black.ToArgb(), (int)(x + width / 2), (int)(y + height / 2), DateTime.Now.Minute, 60);
+            drawHand(Commands.Graphics.vMWareSVGAII, (uint)Color.Red.ToArgb(), (int)(x + width / 2), (int)(y + height / 2), DateTime.Now.Second, 80);
         }
 
         void drawHand(DoubleBufferedVMWareSVGAII vMWareSVGAII, uint color, int xStart, int yStart, int angle, int radius)
