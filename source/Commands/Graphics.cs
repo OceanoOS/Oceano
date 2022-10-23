@@ -8,6 +8,7 @@ using Oceano.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq.Expressions;
 
 namespace Oceano.Commands
 {
@@ -16,15 +17,7 @@ namespace Oceano.Commands
         public static uint screenWidth = 640;
         public static uint screenHeight = 480;
         public static DoubleBufferedVMWareSVGAII vMWareSVGAII;
-        public static Bitmap bitmap;
-        public static Bitmap programlogo;
-        public static Bitmap bootBitmap;
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.program.bmp")] 
-        static byte[] program;
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.wallpaper.bmp")]
-        static byte[] wallpaper;
-
-        static readonly int[] cursor = new int[]
+               static readonly int[] cursor = new int[]
             {
                 1,0,0,0,0,0,0,0,0,0,0,0,
                 1,1,0,0,0,0,0,0,0,0,0,0,
@@ -47,55 +40,16 @@ namespace Oceano.Commands
                 0,0,0,0,0,0,0,1,1,0,0,0
             };
 
-         static LogView logView;
-         static Clock Clock;
-         static Notepad notepad;
-         static Dock dock;
         public static bool Pressed;
-
-        public static List<App> apps = new List<App>();
-
-        public static Color avgCol;
-
         public static void BeforeRun()
         {
-
-            bootBitmap = new Bitmap(wallpaper);
-
             vMWareSVGAII = new DoubleBufferedVMWareSVGAII();
             vMWareSVGAII.SetMode(screenWidth, screenHeight);
-
-            vMWareSVGAII.DoubleBuffer_DrawImage(bootBitmap, 640 / 4, 0);
             vMWareSVGAII.DoubleBuffer_Update();
-
-            bitmap = new Bitmap(wallpaper);
-            programlogo = new Bitmap(program);
-
-            uint r = 0;
-            uint g = 0;
-            uint b = 0;
-            for (uint i = 0; i < bitmap.rawData.Length; i++)
-            {
-                Color color = Color.FromArgb(bitmap.rawData[i]);
-                r += color.R;
-                g += color.G;
-                b += color.B;
-            }
-            avgCol = Color.FromArgb((int)(r / bitmap.rawData.Length), (int)(g / bitmap.rawData.Length), (int)(b / bitmap.rawData.Length));
-
             MouseManager.ScreenWidth = screenWidth;
             MouseManager.ScreenHeight = screenHeight;
             MouseManager.X = screenWidth / 2;
             MouseManager.Y = screenHeight / 2;
-
-            logView = new LogView(300, 200, 10, 30);
-            Clock = new Clock(200, 200, 400, 200);
-            notepad = new Notepad(200, 100, 10, 300);
-            dock = new Dock();
-
-            apps.Add(logView);
-            apps.Add(Clock);
-            apps.Add(notepad);
             Run();
         }
 
@@ -110,18 +64,21 @@ namespace Oceano.Commands
                     Pressed = false;
                     break;
             }
-
-            vMWareSVGAII.DoubleBuffer_Clear((uint)Color.Black.ToArgb());
-            vMWareSVGAII.DoubleBuffer_SetVRAM(bitmap.rawData, (int)vMWareSVGAII.FrameSize);
-            logView.text = $"Time: {DateTime.Now}\nInstall RAM: {CPU.GetAmountOfRAM()}MB, Video RAM: {vMWareSVGAII.Video_Memory.Size}Bytes";
-            foreach (App app in apps)
-                app.Update();
-
-            dock.Update();
-
-            DrawCursor(vMWareSVGAII, MouseManager.X, MouseManager.Y);
-
             vMWareSVGAII.DoubleBuffer_Update();
+            vMWareSVGAII.DoubleBuffer_Clear((uint)Color.DarkGray.ToArgb());
+            vMWareSVGAII.DoubleBuffer_DrawFillRectangle(0, 0, screenWidth, 20, (uint)Color.Black.ToArgb());
+            string text = "PowerOFF";
+            uint strX = 2;
+            uint strY = (20 - 16) / 2;
+            vMWareSVGAII._DrawACSIIString("PowerOFF", (uint)Color.White.ToArgb(), strX, strY);
+            if (Pressed)
+            {
+                if (MouseManager.X > strX && MouseManager.X < strX + (text.Length * 8) && MouseManager.Y > strY && MouseManager.Y < strY + 16)
+                {
+                    ACPI.Shutdown();
+                }
+            }
+            DrawCursor(vMWareSVGAII, (uint)MouseManager.X, (uint)MouseManager.Y);
             Run();
         }
 
