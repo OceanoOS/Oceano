@@ -1,23 +1,20 @@
 ﻿using Cosmos.Core;
 using Cosmos.System;
-using Cosmos.System.FileSystem;
-using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.Graphics;
 using IL2CPU.API.Attribs;
-using Oceano.Graphics;
+using Microsoft.VisualBasic;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq.Expressions;
 
-namespace Oceano.Commands
+namespace Oceano.Graphics
 {
-    public class Graphics
+    public class SVGAII
     {
-        public static uint screenWidth = 640;
-        public static uint screenHeight = 480;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.wallpaper.bmp")]
+        static byte[] file;
         public static DoubleBufferedVMWareSVGAII vMWareSVGAII;
-               static readonly int[] cursor = new int[]
+        public static bool Pressed;
+        static int[] cursor = new int[]
             {
                 1,0,0,0,0,0,0,0,0,0,0,0,
                 1,1,0,0,0,0,0,0,0,0,0,0,
@@ -39,21 +36,18 @@ namespace Oceano.Commands
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
             };
-
-        public static bool Pressed;
-        public static void BeforeRun()
+        static Bitmap bitmap = new(file);
+        static string time;
+        public static void Init()
         {
             vMWareSVGAII = new DoubleBufferedVMWareSVGAII();
-            vMWareSVGAII.SetMode(screenWidth, screenHeight);
+            vMWareSVGAII.SetMode(640, 480);
+            MouseManager.ScreenWidth = 640;
+            MouseManager.ScreenHeight = 480;
             vMWareSVGAII.DoubleBuffer_Update();
-            MouseManager.ScreenWidth = screenWidth;
-            MouseManager.ScreenHeight = screenHeight;
-            MouseManager.X = screenWidth / 2;
-            MouseManager.Y = screenHeight / 2;
-            Run();
+            Update();
         }
-
-        public static void Run()
+        public static void Update()
         {
             switch (MouseManager.MouseState)
             {
@@ -64,24 +58,26 @@ namespace Oceano.Commands
                     Pressed = false;
                     break;
             }
+            time = DateTime.Now.Hour + ":" + DateTime.Now.Minute.ToString();
             vMWareSVGAII.DoubleBuffer_Update();
-            vMWareSVGAII.DoubleBuffer_Clear((uint)Color.DarkGray.ToArgb());
-            vMWareSVGAII.DoubleBuffer_DrawFillRectangle(0, 0, screenWidth, 20, (uint)Color.Black.ToArgb());
-            string text = "PowerOFF";
+            vMWareSVGAII.DoubleBuffer_DrawImage(bitmap, 0, 0);
+            vMWareSVGAII.DoubleBuffer_DrawFillRectangle(0, 0, 640, 16, (uint)Color.Black.ToArgb());
+            vMWareSVGAII._DrawACSIIString("Console", (uint)Color.White.ToArgb(), 0, 0);
+            string text = "Console";
             uint strX = 2;
             uint strY = (20 - 16) / 2;
-            vMWareSVGAII._DrawACSIIString("PowerOFF", (uint)Color.White.ToArgb(), strX, strY);
             if (Pressed)
             {
                 if (MouseManager.X > strX && MouseManager.X < strX + (text.Length * 8) && MouseManager.Y > strY && MouseManager.Y < strY + 16)
                 {
-                    ACPI.Shutdown();
+                    vMWareSVGAII.Disable();
+                    Commands.Shell.BeforeRun();
                 }
             }
+            vMWareSVGAII._DrawACSIIString(time, (uint)Color.White.ToArgb(), 560, 0);
             DrawCursor(vMWareSVGAII, (uint)MouseManager.X, (uint)MouseManager.Y);
-            Run();
+            Update();
         }
-
         public static void DrawCursor(DoubleBufferedVMWareSVGAII vMWareSVGAII, uint x, uint y)
         {
             for (uint h = 0; h < 19; h++)

@@ -45,23 +45,6 @@ namespace Oceano.Commands
                     break;
             }
         }
-        public static void Help()
-        {
-            Console.WriteLine("======Help======");
-            Console.WriteLine("help: show this message");
-            Console.WriteLine("calc: open calculator");
-            Console.WriteLine("miv: open a file text editor");
-            Console.WriteLine("shutdown: do a cpu shutdown");
-            Console.WriteLine("reboot: do a cpu reboot");
-            Console.WriteLine("neofetch: show some information about the system");
-            Console.WriteLine("touch: create a new file");
-            Console.WriteLine("dir: show the directory listing of the current folder");
-            Console.WriteLine("beep: do a sound");
-            Console.WriteLine("mkdir: create a directory");
-            Console.WriteLine("rm: remove a file");
-            Console.WriteLine("rmdir: remove a directory");
-
-        }
         public static void Info()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -86,4 +69,3 @@ namespace Oceano.Commands
         }
     }
 }
-

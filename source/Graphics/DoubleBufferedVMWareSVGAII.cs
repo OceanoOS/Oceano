@@ -795,29 +795,23 @@ namespace Oceano.Graphics
 
         /*
         ManagedMemoryBlock managedMemoryBlock;
-
         private void Init()
         {
             managedMemoryBlock = new ManagedMemoryBlock(ReadRegister(Register.FrameBufferSize));
         }
-
         public void _SetPixel(uint x, uint y, uint color)
         {
             uint offset = (y * width + x) * depth;
-
             Kernel.text = $"Last Offset: {offset}";
-
             if (offset < managedMemoryBlock.Size && x < this.width)
             {
                 managedMemoryBlock.Write32(offset, color);
             }
         }
-
         public void _Clear(uint color)
         {
             managedMemoryBlock.Fill(color);
         }
-
         public void _Update()
         {
             Video_Memory.Copy(managedMemoryBlock);

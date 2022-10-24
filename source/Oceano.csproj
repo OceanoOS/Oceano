@@ -22,12 +22,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\program.bmp" />
       <None Remove="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\program.bmp" />
       <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 
