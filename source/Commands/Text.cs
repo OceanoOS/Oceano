@@ -60,7 +60,7 @@ namespace Oceano.Commands
             Console.WriteLine();
             Console.Write(@"..-''               ~~--.."); Console.Write("   Shell: "); Console.ForegroundColor = ConsoleColor.White; Console.Write("Wave Shell 1.0"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
-            Console.Write(@"                          "); Console.Write("   Resolution: "); Console.ForegroundColor = ConsoleColor.White; Console.Write("undefined"); Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(@"                          "); Console.Write("   Resolution: "); Console.ForegroundColor = ConsoleColor.White; Console.Write("640x480@32"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
             Console.Write(@"                          "); Console.Write("   CPU: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(cpu); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();

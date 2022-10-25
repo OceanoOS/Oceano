@@ -12,6 +12,10 @@ namespace Oceano.Graphics
     {
         [ManifestResourceStream(ResourceName = "Oceano.Resources.wallpaper.bmp")]
         static byte[] file;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.console.bmp")]
+        static byte[] file1;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.info.bmp")]
+        static byte[] file2;
         public static DoubleBufferedVMWareSVGAII vMWareSVGAII;
         public static bool Pressed;
         static int[] cursor = new int[]
@@ -36,7 +40,9 @@ namespace Oceano.Graphics
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
             };
-        static Bitmap bitmap = new(file);
+        public static Bitmap wallpaper = new(file);
+        public static Bitmap console = new(file1);
+        public static Bitmap info = new(file2);
         static string time;
         public static void Init()
         {
@@ -58,23 +64,33 @@ namespace Oceano.Graphics
                     Pressed = false;
                     break;
             }
-            time = DateTime.Now.Hour + ":" + DateTime.Now.Minute.ToString();
+            time = DateTime.Now.ToString();
             vMWareSVGAII.DoubleBuffer_Update();
-            vMWareSVGAII.DoubleBuffer_DrawImage(bitmap, 0, 0);
+            vMWareSVGAII.DoubleBuffer_DrawImage(wallpaper, 0, 0);
             vMWareSVGAII.DoubleBuffer_DrawFillRectangle(0, 0, 640, 16, (uint)Color.Black.ToArgb());
-            vMWareSVGAII._DrawACSIIString("Console", (uint)Color.White.ToArgb(), 0, 0);
-            string text = "Console";
-            uint strX = 2;
-            uint strY = (20 - 16) / 2;
+            vMWareSVGAII.DoubleBuffer_DrawImage(console,0,0);
+            vMWareSVGAII.DoubleBuffer_DrawImage(info, 20, 0);
+            Info.DrawApp(16,20,200,200,"Info");
             if (Pressed)
             {
-                if (MouseManager.X > strX && MouseManager.X < strX + (text.Length * 8) && MouseManager.Y > strY && MouseManager.Y < strY + 16)
+                if(MouseManager.X>=0 & MouseManager.Y >=0 & MouseManager.X <= 16 & MouseManager.Y <= 16)
                 {
                     vMWareSVGAII.Disable();
                     Commands.Shell.BeforeRun();
                 }
+                if(MouseManager.X>20 & MouseManager.X <= 36 & MouseManager.Y > 0 & MouseManager.Y <= 16)
+                {
+                    if (Info.Opened == true)
+                    {
+                        Info.Opened = false;
+                    }
+                    else
+                    {
+                        Info.Opened = true;
+                    }
+                }
             }
-            vMWareSVGAII._DrawACSIIString(time, (uint)Color.White.ToArgb(), 560, 0);
+            vMWareSVGAII._DrawACSIIString(time, (uint)Color.White.ToArgb(), 480, 0);
             DrawCursor(vMWareSVGAII, (uint)MouseManager.X, (uint)MouseManager.Y);
             Update();
         }

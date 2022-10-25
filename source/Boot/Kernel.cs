@@ -11,7 +11,6 @@ namespace Oceano.Boot
         }
         protected override void Run()
         {
-            Graphics.SVGAII.Update();
         }
         protected override void OnBoot()
         {
