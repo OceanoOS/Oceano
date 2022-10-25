@@ -14,7 +14,7 @@ namespace Oceano.Graphics
         static byte[] file;
         [ManifestResourceStream(ResourceName = "Oceano.Resources.console.bmp")]
         static byte[] file1;
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.info.bmp")]
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.shutdown.bmp")]
         static byte[] file2;
         public static DoubleBufferedVMWareSVGAII vMWareSVGAII;
         public static bool Pressed;
@@ -42,7 +42,7 @@ namespace Oceano.Graphics
             };
         public static Bitmap wallpaper = new(file);
         public static Bitmap console = new(file1);
-        public static Bitmap info = new(file2);
+        public static Bitmap shutdown = new(file2);
         static string time;
         public static void Init()
         {
@@ -69,8 +69,7 @@ namespace Oceano.Graphics
             vMWareSVGAII.DoubleBuffer_DrawImage(wallpaper, 0, 0);
             vMWareSVGAII.DoubleBuffer_DrawFillRectangle(0, 0, 640, 16, (uint)Color.Black.ToArgb());
             vMWareSVGAII.DoubleBuffer_DrawImage(console,0,0);
-            vMWareSVGAII.DoubleBuffer_DrawImage(info, 20, 0);
-            Info.DrawApp(16,20,200,200,"Info");
+            vMWareSVGAII.DoubleBuffer_DrawImage(shutdown, 20, 0);
             if (Pressed)
             {
                 if(MouseManager.X>=0 & MouseManager.Y >=0 & MouseManager.X <= 16 & MouseManager.Y <= 16)
@@ -80,14 +79,7 @@ namespace Oceano.Graphics
                 }
                 if(MouseManager.X>20 & MouseManager.X <= 36 & MouseManager.Y > 0 & MouseManager.Y <= 16)
                 {
-                    if (Info.Opened == true)
-                    {
-                        Info.Opened = false;
-                    }
-                    else
-                    {
-                        Info.Opened = true;
-                    }
+                    Cosmos.System.Power.Shutdown();
                 }
             }
             vMWareSVGAII._DrawACSIIString(time, (uint)Color.White.ToArgb(), 480, 0);

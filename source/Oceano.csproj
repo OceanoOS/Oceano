@@ -23,13 +23,13 @@
 
     <ItemGroup>
       <None Remove="Resources\console.bmp" />
-      <None Remove="Resources\info.bmp" />
+      <None Remove="Resources\shutdown.bmp" />
       <None Remove="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="Resources\console.bmp" />
-      <EmbeddedResource Include="Resources\info.bmp" />
+      <EmbeddedResource Include="Resources\shutdown.bmp" />
       <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 
