@@ -28,8 +28,8 @@ namespace Oceano.Graphics
                 Kernel.canvas.DrawString(text, PCScreenFont.Default, new(Color.White), x + 1, y + 1);
                 if(MouseManager.X >= x & MouseManager.X <=x+200 & MouseManager.Y >=y & MouseManager.Y <=y+16 & MouseManager.MouseState == MouseState.Left)
                 {
-                    x = (int)MouseManager.X + 10 -10;
-                    y = (int)MouseManager.Y+10-10;
+                    x = (int)MouseManager.X - 10;
+                    y = (int)MouseManager.Y - 10;
                 }
             }
         }
