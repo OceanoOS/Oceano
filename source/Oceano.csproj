@@ -18,18 +18,17 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <DebugEnabled>False</DebugEnabled>
-        <VMWareEdition>Workstation</VMWareEdition>
+        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <VBEResolution></VBEResolution>
+        <CompressionType>Gzip</CompressionType>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\console.bmp" />
-      <None Remove="Resources\shutdown.bmp" />
       <None Remove="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\console.bmp" />
-      <EmbeddedResource Include="Resources\shutdown.bmp" />
       <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 
@@ -37,7 +36,6 @@
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="CosmosFtpServer" Version="1.0.1" />
     </ItemGroup>
 
 </Project>
