@@ -14,17 +14,17 @@ namespace Oceano.Graphics
 {
     public class VGA
     {
+        public static int x = 640;
+        public static int y = 480;
         public static void Init()
         {
-            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
+            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(x, y, ColorDepth.ColorDepth32));
             Kernel.canvas.Clear(Color.Black);
-            MouseManager.ScreenWidth = 640;
-            MouseManager.ScreenHeight = 480;
+            MouseManager.ScreenWidth = (uint)x;
+            MouseManager.ScreenHeight = (uint)y;
             Cosmos.System.MouseManager.X = (uint)((int)Kernel.canvas.Mode.Columns / 2);
             Cosmos.System.MouseManager.Y = (uint)((int)Kernel.canvas.Mode.Rows / 2);
-            TestApp.x = 120;
-            TestApp.y = 140;
-            TestApp.text = "TestApp";
+
 
         }
         public static void Update()

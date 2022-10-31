@@ -25,10 +25,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\close.bmp" />
+      <None Remove="Resources\logo.bmp" />
       <None Remove="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Resources\close.bmp" />
+      <EmbeddedResource Include="Resources\logo.bmp" />
       <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 

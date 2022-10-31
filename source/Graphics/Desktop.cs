@@ -19,32 +19,35 @@ namespace Oceano.Graphics
         [ManifestResourceStream(ResourceName = "Oceano.Resources.wallpaper.bmp")]
         static byte[] file;
         static Bitmap wallpaper = new(file);
+        static bool MenuOpened;
         public static void Update()
         {
             Kernel.canvas.DrawImage(wallpaper, 0, 0);
             time = DateTime.Now.ToString("hh:mm");
-            Kernel.canvas.DrawFilledRectangle(new(Color.Black), 0, 0, 640, 16);
-            Kernel.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), 640 / 2 - time.Length * 8, 0);
+            Kernel.canvas.DrawFilledRectangle(new(Color.Black), 0, 0, VGA.x, 16);
+            Kernel.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), VGA.x / 2 - time.Length * 8, 0);
             string powerOff = new("Shutdown");
             Kernel.canvas.DrawString(powerOff, PCScreenFont.Default, new(Color.White), 0, 0);
-            string testApp = new("TestApp");
-            Kernel.canvas.DrawString(testApp, PCScreenFont.Default, new(Color.White), 0, 16);
-            
-            TestApp.Update();
+            Kernel.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), 0, VGA.y - 16, VGA.x, 16);
+            Kernel.canvas.DrawString("^", PCScreenFont.Default, new(Color.White), 0, VGA.y - 16);
+            InfoApp.Update();
             if (MouseManager.MouseState == MouseState.Left & MouseManager.X >= 0 & MouseManager.X <= powerOff.Length *8 & MouseManager.Y>=0 & MouseManager.Y <= 16){
                 Cosmos.System.Power.Shutdown();
             }
-            if (MouseManager.MouseState == MouseState.Left & MouseManager.X >= 0 & MouseManager.X <= testApp.Length * 8 & MouseManager.Y >= 16 & MouseManager.Y <= 32)
+            if (MouseManager.MouseState == MouseState.Left & MouseManager.X >= 0 & MouseManager.X <= 8 & MouseManager.Y >= VGA.y - 16 & MouseManager.Y <= VGA.y & MouseManager.LastMouseState == MouseState.None)
             {
-                if (TestApp.Opened == false)
+                if (MenuOpened == false)
                 {
-                    TestApp.Opened = true;
-
+                    MenuOpened = true;
                 }
                 else
                 {
-                    TestApp.Opened = false;
+                    MenuOpened = false;
                 }
+            }
+            if (MenuOpened)
+            {
+                Kernel.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), 0, VGA.y - 216, 300, 200);
             }
         }
     }

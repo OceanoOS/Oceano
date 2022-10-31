@@ -14,9 +14,15 @@ namespace Oceano.Boot
         public static Canvas canvas;
         Sys.FileSystem.CosmosVFS fs = new Sys.FileSystem.CosmosVFS();
         public static string path;
+        public static uint ram;
+        public static string cpu;
         protected override void BeforeRun()
         {
+            ram = Cosmos.Core.CPU.GetAmountOfRAM();
+            cpu = Cosmos.Core.CPU.GetCPUBrandString();
             Graphics.VGA.Init();
+            Graphics.VGA.x = 640;
+            Graphics.VGA.y = 480;
         }
 
         protected override void Run()
