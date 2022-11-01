@@ -12,12 +12,13 @@ namespace Oceano.Graphics
         public static int y;
         public static void Init()
         {
-            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(x, y, ColorDepth.ColorDepth32));
+            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new(x,y,ColorDepth.ColorDepth32));
             Kernel.canvas.Clear(Color.Black);
             MouseManager.ScreenWidth = (uint)x;
             MouseManager.ScreenHeight = (uint)y;
             Cosmos.System.MouseManager.X = (uint)((int)Kernel.canvas.Mode.Columns / 2);
             Cosmos.System.MouseManager.Y = (uint)((int)Kernel.canvas.Mode.Rows / 2);
+            Update();
         }
         public static void Update()
         {
@@ -34,6 +35,7 @@ namespace Oceano.Graphics
                 Heap.Collect();
                 Kernel.canvas.Display();
                 Kernel.canvas.Clear(Color.Black);
+                Update();
             }
             catch
             {

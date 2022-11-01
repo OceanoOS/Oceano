@@ -4,6 +4,7 @@ using IL2CPU.API.Attribs;
 using System;
 using System.Drawing;
 using Kernel = Oceano.Boot.Kernel;
+using Cosmos.HAL;
 namespace Oceano.Graphics
 {
     public class Desktop
@@ -23,6 +24,7 @@ namespace Oceano.Graphics
             Kernel.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), VGA.x - 40, VGA.y - 16);
             Kernel.canvas.DrawIcon("SysInfo", new(info), 1, 1, InfoOpened);
             Kernel.canvas.DrawIcon("Shutdown", new(shutdown), 1, 70,Cosmos.System.Power.Shutdown);
+            Kernel.canvas.DrawIcon("Exit", new(shutdown), 1, 141, Shell.BeforeRun);
             InfoApp.Update();
         }
         public static void InfoOpened()

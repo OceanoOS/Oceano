@@ -17,7 +17,6 @@ namespace Oceano.Graphics
             {
                 a();
             }
-
         }
     }
 }
