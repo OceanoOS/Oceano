@@ -15,7 +15,7 @@ namespace Oceano.Graphics
         static byte[] cursor;
         public static void Init()
         {
-            Kernel.canvas = new SVGAIICanvas(new(x,y,ColorDepth.ColorDepth32));
+            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new(x,y,ColorDepth.ColorDepth32));
             Kernel.canvas.Clear(Color.Black);
             MouseManager.ScreenWidth = (uint)x;
             MouseManager.ScreenHeight = (uint)y;
