@@ -27,14 +27,20 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\apps.bmp" />
       <None Remove="Resources\close.bmp" />
+      <None Remove="Resources\console.bmp" />
+      <None Remove="Resources\cursor.bmp" />
       <None Remove="Resources\info.bmp" />
       <None Remove="Resources\logo.bmp" />
       <None Remove="Resources\shutdown.bmp" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Resources\apps.bmp" />
       <EmbeddedResource Include="Resources\close.bmp" />
+      <EmbeddedResource Include="Resources\console.bmp" />
+      <EmbeddedResource Include="Resources\cursor.bmp" />
       <EmbeddedResource Include="Resources\info.bmp" />
       <EmbeddedResource Include="Resources\logo.bmp" />
       <EmbeddedResource Include="Resources\shutdown.bmp" />

@@ -1,6 +1,7 @@
 ﻿using Cosmos.Core.Memory;
 using Cosmos.System;
 using Cosmos.System.Graphics;
+using IL2CPU.API.Attribs;
 using System.Drawing;
 using Kernel = Oceano.Boot.Kernel;
 
@@ -10,9 +11,11 @@ namespace Oceano.Graphics
     {
         public static int x;
         public static int y;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.cursor.bmp")]
+        static byte[] cursor;
         public static void Init()
         {
-            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new(x,y,ColorDepth.ColorDepth32));
+            Kernel.canvas = new SVGAIICanvas(new(x,y,ColorDepth.ColorDepth32));
             Kernel.canvas.Clear(Color.Black);
             MouseManager.ScreenWidth = (uint)x;
             MouseManager.ScreenHeight = (uint)y;
@@ -25,13 +28,7 @@ namespace Oceano.Graphics
             try
             {
                 Graphics.Desktop.Update();
-                Pen pen = new Pen(Color.White);
-                Kernel.canvas.DrawLine(pen, (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y,
-                    (int)Cosmos.System.MouseManager.X + 6, (int)Cosmos.System.MouseManager.Y);
-                Kernel.canvas.DrawLine(pen, (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y,
-                    (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y + 6);
-                Kernel.canvas.DrawLine(pen, (int)Cosmos.System.MouseManager.X, (int)Cosmos.System.MouseManager.Y,
-                    (int)Cosmos.System.MouseManager.X + 12, (int)Cosmos.System.MouseManager.Y + 12);
+                Kernel.canvas.DrawImageAlpha(new Bitmap(cursor), (int)MouseManager.X, (int)MouseManager.Y);
                 Heap.Collect();
                 Kernel.canvas.Display();
                 Kernel.canvas.Clear(Color.Black);
