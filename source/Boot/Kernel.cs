@@ -18,9 +18,7 @@ namespace Oceano.Boot
         {
             ram = Cosmos.Core.CPU.GetAmountOfRAM();
             cpu = Cosmos.Core.CPU.GetCPUBrandString();
-            VGA.x = 800;
-            VGA.y = 600;
-            VGA.Init();
+            SVGAII.Init();
         }
 
         protected override void Run()

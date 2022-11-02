@@ -21,7 +21,7 @@ namespace Oceano
             var input = Console.ReadLine();
             switch (input)
             {
-                case "gui": Graphics.VGA.Init(); break;
+                case "gui": Graphics.SVGAII.Init(); break;
                 case "shutdown":Cosmos.System.Power.Shutdown();break;
                 default:Console.WriteLine("Command Not Found."); break;
                 case "": break;

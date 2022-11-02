@@ -19,8 +19,8 @@
         <PxeInterface>192.168.0.8</PxeInterface>
         <DebugEnabled>False</DebugEnabled>
         <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
-        <CompileVBEMultiboot>False</CompileVBEMultiboot>
-        <VBEResolution></VBEResolution>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <VBEResolution>800x600x32</VBEResolution>
         <CompressionType>Gzip</CompressionType>
         <VMWareEdition>Workstation</VMWareEdition>
         <BinFormat>Elf</BinFormat>
@@ -33,7 +33,9 @@
       <None Remove="Resources\cursor.bmp" />
       <None Remove="Resources\info.bmp" />
       <None Remove="Resources\logo.bmp" />
+      <None Remove="Resources\settings.bmp" />
       <None Remove="Resources\shutdown.bmp" />
+      <None Remove="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
@@ -43,7 +45,9 @@
       <EmbeddedResource Include="Resources\cursor.bmp" />
       <EmbeddedResource Include="Resources\info.bmp" />
       <EmbeddedResource Include="Resources\logo.bmp" />
+      <EmbeddedResource Include="Resources\settings.bmp" />
       <EmbeddedResource Include="Resources\shutdown.bmp" />
+      <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>

@@ -24,6 +24,8 @@ namespace Oceano.Graphics
         static byte[] shutdown;
         [ManifestResourceStream(ResourceName = "Oceano.Resources.console.bmp")]
         static byte[] console;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.settings.bmp")]
+        static byte[] settings;
         public static void Update()
         {
             if (Opened == true)
@@ -34,6 +36,8 @@ namespace Oceano.Graphics
                 Kernel.canvas.DrawIcon("SysInfo", new(info), x + 1, y + 20,OpenInfoApp);
                 Kernel.canvas.DrawIcon("PowerOff", new(shutdown), x + 70, y + 20, Cosmos.System.Power.Shutdown);
                 Kernel.canvas.DrawIcon("Console", new(console), x + 140, y + 20, Shell.BeforeRun);
+                Kernel.canvas.DrawIcon("Settings", new(settings), x + 210, y + 20, OpenSettingsApp );
+
                 if (MouseManager.X >= x & MouseManager.X <= x + 200 & MouseManager.Y >= y & MouseManager.Y <= y + 16 & MouseManager.MouseState == MouseState.Left)
                 {
                     x = (int)MouseManager.X - 10;
@@ -48,6 +52,10 @@ namespace Oceano.Graphics
         public static void OpenInfoApp()
         {
             InfoApp.Opened = true;
+        }
+        public static void OpenSettingsApp()
+        {
+            SettingsApp.Opened = true;
         }
     }
 }

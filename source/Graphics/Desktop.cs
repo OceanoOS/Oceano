@@ -5,6 +5,8 @@ using System;
 using System.Drawing;
 using Kernel = Oceano.Boot.Kernel;
 using Cosmos.HAL;
+using Cosmos.Core.Memory;
+
 namespace Oceano.Graphics
 {
     public class Desktop
@@ -14,20 +16,29 @@ namespace Oceano.Graphics
         static byte[] apps;
         [ManifestResourceStream(ResourceName = "Oceano.Resources.close.bmp")]
         static byte[] closefile;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.wallpaper.bmp")]
+        static byte[] wallpaper;
         public static Bitmap close = new(closefile);
+        public static bool WallpaperEnabled = false;
+
         public static void Update()
         {
             time = DateTime.Now.ToString("hh:mm");
-            Kernel.canvas.DrawIcon(" Apps", new(apps), 1, 1, Apps);
+            if (WallpaperEnabled == true)
+            {
+                Kernel.canvas.DrawImageAlpha(new Bitmap(wallpaper), 0, 0);
+            }
+            Kernel.canvas.DrawIcon(" Apps", new(apps), 1, 1, OpenApps);
+            Apps.Update();
             InfoApp.Update();
-            Graphics.Apps.Update();
-            Kernel.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), 0, VGA.y - 16, VGA.x, 16);
-            Kernel.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), VGA.x - 40, VGA.y - 16);
-
+            SettingsApp.Update();
+            Kernel.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), 0, 600 - 16, 800, 16);
+            Kernel.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), 800 - 40, 600 - 16);
         }
-        public static void Apps()
+        public static void OpenApps()
         {
             Graphics.Apps.Opened = true;
         }
+        
     }
 }
