@@ -32,6 +32,7 @@ namespace Oceano.Graphics
             Apps.Update();
             InfoApp.Update();
             SettingsApp.Update();
+            FilesApp.Update();
             Kernel.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), 0, 600 - 16, 800, 16);
             Kernel.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), 800 - 40, 600 - 16);
         }

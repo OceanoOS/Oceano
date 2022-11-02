@@ -17,7 +17,7 @@ namespace Oceano.Graphics
         public static int y = 100;
         public static int w = 600;
         public static int h = 300;
-        public static string text = "System Information";
+        public static string text = "Settings";
         public static bool Opened;
         public static void Update()
         {

@@ -8,6 +8,7 @@ using Cosmos.System.Graphics;
 using IL2CPU.API.Attribs;
 using System.Drawing;
 using Kernel = Oceano.Boot.Kernel;
+using System;
 
 namespace Oceano.Graphics
 {
@@ -37,10 +38,10 @@ namespace Oceano.Graphics
                 Heap.Collect();
                 Update();
             }
-            catch
+            catch(Exception e)
             {
                 Kernel.canvas.Disable();
-                System.Console.WriteLine("Error on canvas.");
+                System.Console.WriteLine("Error on canvas: " +e);
             }
         }
     }

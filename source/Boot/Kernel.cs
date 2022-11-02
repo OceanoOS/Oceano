@@ -16,6 +16,7 @@ namespace Oceano.Boot
         public static bool FsEnabled;
         protected override void BeforeRun()
         {
+            VFSManager.RegisterVFS(fs,true,true);
             ram = Cosmos.Core.CPU.GetAmountOfRAM();
             cpu = Cosmos.Core.CPU.GetCPUBrandString();
             SVGAII.Init();
