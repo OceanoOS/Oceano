@@ -22,9 +22,9 @@ namespace Oceano.Graphics
         static byte[] folder;
         public static int x = 40;
         public static int y = 40;
-        public static int w = 600;
-        public static int h = 300;
-        public static string text = @"0:\ - Files";
+        public static int w = 700;
+        public static int h = 200;
+        public static string text = @"0:\\ - Files";
         public static bool Opened;
         public static string path=@"0:\";
         public static void Update()

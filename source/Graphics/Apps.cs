@@ -28,6 +28,8 @@ namespace Oceano.Graphics
         static byte[] settings;
         [ManifestResourceStream(ResourceName = "Oceano.Resources.folder.bmp")]
         static byte[] files;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.file.bmp")]
+        static byte[] notepad;
         public static void Update()
         {
             if (Opened == true)
@@ -40,8 +42,6 @@ namespace Oceano.Graphics
                 Kernel.canvas.DrawIcon("Console", new(console), x + 140, y + 20, Shell.BeforeRun);
                 Kernel.canvas.DrawIcon("Settings", new(settings), x + 210, y + 20, OpenSettingsApp );
                 Kernel.canvas.DrawIcon("Files", new(files), x + 280, y + 20, OpenFilesApp);
-
-
                 if (MouseManager.X >= x & MouseManager.X <= x + 200 & MouseManager.Y>= y & MouseManager.Y <= y + 16 & MouseManager.MouseState == MouseState.Left)
                 {
                     x = (int)MouseManager.X - 10;

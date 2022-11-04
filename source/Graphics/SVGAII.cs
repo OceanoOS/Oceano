@@ -18,13 +18,12 @@ namespace Oceano.Graphics
         static byte[] cursor;
         public static void Init()
         {
-            Kernel.canvas = new SVGAIICanvas(new(800, 600, ColorDepth.ColorDepth32));
+            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new(800,600,ColorDepth.ColorDepth32));
             Kernel.canvas.Clear(Color.Black);
             MouseManager.ScreenWidth = (uint)800;
             MouseManager.ScreenHeight = (uint)600;
             Cosmos.System.MouseManager.X = (uint)((int)Kernel.canvas.Mode.Columns / 2);
             Cosmos.System.MouseManager.Y = (uint)((int)Kernel.canvas.Mode.Rows / 2);
-            System.Console.Beep();
             Update();
         }
         public static void Update()
