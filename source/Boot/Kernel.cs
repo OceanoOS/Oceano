@@ -9,21 +9,19 @@ namespace Oceano.Boot
 {
     public class Kernel : Sys.Kernel
     {
-        public static Canvas canvas;
         public static uint ram;
         public static string cpu;
         public static CosmosVFS fs = new();
-        public static bool FsEnabled;
         protected override void BeforeRun()
         {
             VFSManager.RegisterVFS(fs,true,true);
             ram = Cosmos.Core.CPU.GetAmountOfRAM();
             cpu = Cosmos.Core.CPU.GetCPUBrandString();
-            SVGAII.Init();
+            Drivers.Display.InitVBE();
         }
-
         protected override void Run()
         {
+            
         }
     }
 }

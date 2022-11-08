@@ -3,7 +3,7 @@ using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
 using IL2CPU.API.Attribs;
 using System.Drawing;
-using Kernel = Oceano.Boot.Kernel;
+using Display = Oceano.Drivers.Display;
 
 namespace Oceano.Graphics
 {
@@ -23,14 +23,15 @@ namespace Oceano.Graphics
         {
             if (Opened)
             {
-                Kernel.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), x, y, w, h);
-                Kernel.canvas.DrawString(text, PCScreenFont.Default, new(Color.White), x + 1, y + 1);
-                Kernel.canvas.DrawImage(Desktop.close, x + w - 16, y);
-                Kernel.canvas.DrawImage(logo, x + 5, y + 20);
-                Kernel.canvas.DrawString("Oceano Operative System", PCScreenFont.Default, new(Color.White), x + 130, y + 20);
-                Kernel.canvas.DrawString("Version: beta1", PCScreenFont.Default, new(Color.White), x + 130, y + 40);
-                Kernel.canvas.DrawString("CPU: " + Kernel.cpu, PCScreenFont.Default, new(Color.White), x + 130, y + 60);
-                Kernel.canvas.DrawString("RAM: " + Kernel.ram + " MB", PCScreenFont.Default, new(Color.White), x + 130, y + 80);
+                Display.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), x, y, w, h);
+                Display.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), x, y, w, h);
+                Display.canvas.DrawString(text, PCScreenFont.Default, new(Color.White), x + 1, y + 1);
+                Display.canvas.DrawImage(Desktop.close, x + w - 16, y);
+                Display.canvas.DrawImage(logo, x + 5, y + 20);
+                Display.canvas.DrawString("Oceano Operative System", PCScreenFont.Default, new(Color.White), x + 130, y + 20);
+                Display.canvas.DrawString("Version: beta1", PCScreenFont.Default, new(Color.White), x + 130, y + 40);
+                Display.canvas.DrawString("CPU: " + Boot.Kernel.cpu, PCScreenFont.Default, new(Color.White), x + 130, y + 60);
+                Display.canvas.DrawString("RAM: " + Boot.Kernel.ram + " MB", PCScreenFont.Default, new(Color.White), x + 130, y + 80);
                 if (MouseManager.X >= x & MouseManager.X <= x + 200 & MouseManager.Y >= y & MouseManager.Y <= y + 16 & MouseManager.MouseState == MouseState.Left)
                 {
                     x = (int)MouseManager.X - 10;

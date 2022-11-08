@@ -11,7 +11,7 @@ namespace Oceano
     {
         public static void BeforeRun()
         {
-            Boot.Kernel.canvas.Disable();
+            Drivers.Display.canvas.Disable();
             Run();
         }
         public static void Run()
@@ -21,7 +21,7 @@ namespace Oceano
             var input = Console.ReadLine();
             switch (input)
             {
-                case "gui": Graphics.SVGAII.Init(); break;
+                case "gui": Drivers.Display.InitSVGA(); break;
                 case "shutdown":Cosmos.System.Power.Shutdown();break;
                 default:Console.WriteLine("Command Not Found."); break;
                 case "": break;
