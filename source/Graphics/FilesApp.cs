@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 using Display = Oceano.Drivers.Display;
 
 namespace Oceano.Graphics
@@ -24,7 +23,7 @@ namespace Oceano.Graphics
         public static int y = 40;
         public static int w = 700;
         public static int h = 200;
-        public static string text = @"0:\\ - Files";
+        public static string text = @"0:\ - Files";
         public static bool Opened;
         public static string path=@"0:\";
         public static void Update()
@@ -46,7 +45,7 @@ namespace Oceano.Graphics
                 }
                 foreach (var file in files_list)
                 {
-                    Display.canvas.DrawIcon(file, new(FilesApp.file), x1, y + 20, DoNothing);
+                    Display.canvas.DrawIcon(file, new(FilesApp.file), x1, y + 20,DoNothing);
                     x1 = x1 + 80;
                 }
                 if (MouseManager.X >= x & MouseManager.X <= x + 200 & MouseManager.Y >= y & MouseManager.Y <= y + 16 & MouseManager.MouseState == MouseState.Left)
@@ -66,9 +65,16 @@ namespace Oceano.Graphics
         }
         public static void Navigate()
         {
-            var input = System.Console.ReadLine();
-            path = path + @"\"+input;
-            text = path + " - Files";
+            try
+            {
+
+                var input = System.Console.ReadLine();
+                path = path + @"\" + input;
+                text = path + " - Files";
+            }
+            catch
+            {
+            }
         }
         public static void Return0()
         {

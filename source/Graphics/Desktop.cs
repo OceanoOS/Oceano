@@ -4,8 +4,6 @@ using IL2CPU.API.Attribs;
 using System;
 using System.Drawing;
 using Display = Oceano.Drivers.Display;
-using Cosmos.HAL;
-using Cosmos.Core.Memory;
 
 namespace Oceano.Graphics
 {
@@ -19,27 +17,20 @@ namespace Oceano.Graphics
         [ManifestResourceStream(ResourceName = "Oceano.Resources.wallpaper.bmp")]
         static byte[] wallpaper;
         public static Bitmap close = new(closefile);
-        public static bool WallpaperEnabled = false;
 
         public static void Update()
         {
             time = DateTime.Now.ToString("hh:mm");
-            if (WallpaperEnabled == true)
-            {
-                Display.canvas.DrawImageAlpha(new Bitmap(wallpaper), 0, 0);
-            }
-            Display.canvas.DrawIcon(" Apps", new(apps), 1, 1, OpenApps);
             Apps.Update();
             InfoApp.Update();
-            SettingsApp.Update();
             FilesApp.Update();
-            Display.canvas.DrawFilledRectangle(new(Color.FromArgb(32, 32, 32)), 0, 600 - 16, 800, 16);
-            Display.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), 800 - 40, 600 - 16);
+            Display.canvas.DrawButton("Apps", 0, 0, OpenApps);
+            Display.canvas.DrawString(time, PCScreenFont.Default, new(Color.White), 0, 20);
         }
         public static void OpenApps()
         {
             Graphics.Apps.Opened = true;
         }
-        
+
     }
 }

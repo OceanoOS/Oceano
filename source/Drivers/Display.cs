@@ -60,7 +60,7 @@ namespace Oceano.Drivers
             catch (Exception e)
             {
                 canvas.Disable();
-                System.Console.WriteLine("Error: " + e);
+                Drivers.ErrorScreen.PrintErrorScreen(e.Message);
             }
         }
     }

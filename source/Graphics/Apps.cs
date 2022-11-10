@@ -1,6 +1,7 @@
 ﻿using Cosmos.System;
 using Cosmos.System.Graphics.Fonts;
 using IL2CPU.API.Attribs;
+using Oceano.Commands;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -24,8 +25,6 @@ namespace Oceano.Graphics
         static byte[] shutdown;
         [ManifestResourceStream(ResourceName = "Oceano.Resources.console.bmp")]
         static byte[] console;
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.settings.bmp")]
-        static byte[] settings;
         [ManifestResourceStream(ResourceName = "Oceano.Resources.folder.bmp")]
         static byte[] files;
         [ManifestResourceStream(ResourceName = "Oceano.Resources.file.bmp")]
@@ -40,8 +39,7 @@ namespace Oceano.Graphics
                 Display.canvas.DrawIcon("SysInfo", new(info), x + 1, y + 20,OpenInfoApp);
                 Display.canvas.DrawIcon("PowerOff", new(shutdown), x + 70, y + 20, Cosmos.System.Power.Shutdown);
                 Display.canvas.DrawIcon("Console", new(console), x + 140, y + 20, Shell.BeforeRun);
-                Display.canvas.DrawIcon("Settings", new(settings), x + 210, y + 20, OpenSettingsApp );
-                Display.canvas.DrawIcon("Files", new(files), x + 280, y + 20, OpenFilesApp);
+                Display.canvas.DrawIcon("Files", new(files), x + 210, y + 20, OpenFilesApp);
                 if (MouseManager.X >= x & MouseManager.X <= x + 200 & MouseManager.Y>= y & MouseManager.Y <= y + 16 & MouseManager.MouseState == MouseState.Left)
                 {
                     x = (int)MouseManager.X - 10;
@@ -56,10 +54,6 @@ namespace Oceano.Graphics
         public static void OpenInfoApp()
         {
             InfoApp.Opened = true;
-        }
-        public static void OpenSettingsApp()
-        {
-            SettingsApp.Opened = true;
         }
         public static void OpenFilesApp()
         {
