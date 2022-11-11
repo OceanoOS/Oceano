@@ -25,13 +25,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+      <None Remove="Resources\cursor.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Graphics\" />
+      <EmbeddedResource Include="Resources\cursor.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     </ItemGroup>
 
 </Project>

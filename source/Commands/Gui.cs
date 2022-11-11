@@ -11,7 +11,8 @@ namespace Oceano.Commands
         public Gui(String name) : base(name) { }
         public override String execute(String[] args)
         {
-            return "Reboot";
+            Graphics.Display.Init();
+            return "";
         }
     }
 }
