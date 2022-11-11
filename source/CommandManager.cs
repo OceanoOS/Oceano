@@ -20,6 +20,10 @@ namespace Oceano
             this.commands.Add(new Commands.DirectoryListing("ls"));
             this.commands.Add(new Commands.DirectoryListing("dir"));
             this.commands.Add(new Commands.Cd("cd"));
+            this.commands.Add(new Commands.MIV("miv"));
+            this.commands.Add(new Commands.Gui("gui"));
+
+
         }
 
         public String processInput(String input)
