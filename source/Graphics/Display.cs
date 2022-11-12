@@ -13,26 +13,74 @@ namespace Oceano.Graphics
 {
     public class Display
     {
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.cursor.bmp")]
-        static byte[] cursor;
-        public static int screenWidth = 800;
-        public static int screenHeight = 600;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.program.bmp")]
+        public static byte[] program;
+        public static Bitmap programlogo = new(program);
+        public static DoubleBufferedVMWareSVGAII vMWareSVGAII;
+        public static uint screenWidth = 800;
+        public static uint screenHeight = 600;
+        public static List<App> apps = new List<App>();
+        static int[] cursor = new int[]
+            {
+                1,0,0,0,0,0,0,0,0,0,0,0,
+                1,1,0,0,0,0,0,0,0,0,0,0,
+                1,2,1,0,0,0,0,0,0,0,0,0,
+                1,2,2,1,0,0,0,0,0,0,0,0,
+                1,2,2,2,1,0,0,0,0,0,0,0,
+                1,2,2,2,2,1,0,0,0,0,0,0,
+                1,2,2,2,2,2,1,0,0,0,0,0,
+                1,2,2,2,2,2,2,1,0,0,0,0,
+                1,2,2,2,2,2,2,2,1,0,0,0,
+                1,2,2,2,2,2,2,2,2,1,0,0,
+                1,2,2,2,2,2,2,2,2,2,1,0,
+                1,2,2,2,2,2,2,2,2,2,2,1,
+                1,2,2,2,2,2,2,1,1,1,1,1,
+                1,2,2,2,1,2,2,1,0,0,0,0,
+                1,2,2,1,0,1,2,2,1,0,0,0,
+                1,2,1,0,0,1,2,2,1,0,0,0,
+                1,1,0,0,0,0,1,2,2,1,0,0,
+                0,0,0,0,0,0,1,2,2,1,0,0,
+                0,0,0,0,0,0,0,1,1,0,0,0
+            };
+        static TestApp clock = new(200,200,10,20);
+        static Dock dock = new();
         public static void Init()
         {
-            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas(new(screenWidth, screenHeight, ColorDepth.ColorDepth32));
-            Kernel.canvas.Clear(Color.Black);
-            MouseManager.ScreenWidth = (uint)screenWidth;
-            MouseManager.ScreenHeight = (uint)screenHeight;
+            vMWareSVGAII = new DoubleBufferedVMWareSVGAII();
+            vMWareSVGAII.SetMode(screenWidth, screenHeight);
+            MouseManager.ScreenWidth = screenWidth;
+            MouseManager.ScreenHeight = screenHeight;
+            apps.Add(clock);
             Update();
         }
         static void Update()
         {
-            Desktop.Update();
-            Kernel.canvas.DrawImageAlpha(new Bitmap(cursor), (int)MouseManager.X, (int)MouseManager.Y);
-            Kernel.canvas.Display();
-            Kernel.canvas.Clear(Color.Black);
-            Heap.Collect();
+            foreach (App app in apps)
+                app.Update();
+
+            dock.Update();
+            DrawCursor(vMWareSVGAII, MouseManager.X, MouseManager.Y);
+            vMWareSVGAII.DoubleBuffer_Update();
+            vMWareSVGAII.DoubleBuffer_Clear((uint)Color.Black.ToArgb());
+         
             Update();
+        }
+        public static void DrawCursor(DoubleBufferedVMWareSVGAII vMWareSVGAII, uint x, uint y)
+        {
+            for (uint h = 0; h < 19; h++)
+            {
+                for (uint w = 0; w < 12; w++)
+                {
+                    if (cursor[h * 12 + w] == 1)
+                    {
+                        vMWareSVGAII.DoubleBuffer_SetPixel(w + x, h + y, (uint)Color.Black.ToArgb());
+                    }
+                    if (cursor[h * 12 + w] == 2)
+                    {
+                        vMWareSVGAII.DoubleBuffer_SetPixel(w + x, h + y, (uint)Color.White.ToArgb());
+                    }
+                }
+            }
         }
     }
 }

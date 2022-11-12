@@ -284,14 +284,14 @@ namespace Oceano.Commands
             file = Console.ReadLine();
             try
             {
-                if (File.Exists(@"0:\" + file))
+                if (File.Exists(Kernel.path + file))
                 {
                     Console.WriteLine("Found file!");
                 }
-                else if (!File.Exists(@"0:\" + file))
+                else if (!File.Exists(Kernel.path + file))
                 {
                     Console.WriteLine("Creating file!");
-                    File.Create(@"0:\" + file);
+                    File.Create(Kernel.path + file);
                 }
                 Console.Clear();
             }
@@ -304,7 +304,7 @@ namespace Oceano.Commands
             Console.WriteLine("Do you want to open " + file + " content? (Yes/No)");
             if (Console.ReadLine().ToLower() == "yes" || Console.ReadLine().ToLower() == "y")
             {
-                text = miv(File.ReadAllText(@"0:\" + file));
+                text = miv(File.ReadAllText(Kernel.path + file));
             }
             else
             {
@@ -315,7 +315,7 @@ namespace Oceano.Commands
 
             if (text != null)
             {
-                File.WriteAllText(@"0:\" + file, text);
+                File.WriteAllText(Kernel.path + file, text);
                 Console.WriteLine("Content has been saved to " + file);
             }
             Console.WriteLine("Press any key to continue...");

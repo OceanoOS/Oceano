@@ -10,7 +10,6 @@ namespace Oceano
         public static string path = @"0:\";
         public static CosmosVFS fs = new();
         private CommandManager commandManager = new();
-        public static Canvas canvas;
         protected override void BeforeRun()
         {
             Console.ForegroundColor = ConsoleColor.Green;
