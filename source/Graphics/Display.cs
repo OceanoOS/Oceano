@@ -17,8 +17,8 @@ namespace Oceano.Graphics
         public static byte[] program;
         public static Bitmap programlogo = new(program);
         public static DoubleBufferedVMWareSVGAII vMWareSVGAII;
-        public static uint screenWidth = 800;
-        public static uint screenHeight = 600;
+        public static uint screenWidth = 640;
+        public static uint screenHeight = 480;
         public static List<App> apps = new List<App>();
         static int[] cursor = new int[]
             {
@@ -42,7 +42,10 @@ namespace Oceano.Graphics
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
             };
-        static TestApp clock = new(200,200,10,20);
+        static TestApp testApp = new(400,200,10,20);
+        static Files files = new(400, 200, 10, 20);
+        static Notepad notepad = new(400, 200, 10, 20);
+
         static Dock dock = new();
         public static void Init()
         {
@@ -50,7 +53,9 @@ namespace Oceano.Graphics
             vMWareSVGAII.SetMode(screenWidth, screenHeight);
             MouseManager.ScreenWidth = screenWidth;
             MouseManager.ScreenHeight = screenHeight;
-            apps.Add(clock);
+            apps.Add(testApp);
+            apps.Add(files);
+            apps.Add(notepad);
             Update();
         }
         static void Update()
@@ -62,7 +67,6 @@ namespace Oceano.Graphics
             DrawCursor(vMWareSVGAII, MouseManager.X, MouseManager.Y);
             vMWareSVGAII.DoubleBuffer_Update();
             vMWareSVGAII.DoubleBuffer_Clear((uint)Color.Black.ToArgb());
-         
             Update();
         }
         public static void DrawCursor(DoubleBufferedVMWareSVGAII vMWareSVGAII, uint x, uint y)

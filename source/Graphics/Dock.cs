@@ -22,7 +22,7 @@ namespace Oceano.Graphics
             uint strX = 2;
             uint strY = (20 - 16) / 2;
             Display.vMWareSVGAII.DrawACSIIString("PowerOFF", (uint)Color.White.ToArgb(), strX, strY);
-            Display.vMWareSVGAII.DrawACSIIString(time, (uint)Color.White.ToArgb(), Display.screenWidth - 40, (20-16)/2);
+            Display.vMWareSVGAII.DrawACSIIString(time, (uint)Color.White.ToArgb(), Display.screenWidth - 42, (20-16)/2);
             if (MouseManager.MouseState == MouseState.Left)
             {
                 if (MouseManager.X > strX && MouseManager.X < strX + (text.Length * 8) && MouseManager.Y > strY && MouseManager.Y < strY + 16)
