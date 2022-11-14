@@ -38,7 +38,7 @@ namespace Oceano.Graphics
                 }
             }
 
-            Display.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(x, y, width, height, (uint)Color.Black.ToArgb());
+            Display.vMWareSVGAII.DoubleBuffer_DrawFillRectangle(x, y, width, height-20, (uint)Color.FromArgb(32,32,32).ToArgb());
 
             if (text.Length != 0)
             {
@@ -62,7 +62,7 @@ namespace Oceano.Graphics
             }
             else
             {
-                Display.vMWareSVGAII.DrawACSIIString("Edit anything you want", (uint)Color.Gray.ToArgb(), x, y);
+                Display.vMWareSVGAII.DrawACSIIString("Write here", (uint)Color.Gray.ToArgb(), x, y);
             }
         }
     }
