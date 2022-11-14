@@ -5,6 +5,7 @@ using IL2CPU.API.Attribs;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Oceano.Graphics
         public static uint screenWidth = 640;
         public static uint screenHeight = 480;
         public static List<App> apps = new List<App>();
-        static int[] cursor = new int[]
+        static readonly int[] cursor = new int[]
             {
                 1,0,0,0,0,0,0,0,0,0,0,0,
                 1,1,0,0,0,0,0,0,0,0,0,0,
@@ -42,11 +43,12 @@ namespace Oceano.Graphics
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
             };
-        static Settings settings = new(400,200,10,20);
-        static Files files = new(400, 200, 10, 20);
-        static Notepad notepad = new(400, 200, 10, 20);
+        static readonly Settings settings = new(400,200,10,20);
+        static readonly  Files files = new(400, 200, 10, 20);
+        static readonly  Notepad notepad = new(400, 200, 10, 20);
 
-        static Dock dock = new();
+
+        static readonly Dock dock = new();
         public static void Init()
         {
             vMWareSVGAII = new DoubleBufferedVMWareSVGAII();

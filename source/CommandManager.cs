@@ -22,6 +22,8 @@ namespace Oceano
             this.commands.Add(new Commands.Cd("cd"));
             this.commands.Add(new Commands.MIV("miv"));
             this.commands.Add(new Commands.Gui("gui"));
+            this.commands.Add(new Commands.Ipconfig("ipconfig"));
+            this.commands.Add(new Commands.Clear("clear"));
 
 
         }
