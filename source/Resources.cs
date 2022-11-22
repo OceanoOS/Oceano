@@ -9,11 +9,7 @@ namespace Oceano
 {
     public class Resources
     {
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.program.bmp")]
-        public static byte[] program;
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.folder.bmp")]
-        public static byte[] folder;
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.file.bmp")]
-        public static byte[] file;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.font.psf")]
+        public static byte[] font;
     }
 }

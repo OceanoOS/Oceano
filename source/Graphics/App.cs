@@ -1,9 +1,8 @@
-﻿using System.Drawing;
 using Cosmos.System;
-using Cosmos.System.Graphics.Fonts;
-using Cosmos.System.Graphics;
+using System.Drawing;
+using Display = Oceano.Drivers.VGA;
 
-namespace Oceano
+namespace Oceano.Graphics
 {
     public class App
     {
@@ -27,7 +26,6 @@ namespace Oceano
         public bool visible = false;
 
         public int _i = 0;
-        public Bitmap icon;
 
         public App(int width, int height, int x = 0, int y = 0)
         {
@@ -51,7 +49,7 @@ namespace Oceano
 
             if (MouseManager.X > dockX && MouseManager.X < dockX + dockWidth && MouseManager.Y > dockY && MouseManager.Y < dockY + dockHeight)
             {
-                Kernel.canvas.DrawString(name, PCScreenFont.Default, new Pen(Color.White), dockX - ((name.Length * 8) / 2) + dockWidth / 2, dockY - 20);
+                Display.canvas.DrawLabel((dockX - ((name.Length * 8) / 2) + dockWidth / 2), dockY - 20,name,Color.White);
             }
 
             if (MouseManager.MouseState == MouseState.Left && _i == 0)
@@ -63,7 +61,7 @@ namespace Oceano
                 }
             }
 
-            if (Kernel.Pressed)
+            if (MouseManager.MouseState == MouseState.Left)
             {
                 if (MouseManager.X > _x && MouseManager.X < _x + 22 && MouseManager.Y > _y && MouseManager.Y < _y + 22)
                 {
@@ -86,13 +84,13 @@ namespace Oceano
                 this.x = (int)MouseManager.X + 2;
                 this.y = (int)MouseManager.Y + 22;
             }
-            Kernel.canvas.DrawFilledRectangle(new(Color.FromArgb(32,32,32)), _x, _y, _width, _height);
-            Kernel.canvas.DrawRectangle(new(Kernel.avgCol), _x, _y, _width, _height);
 
-            Kernel.canvas.DrawString(name, PCScreenFont.Default, new(Color.White), _x + 2, _y + 2);
-
+            Display.canvas.DrawFilledRectangle(new(Color.FromArgb(32,32,32)),_x,_y,_width,_height);
+            Display.canvas.DrawRectangle(new(Color.Cyan),_x,_y,_width,_height);
+            Display.canvas.DrawLabel(_x+2,_y+2,name,Color.White);
             _Update();
-        end:;
+
+            end:;
         }
 
         public virtual void _Update()
