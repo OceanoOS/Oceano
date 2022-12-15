@@ -23,12 +23,16 @@
 
     <ItemGroup>
       <None Remove="Resources\font.psf" />
-      <None Remove="Resources\program.bmp" />
+      <None Remove="Resources\wallpaper.bmp" />
+      <None Remove="Resources\settings.bmp" />
+      <None Remove="Resources\window.bmp" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="Resources\font.psf" />
-      <EmbeddedResource Include="Resources\program.bmp" />
+      <EmbeddedResource Include="Resources\wallpaper.bmp" />
+      <EmbeddedResource Include="Resources\settings.bmp" />
+      <EmbeddedResource Include="Resources\window.bmp" />
     </ItemGroup>
 
     <ItemGroup>

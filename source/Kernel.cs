@@ -13,12 +13,12 @@ namespace Oceano
 {
     public class Kernel : Sys.Kernel
     {
-        CosmosVFS fs = new();
+        public static CosmosVFS fs = new();
+        public static Canvas canvas;
 
         protected override void BeforeRun()
         {
-            VFSManager.RegisterVFS(fs);
-            Drivers.VGA.Init();
+            Gui.Graphics.Init();
         }
         protected override void OnBoot()
         {
