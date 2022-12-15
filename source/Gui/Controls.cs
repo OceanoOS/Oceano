@@ -2,6 +2,8 @@ using Cosmos.System.Graphics;
 using System;
 using Cosmos.System;
 
+using System.Drawing;
+
 namespace Oceano.Gui
 {
     public static class Controls

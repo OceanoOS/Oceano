@@ -7,7 +7,7 @@ namespace Oceano.Drivers{
         public static bool SVGAsupported{
             get
             {
-                return Cosmos.HAL.PCI.GetDevice(Cosmos.HAL.VendorID.VMWare, Cosmos.HAL.DeviceID.SVGAIIAdapter) != null;
+                return Cosmos.HAL.PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter) != null;
             }
         }
         public static bool VBEsupported{
@@ -17,6 +17,16 @@ namespace Oceano.Drivers{
                     ((PCI.GetDevice(VendorID.VirtualBox, DeviceID.VBVGA)) != null) || 
                     ((PCI.GetDevice(VendorID.Bochs, DeviceID.BGA)) != null) || 
                     VBEDriver.ISAModeAvailable();
+            }
+        }
+        public static bool VBVGAsupported{
+            get{
+                return Cosmos.HAL.PCI.GetDevice(VendorID.VirtualBox,DeviceID.VBVGA) != null;
+            }
+        }
+        public static bool Networksupported{
+            get{
+                return PCI.GetDevice(VendorID.Intel,DeviceID.BGA) != null;
             }
         }
     }
