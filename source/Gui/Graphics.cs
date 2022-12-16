@@ -9,13 +9,6 @@ namespace Oceano.Gui
 {
     public class Graphics
     {
-        public static Pen white = new(Color.White);
-        public static Pen black = new(Color.Black);
-        public static Pen cyan = new(Color.Cyan);
-        public static Pen red = new(Color.Red);
-        public static Pen materialblack = new(Color.FromArgb(32, 32, 32));
-
-
         static int[] cursor = new int[]
             {
                 1,0,0,0,0,0,0,0,0,0,0,0,
@@ -76,11 +69,11 @@ namespace Oceano.Gui
                 {
                     if (cursor[h * 12 + w] == 1)
                     {
-                        canvas.DrawPoint(black, w + x, h + y);
+                        canvas.DrawPoint(Color.Black, w + x, h + y);
                     }
                     if (cursor[h * 12 + w] == 2)
                     {
-                        canvas.DrawPoint(white, w + x, h + y);
+                        canvas.DrawPoint(Color.White, w + x, h + y);
                     }
                 }
             }
