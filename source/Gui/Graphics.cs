@@ -1,9 +1,8 @@
+using Cosmos.Core.Memory;
+using Cosmos.System;
 using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
-using Cosmos.System;
 using System.Drawing;
-using Cosmos.Core.Memory;
-using System.Collections.Generic;
 
 namespace Oceano.Gui
 {

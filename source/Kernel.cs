@@ -1,13 +1,6 @@
-﻿using Sys = Cosmos.System;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using Cosmos.System.FileSystem;
 using Cosmos.System.Graphics;
-using Cosmos.System;
-using Cosmos.Core.Memory;
-using IL2CPU.API.Attribs;
-using Cosmos.System.FileSystem;
-using Cosmos.System.FileSystem.VFS;
+using Sys = Cosmos.System;
 
 namespace Oceano
 {
@@ -26,7 +19,7 @@ namespace Oceano
         }
         protected override void Run()
         {
-            
+
         }
     }
 }
