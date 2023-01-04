@@ -22,20 +22,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\font.psf" />
-      <None Remove="Resources\wallpaper.bmp" />
-      <None Remove="Resources\settings.bmp" />
-      <None Remove="Resources\window.bmp" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Resources\font.psf" />
-      <EmbeddedResource Include="Resources\wallpaper.bmp" />
-      <EmbeddedResource Include="Resources\settings.bmp" />
-      <EmbeddedResource Include="Resources\window.bmp" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />

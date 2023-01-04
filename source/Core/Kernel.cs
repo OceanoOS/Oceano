@@ -1,25 +1,21 @@
 ﻿using Cosmos.System.FileSystem;
 using Cosmos.System.Graphics;
+using Oceano.Gui;
 using Sys = Cosmos.System;
 
-namespace Oceano
+namespace Oceano.Core
 {
     public class Kernel : Sys.Kernel
     {
-        public static CosmosVFS fs = new();
-        public static Canvas canvas;
+        OceanoDE Desktop = new();
 
         protected override void BeforeRun()
         {
-            Gui.Graphics.Init();
-        }
-        protected override void OnBoot()
-        {
-            Sys.Global.Init(GetTextScreen(), false, true, true, true);
+            Desktop.Init();
         }
         protected override void Run()
         {
-
+            Desktop.Update();
         }
     }
 }
