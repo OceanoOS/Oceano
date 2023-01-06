@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Oceano.Gui
 {
-    public class OceanoDE : Graphics
+    public class Desktop
     {
-        public override void XInit()
-        {
-        }
-        public override void XUpdate()
-        {
-        }
+        
     }
 }

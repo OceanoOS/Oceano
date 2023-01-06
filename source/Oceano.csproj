@@ -19,12 +19,28 @@
         <PxeInterface>192.168.0.8</PxeInterface>
         <CompressionType>Gzip</CompressionType>
         <DebugEnabled>False</DebugEnabled>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <VBEResolution>1024x768x32</VBEResolution>
+        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
     </PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Resources\boot.bmp" />
+	</ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\boot.bmp" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="PrismGraphics">
+        <HintPath>Resources\PrismGraphics.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

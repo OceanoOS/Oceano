@@ -1,20 +1,21 @@
-﻿using Cosmos.Core.Memory;
-using Cosmos.HAL;
-using Cosmos.System;
-using Cosmos.System.Graphics;
+﻿using Cosmos.System;
+using Oceano.Core;
+using PrismGraphics;
+using PrismGraphics.Extentions;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Oceano.Gui
 {
     public class Graphics
     {
-        public Canvas Canvas;
-        public readonly int[] Cursor = new int[]
+        public static VBECanvas Canvas { get; set; } = new();
+        static readonly int[] cursor = new int[]
         {
                 1,0,0,0,0,0,0,0,0,0,0,0,
                 1,1,0,0,0,0,0,0,0,0,0,0,
@@ -36,63 +37,37 @@ namespace Oceano.Gui
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
         };
-        public Graphics() 
+        public static string fps;
+        public static void Init()
         {
-            
+            MouseManager.ScreenWidth = Canvas.Width;
+            MouseManager.ScreenHeight = Canvas.Height;
+            Image boot = Image.FromBitmap(Core.Resources.boot);
+            Canvas.DrawImage(Convert.ToInt16((Canvas.Width / 2) - 150 ), Convert.ToInt16((Canvas.Height / 2) - 150), boot, false);
+            Thread.Sleep(3000);
+            Canvas.Update();
         }
-        public void Init(string Mode = "")
+        public static void Update()
         {
-            if(Mode == "VGA")
-            {
-                Canvas = new VGACanvas();
-            }
-            if(Mode == "VBE")
-            {
-                Canvas = new VBECanvas();
-            }
-            if(Mode == "SVGA")
-            {
-                Canvas = new SVGAIICanvas();
-            }
-            if(Mode == "")
-            {
-                Canvas = FullScreenCanvas.GetFullScreenCanvas();
-            }
-            MouseManager.ScreenWidth = (uint)Canvas.Mode.Width;
-            MouseManager.ScreenHeight = (uint)Canvas.Mode.Height;
-            MouseManager.X = (uint)Canvas.Mode.Width / 2;
-            MouseManager.Y = (uint)Canvas.Mode.Height / 2;
-            XInit();
-        }
-        public virtual void XInit()
-        {
-
-        }
-        public void Update()
-        {
-            DrawCursor(Canvas,(int)MouseManager.X,(int)MouseManager.Y);
-            XUpdate();
-            Canvas.Display();
+            fps = Canvas.GetFPS().ToString();
+            Canvas.DrawString(2, (int)Canvas.Height - 20, fps, Font.Fallback, Color.White);
+            DrawCursor(Canvas,(int)MouseManager.X, (int)MouseManager.Y);
+            Canvas.Update();
             Canvas.Clear(Color.Black);
-            Heap.Collect();
         }
-        public virtual void XUpdate()
-        {
-
-        }
-        public void DrawCursor(Canvas C, int x, int y)
+        public static void DrawCursor(VBECanvas canvas, int x, int y)
         {
             for (int h = 0; h < 19; h++)
             {
                 for (int w = 0; w < 12; w++)
                 {
-                    if (this.Cursor[h * 12 + w] == 1)
+                    if (cursor[h * 12 + w] == 1)
                     {
-                        C.DrawPoint(Color.Black, w + x, h + y);
+                        canvas[w + x, h + y] = Color.Black;
                     }
-                    if (this.Cursor[h * 12 + w] == 2)
+                    if (cursor[h * 12 + w] == 2)
                     {
-                        C.DrawPoint(Color.White,w + x, h + y);
+                        canvas[w + x, h + y] = Color.White;
                     }
                 }
             }
