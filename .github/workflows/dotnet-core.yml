@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build & test Lamscript on ${{ matrix.os }} with ${{ matrix.compiler }}.
+    name: Build Oceano
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
