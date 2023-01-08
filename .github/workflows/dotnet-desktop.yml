@@ -117,4 +117,4 @@ jobs:
       - name: Build Oceano OS
         run: |
           cd "source"
-          sudo dotnet build --no-restore
+          dotnet build --no-restore
