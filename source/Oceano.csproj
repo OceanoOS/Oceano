@@ -18,17 +18,25 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <CompressionType>Gzip</CompressionType>
-        <DebugEnabled>False</DebugEnabled>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
-        <VBEResolution>1024x768x32</VBEResolution>
         <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <DebugEnabled>False</DebugEnabled>
+        <OptimizationLevel>3</OptimizationLevel>
+        <VBEResolution>800x600x32</VBEResolution>
     </PropertyGroup>
 
-	<ItemGroup>
-		<None Remove="Resources\boot.bmp" />
-	</ItemGroup>
+    <ItemGroup>
+      <None Remove="Resources\boot.bmp" />
+      <None Remove="Resources\settings.bmp" />
+      <None Remove="Resources\terminal.bmp" />
+      <None Remove="Resources\wallpaper.bmp" />
+    </ItemGroup>
+
     <ItemGroup>
       <EmbeddedResource Include="Resources\boot.bmp" />
+      <EmbeddedResource Include="Resources\settings.bmp" />
+      <EmbeddedResource Include="Resources\terminal.bmp" />
+      <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>

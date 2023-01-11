@@ -1,14 +1,8 @@
 ﻿using Cosmos.System;
-using Oceano.Core;
 using PrismGraphics;
 using PrismGraphics.Extentions;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Oceano.Gui
 {
@@ -37,23 +31,61 @@ namespace Oceano.Gui
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
         };
-        public static string fps;
+        public static string fps, time;
+        public static Image wallpaper = Image.FromBitmap(Core.Resources.wallpaper);
+        public static Image boot = Image.FromBitmap(Core.Resources.boot);
         public static void Init()
         {
             MouseManager.ScreenWidth = Canvas.Width;
             MouseManager.ScreenHeight = Canvas.Height;
-            Image boot = Image.FromBitmap(Core.Resources.boot);
-            Canvas.DrawImage(Convert.ToInt16((Canvas.Width / 2) - 150 ), Convert.ToInt16((Canvas.Height / 2) - 150), boot, false);
-            Thread.Sleep(3000);
+            MouseManager.X = Canvas.Width / 2;
+            MouseManager.Y = Canvas.Height / 2;
+            AppManager.Init();
+            Canvas.DrawImage(Convert.ToInt16((Canvas.Width / 2) - 150), Convert.ToInt16((Canvas.Height / 2) - 150), boot, false);
             Canvas.Update();
+            Thread.Sleep(3000);
+            Canvas.Clear(Color.Black);
         }
         public static void Update()
         {
             fps = Canvas.GetFPS().ToString();
-            Canvas.DrawString(2, (int)Canvas.Height - 20, fps, Font.Fallback, Color.White);
-            DrawCursor(Canvas,(int)MouseManager.X, (int)MouseManager.Y);
+            time = DateTime.Now.ToString("HH:mm");
+            Canvas.DrawImage(Convert.ToInt16((Canvas.Width / 2) - 400), Convert.ToInt16((Canvas.Height / 2) - 300), wallpaper, false);
+            Canvas.DrawFilledRectangle(0, 0, Canvas.Width, 20, 0, Color.Black);
+            Canvas.DrawString((int)(Canvas.Width / 2) - 20, 0, time, Font.Fallback, Color.White);
+            int oldy = 25;
+            int oldx = 2;
+            foreach (var app in AppManager.apps)
+            {
+                int y = oldy;
+                int x = oldx;
+                Canvas.DrawImage(x + 7, y, app.icon, false);
+                Canvas.DrawString(x, y + 34, app.title, Font.Fallback, Color.White);
+                if (MouseManager.X >= x & MouseManager.X <= x + 40 & MouseManager.Y >= y & MouseManager.Y <= y + 40 & MouseManager.MouseState == MouseState.Left)
+                {
+                    app.visible = true;
+                }
+                if (AppManager.apps.Count * 48 > Canvas.Height)
+                {
+                    oldx = 60;
+                    oldy = 25;
+                }
+                else
+                {
+                    oldy += 60;
+                }
+                app.Update();
+            }
+            Canvas.DrawString(2, 0, "PowerOFF", Font.Fallback, Color.White);
+            if (MouseManager.MouseState == MouseState.Left & MouseManager.X >= 2 & MouseManager.Y >= 0 & MouseManager.X <= ("PowerOFF".Length * 8) + 2 & MouseManager.Y <= 20)
+            {
+                Power.Shutdown();
+            }
+            Canvas.DrawString(2, (int)Canvas.Height - 20, "FPS: " + fps, Font.Fallback, Color.White);
+            DrawCursor(Canvas, (int)MouseManager.X, (int)MouseManager.Y);
             Canvas.Update();
             Canvas.Clear(Color.Black);
+
         }
         public static void DrawCursor(VBECanvas canvas, int x, int y)
         {
