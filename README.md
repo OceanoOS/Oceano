@@ -8,3 +8,16 @@
 
 
 ### ℹ About
+Oceano is an operating system made possible by Cosmos and its contributors.
+
+### 💻 Requirements
+#### Minumum requirements
+- 128 MB of Memory (RAM)
+- x86 or x64 CPU
+- VGA Graphics with VBE extension
+#### Reccomended requirements
+- 512 MB (or more) of Memory (RAM)
+- x86 or x64 CPU
+- A good VGA Graphics card with VBE extension
+- AC97 Audio card
+- Basic network card
