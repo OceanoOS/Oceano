@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <!--<RuntimeIdentifier>cosmos</RuntimeIdentifier>-->
         <Platform>cosmos</Platform>
         <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
         <SelfContained>True</SelfContained>
@@ -17,38 +16,12 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
-        <CompressionType>Gzip</CompressionType>
-        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
-        <DebugEnabled>False</DebugEnabled>
-        <OptimizationLevel>3</OptimizationLevel>
-        <VBEResolution>800x600x32</VBEResolution>
     </PropertyGroup>
-
-    <ItemGroup>
-      <None Remove="Resources\boot.bmp" />
-      <None Remove="Resources\settings.bmp" />
-      <None Remove="Resources\terminal.bmp" />
-      <None Remove="Resources\wallpaper.bmp" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Resources\boot.bmp" />
-      <EmbeddedResource Include="Resources\settings.bmp" />
-      <EmbeddedResource Include="Resources\terminal.bmp" />
-      <EmbeddedResource Include="Resources\wallpaper.bmp" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="PrismGraphics">
-        <HintPath>Resources\PrismGraphics.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>
