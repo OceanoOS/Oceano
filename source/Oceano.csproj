@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <!--<RuntimeIdentifier>cosmos</RuntimeIdentifier>-->
         <Platform>cosmos</Platform>
         <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
         <SelfContained>True</SelfContained>
@@ -16,12 +17,27 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <VBEResolution>640x480x32</VBEResolution>
+        <Timeout>5</Timeout>
+        <OptimizationLevel>2</OptimizationLevel>
+        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
+        <CompressionType>Gzip</CompressionType>
+        <DebugEnabled>False</DebugEnabled>
+        <VMWareEdition>Player</VMWareEdition>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="PrismGraphics">
+        <HintPath>Gui\Drivers\VBE\PrismGraphics.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
