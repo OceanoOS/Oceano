@@ -1,12 +1,8 @@
-
-
-using System;
-using Cosmos.Core;
+﻿using Cosmos.Core;
+using Cosmos.HAL;
 using Cosmos.System.Graphics;
-using System.Drawing;
-using Cosmos;
-using Cosmos.HAL.Drivers.PCI;
- 
+using System;
+
 namespace Oceano.Gui.Drivers.SVGAII
 {
     /// <summary>
@@ -14,6 +10,8 @@ namespace Oceano.Gui.Drivers.SVGAII
     /// </summary>
     public class VMWareSVGAII
     {
+        #region 没用的
+
         /// <summary>
         /// Register values.
         /// </summary>
@@ -70,7 +68,6 @@ namespace Oceano.Gui.Drivers.SVGAII
             /// <summary>
             /// Bytes per line.
             /// </summary>
-            
             BytesPerLine = 12,
             /// <summary>
             /// Frame buffer start.
@@ -133,10 +130,6 @@ namespace Oceano.Gui.Drivers.SVGAII
             /// </summary>
             CursorOn = 27,
             /// <summary>
-            /// Cursor count.
-            /// </summary>
-            CursorCount = 0x0C,
-            /// <summary>
             /// Host bits per pixel.
             /// </summary>
             HostBitsPerPixel = 28,
@@ -160,6 +153,11 @@ namespace Oceano.Gui.Drivers.SVGAII
             /// Indicates maximum size of FIFO Registers.
             /// </summary>
             FifoNumRegisters = 293
+        }
+
+        internal void SetPixel(int v1, int v2, uint v3)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -441,24 +439,24 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <summary>
         /// Index port.
         /// </summary>
-        private readonly ushort IndexPort;
+        private IOPort IndexPort;
         /// <summary>
         /// Value port.
         /// </summary>
-        private readonly ushort ValuePort;
+        private IOPort ValuePort;
         /// <summary>
         /// BIOS port.
         /// </summary>
-        private ushort BiosPort;
+        private IOPort BiosPort;
         /// <summary>
         /// IRQ port.
         /// </summary>
-        private ushort IRQPort;
+        private IOPort IRQPort;
 
         /// <summary>
         /// Video memory block.
         /// </summary>
-        public readonly MemoryBlock VideoMemory;
+        public MemoryBlock Video_Memory;
         /// <summary>
         /// FIFO memory block.
         /// </summary>
@@ -467,48 +465,23 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <summary>
         /// PCI device.
         /// </summary>
-        private Cosmos.HAL.PCIDevice device;
+        private PCIDevice device;
         /// <summary>
         /// Height.
         /// </summary>
-        private uint height;
+        public uint height { get; private set; }
         /// <summary>
         /// Width.
         /// </summary>
-        private uint width;
+        public uint width { get; private set; }
         /// <summary>
         /// Depth.
         /// </summary>
-        private uint depth;
+        public uint depth;
         /// <summary>
         /// Capabilities.
         /// </summary>
         private uint capabilities;
-
-        public uint FrameSize;
-        public uint FrameOffset;
-
-        /// <summary>
-        /// Create new instance of the <see cref="VMWareSVGAII"/> class.
-        /// </summary>
-        public VMWareSVGAII()
-        {
-            device = Cosmos.HAL.PCI.GetDevice(Cosmos.HAL.VendorID.VMWare, Cosmos.HAL.DeviceID.SVGAIIAdapter);
-            device.EnableMemory(true);
-            uint basePort = device.BaseAddressBar[0].BaseAddress;
-            IndexPort = (ushort)(basePort + (uint)IOPortOffset.Index);
-            ValuePort = (ushort)(basePort + (uint)IOPortOffset.Value);
-            BiosPort = (ushort)(basePort + (uint)IOPortOffset.Bios);
-            IRQPort = (ushort)(basePort + (uint)IOPortOffset.IRQ);
-
-            WriteRegister(Register.ID, (uint)ID.V2);
-            if (ReadRegister(Register.ID) != (uint)ID.V2)
-                return;
-
-            VideoMemory = new MemoryBlock(ReadRegister(Register.FrameBufferStart), ReadRegister(Register.VRamSize));
-            capabilities = ReadRegister(Register.Capabilities);
-            InitializeFIFO();
-        }
 
         /// <summary>
         /// Initialize FIFO.
@@ -531,21 +504,17 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <param name="depth">Depth.</param>
         public void SetMode(uint width, uint height, uint depth = 32)
         {
-            //Disable the Driver before writing new values and initiating it again to avoid a memory exception
-            //Disable();
-
             // Depth is color depth in bytes.
-            this.depth = depth / 8;
+            this.depth = (depth / 8);
             this.width = width;
             this.height = height;
             WriteRegister(Register.Width, width);
             WriteRegister(Register.Height, height);
             WriteRegister(Register.BitsPerPixel, depth);
-            Enable();
+            WriteRegister(Register.Enable, 1);
             InitializeFIFO();
 
-            FrameSize = ReadRegister(Register.FrameBufferSize);
-            FrameOffset = ReadRegister(Register.FrameBufferOffset);
+            Init();
         }
 
         /// <summary>
@@ -553,10 +522,10 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// </summary>
         /// <param name="register">A register.</param>
         /// <param name="value">A value.</param>
-        protected void WriteRegister(Register register, uint value)
+        public void WriteRegister(Register register, uint value)
         {
-            IOPort.Write32(IndexPort, (uint)register);
-            IOPort.Write32(ValuePort, value);
+            IndexPort.DWord = (uint)register;
+            ValuePort.DWord = value;
         }
 
         /// <summary>
@@ -564,10 +533,10 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// </summary>
         /// <param name="register">A register.</param>
         /// <returns>uint value.</returns>
-        protected uint ReadRegister(Register register)
+        public uint ReadRegister(Register register)
         {
-            IOPort.Write32(IndexPort, (uint)register);
-            return IOPort.Read32(ValuePort);
+            IndexPort.DWord = (uint)register;
+            return ValuePort.DWord;
         }
 
         /// <summary>
@@ -606,8 +575,8 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <param name="value">Value to write.</param>
         protected void WriteToFifo(uint value)
         {
-            if ((GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max) - 4 && GetFIFO(FIFO.Stop) == GetFIFO(FIFO.Min)) ||
-                GetFIFO(FIFO.NextCmd) + 4 == GetFIFO(FIFO.Stop))
+            if (((GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max) - 4) && GetFIFO(FIFO.Stop) == GetFIFO(FIFO.Min)) ||
+                (GetFIFO(FIFO.NextCmd) + 4 == GetFIFO(FIFO.Stop)))
                 WaitForFifo();
 
             SetFIFO((FIFO)GetFIFO(FIFO.NextCmd), value);
@@ -635,15 +604,6 @@ namespace Oceano.Gui.Drivers.SVGAII
         }
 
         /// <summary>
-        /// Update video memory.
-        /// </summary>
-        public void DoubleBufferUpdate()
-        {
-            VideoMemory.MoveDown(FrameOffset, FrameSize, FrameSize);
-            Update(0, 0, width, height);
-        }
-
-        /// <summary>
         /// Set pixel.
         /// </summary>
         /// <param name="x">X coordinate.</param>
@@ -652,7 +612,7 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
         public void SetPixel(uint x, uint y, uint color)
         {
-            VideoMemory[(y * width + x) * depth + FrameSize] = color;
+            Video_Memory[((y * width + x) * depth)] = color;
         }
 
         /// <summary>
@@ -664,7 +624,7 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
         public uint GetPixel(uint x, uint y)
         {
-            return VideoMemory[(y * width + x) * depth + FrameSize];
+            return Video_Memory[((y * width + x) * depth)];
         }
 
         /// <summary>
@@ -675,7 +635,7 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <exception cref="NotImplementedException">Thrown if VMWare SVGA 2 has no rectange copy capability</exception>
         public void Clear(uint color)
         {
-            VideoMemory.Fill(FrameSize, FrameSize, color);
+            Fill(0, 0, width, height, color);
         }
 
         /// <summary>
@@ -732,14 +692,16 @@ namespace Oceano.Gui.Drivers.SVGAII
                 if ((capabilities & (uint)Capability.RectCopy) != 0)
                 {
                     // fill first line and copy it to all other
-                    uint xTarget = x + width;
-                    uint yTarget = y + height;
+                    uint xTarget = (x + width);
+                    uint yTarget = (y + height);
 
                     for (uint xTmp = x; xTmp < xTarget; xTmp++)
                     {
                         SetPixel(xTmp, y, color);
                     }
                     // refresh first line for copy process
+
+
                     Update(x, y, width, 1);
                     for (uint yTmp = y + 1; yTmp < yTarget; yTmp++)
                     {
@@ -748,8 +710,8 @@ namespace Oceano.Gui.Drivers.SVGAII
                 }
                 else
                 {
-                    uint xTarget = x + width;
-                    uint yTarget = y + height;
+                    uint xTarget = (x + width);
+                    uint yTarget = (y + height);
                     for (uint xTmp = x; xTmp < xTarget; xTmp++)
                     {
                         for (uint yTmp = y; yTmp < yTarget; yTmp++)
@@ -769,60 +731,20 @@ namespace Oceano.Gui.Drivers.SVGAII
         {
             WaitForFifo();
             WriteToFifo((uint)FIFOCommand.DEFINE_CURSOR);
-            WriteToFifo(0); // ID
-            WriteToFifo(0); // Hotspot X
-            WriteToFifo(0); // Hotspot Y
+            WriteToFifo(1);
+            WriteToFifo(0);
+            WriteToFifo(0);
             WriteToFifo(2);
             WriteToFifo(2);
             WriteToFifo(1);
             WriteToFifo(1);
-
             for (int i = 0; i < 4; i++)
-            {
                 WriteToFifo(0);
-            }
-
             for (int i = 0; i < 4; i++)
-            {
                 WriteToFifo(0xFFFFFF);
-            }
-
             WaitForFifo();
         }
 
-        /// <summary>
-        /// Define alpha cursor.
-        /// </summary>
-        public void DefineAlphaCursor(uint width, uint height, int[] data)
-        {
-            WaitForFifo();
-            WriteToFifo((uint)FIFOCommand.DEFINE_ALPHA_CURSOR);
-            WriteToFifo(0); // ID
-            WriteToFifo(0); // Hotspot X
-            WriteToFifo(0); // Hotspot Y
-            WriteToFifo(width); // Width
-            WriteToFifo(height); // Height
-
-            for (int i = 0; i < data.Length; i++)
-            {
-                WriteToFifo((uint)data[i]);
-            }
-
-            WaitForFifo();
-        }
-
-        //Allow to enable the Driver again after it has been disabled (switch between text and graphics mode currently this is SVGA only)
-        /// <summary>
-        /// Enable the SVGA Driver , only needed after Disable() has been called
-        /// </summary>
-        public void Enable()
-        {
-            WriteRegister(Register.Enable, 1);
-        }
-
-        /// <summary>
-        /// Disable the SVGA Driver , return to text mode
-        /// </summary>
         public void Disable()
         {
             WriteRegister(Register.Enable, 0);
@@ -836,112 +758,143 @@ namespace Oceano.Gui.Drivers.SVGAII
         /// <param name="y">Y coordinate.</param>
         public void SetCursor(bool visible, uint x, uint y)
         {
+            WriteRegister(Register.CursorID, 1);
+            if (visible)
+            {
+                WaitForFifo();
+                WriteToFifo((uint)FIFOCommand.MOVE_CURSOR);
+                WriteToFifo(x);
+                WriteToFifo(y);
+            }
             WriteRegister(Register.CursorOn, (uint)(visible ? 1 : 0));
-            WriteRegister(Register.CursorX, x);
-            WriteRegister(Register.CursorY, y);
-            WriteRegister(Register.CursorCount, ReadRegister(Register.CursorCount) + 1);
         }
 
-        //Custom Parts
-        public virtual void DrawLine(uint color, int x1, int y1, int x2, int y2)
+        /// <summary>
+        /// Create new inctanse of the <see cref="VMWareSVGAII"/> class.
+        /// </summary>
+        public VMWareSVGAII()
         {
-            // trim the given line to fit inside the canvas boundries
-            TrimLine(ref x1, ref y1, ref x2, ref y2);
+            device = (Cosmos.HAL.PCI.GetDevice(Cosmos.HAL.VendorID.VMWare, Cosmos.HAL.DeviceID.SVGAIIAdapter));
+            device.EnableMemory(true);
+            uint basePort = device.BaseAddressBar[0].BaseAddress;
+            IndexPort = new IOPort((ushort)(basePort + (uint)IOPortOffset.Index));
+            ValuePort = new IOPort((ushort)(basePort + (uint)IOPortOffset.Value));
+            BiosPort = new IOPort((ushort)(basePort + (uint)IOPortOffset.Bios));
+            IRQPort = new IOPort((ushort)(basePort + (uint)IOPortOffset.IRQ));
 
-            int dx, dy;
-
-            dx = x2 - x1;      /* the horizontal distance of the line */
-            dy = y2 - y1;      /* the vertical distance of the line */
-
-            if (dy == 0) /* The line is horizontal */
-            {
-                DrawHorizontalLine(color, dx, x1, y1);
+            WriteRegister(Register.ID, (uint)ID.V2);
+            if (ReadRegister(Register.ID) != (uint)ID.V2)
                 return;
-            }
 
-            if (dx == 0) /* the line is vertical */
-            {
-                DrawVerticalLine(color, dy, x1, y1);
-                return;
-            }
+            Video_Memory = new MemoryBlock(ReadRegister(Register.FrameBufferStart), ReadRegister(Register.VRamSize));
 
-            /* the line is neither horizontal neither vertical, is diagonal then! */
-            DrawDiagonalLine(color, dx, dy, x1, y1);
+            capabilities = ReadRegister(Register.Capabilities);
+            InitializeFIFO();
         }
-        public virtual void DrawRectangle(uint color, int x, int y, int width, int height)
+        #endregion
+
+        /*
+        ManagedMemoryBlock managedMemoryBlock;
+        private void Init()
         {
-            /* The check of the validity of x and y are done in DrawLine() */
-
-            /* The vertex A is where x,y are */
-            int xa = x;
-            int ya = y;
-
-            /* The vertex B has the same y coordinate of A but x is moved of width pixels */
-            int xb = x + width;
-            int yb = y;
-
-            /* The vertex C has the same x coordiate of A but this time is y that is moved of height pixels */
-            int xc = x;
-            int yc = y + height;
-
-            /* The Vertex D has x moved of width pixels and y moved of height pixels */
-            int xd = x + width;
-            int yd = y + height;
-
-            /* Draw a line betwen A and B */
-            DrawLine(color, xa, ya, xb, yb);
-
-            /* Draw a line between A and C */
-            DrawLine(color, xa, ya, xc, yc);
-
-            /* Draw a line between B and D */
-            DrawLine(color, xb, yb, xd, yd);
-
-            /* Draw a line between C and D */
-            DrawLine(color, xc, yc, xd, yd);
+            managedMemoryBlock = new ManagedMemoryBlock(ReadRegister(Register.FrameBufferSize));
         }
-        private void DrawDiagonalLine(uint color, int dx, int dy, int x1, int y1)
+        public void _SetPixel(uint x, uint y, uint color)
         {
-            int i, sdx, sdy, dxabs, dyabs, x, y, px, py;
-
-            dxabs = Math.Abs(dx);
-            dyabs = Math.Abs(dy);
-            sdx = Math.Sign(dx);
-            sdy = Math.Sign(dy);
-            x = dyabs >> 1;
-            y = dxabs >> 1;
-            px = x1;
-            py = y1;
-
-            if (dxabs >= dyabs) /* the line is more horizontal than vertical */
+            uint offset = (y * width + x) * depth;
+            Kernel.text = $"Last Offset: {offset}";
+            if (offset < managedMemoryBlock.Size && x < this.width)
             {
-                for (i = 0; i < dxabs; i++)
+                managedMemoryBlock.Write32(offset, color);
+            }
+        }
+        public void _Clear(uint color)
+        {
+            managedMemoryBlock.Fill(color);
+        }
+        public void _Update()
+        {
+            Video_Memory.Copy(managedMemoryBlock);
+            WriteToFifo((int)FIFOCommand.Update);
+            WriteToFifo(0);
+            WriteToFifo(0);
+            WriteToFifo(width);
+            WriteToFifo(height);
+            WaitForFifo();
+        }
+        */
+
+        public uint FrameSize;
+        public uint FrameOffset;
+
+        private void Init()
+        {
+            FrameSize = ReadRegister(Register.FrameBufferSize);
+            FrameOffset = ReadRegister(Register.FrameBufferOffset);
+        }
+
+        public void DoubleBuffer_SetPixel(uint x, uint y, uint color)
+        {
+            if (x < width)
+            {
+                Video_Memory[((y * width + x) * depth) + FrameSize] = color;
+            }
+        }
+
+        public void DoubleBuffer_SetVRAM(int[] colors, int Offset)
+        {
+            //Video_Memory.Copy((int)FrameSize, colors, 0, colors.Length);
+            Video_Memory.Copy(Offset, colors, 0, colors.Length);
+        }
+
+        public void DoubleBuffer_Clear(uint color)
+        {
+            Video_Memory.Fill(FrameSize, FrameSize, color);
+        }
+
+        public void DoubleBuffer_Update()
+        {
+            try
+            {
+                Video_Memory.MoveDown(FrameOffset, FrameSize, FrameSize);
+            }
+            catch (Exception)
+            {
+            }
+            Update(0, 0, width, height);
+        }
+
+        public void DoubleBuffer_DrawFillRectangle(uint x, uint y, uint width, uint height, uint color)
+        {
+            for (uint h = 0; h < height; h++)
+            {
+                for (uint w = 0; w < width; w++)
                 {
-                    y += dyabs;
-                    if (y >= dxabs)
-                    {
-                        y -= dxabs;
-                        py += sdy;
-                    }
-                    px += sdx;
-                    SetPixel((uint)px, (uint)py, color);
+                    DoubleBuffer_SetPixel(w + x, y + h, color);
                 }
             }
-            else /* the line is more vertical than horizontal */
+        }
+
+        private void DrawVerticalLine(uint color, int dy, int x1, int y1)
+        {
+            int i;
+
+            for (i = 0; i < dy; i++)
             {
-                for (i = 0; i < dyabs; i++)
-                {
-                    x += dxabs;
-                    if (x >= dyabs)
-                    {
-                        x -= dyabs;
-                        px += sdx;
-                    }
-                    py += sdy;
-                    SetPixel((uint)px, (uint)py, color);
-                }
+                DoubleBuffer_SetPixel((uint)x1, (uint)(y1 + i), color);
             }
         }
+
+        private void DrawHorizontalLine(uint color, int dx, int x1, int y1)
+        {
+            uint i;
+
+            for (i = 0; i < dx; i++)
+            {
+                DoubleBuffer_SetPixel((uint)(x1 + i), (uint)y1, color);
+            }
+        }
+
         protected void TrimLine(ref int x1, ref int y1, ref int x2, ref int y2)
         {
             // in case of vertical lines, no need to perform complex operations
@@ -1029,42 +982,116 @@ namespace Oceano.Gui.Drivers.SVGAII
             x1 = (int)x1_out; y1 = (int)y1_out;
             x2 = (int)x2_out; y2 = (int)y2_out;
         }
-                private void DrawVerticalLine(uint color, int dy, int x1, int y1)
-        {
-            int i;
 
-            for (i = 0; i < dy; i++)
-            {
-                SetPixel((uint)x1, (uint)(y1 + i), color);
-            }
-        }
-
-        private void DrawHorizontalLine(uint color, int dx, int x1, int y1)
-        {
-            uint i;
-
-            for (i = 0; i < dx; i++)
-            {
-                SetPixel((uint)(x1 + i), (uint)y1, color);
-            }
-        }
-        public void DrawFillRectangle(uint x, uint y, uint width, uint height, uint color)
-        {
-            for (uint h = 0; h < height; h++)
-            {
-                for (uint w = 0; w < width; w++)
-                {
-                    SetPixel(w + x, y + h, color);
-                }
-            }
-        }
-        public virtual void DrawImage(Image image, uint x, uint y)
+        public virtual void DoubleBuffer_DrawImage(Image image, uint x, uint y)
         {
             for (uint _x = 0; _x < image.Width; _x++)
             {
                 for (uint _y = 0; _y < image.Height; _y++)
                 {
-                    SetPixel(x + _x, y + _y, (uint)image.rawData[_x + _y * image.Width]);
+                    DoubleBuffer_SetPixel(x + _x, y + _y, (uint)image.rawData[_x + _y * image.Width]);
+                }
+            }
+        }
+
+        public virtual void DoubleBuffer_DrawLine(uint color, int x1, int y1, int x2, int y2)
+        {
+            // trim the given line to fit inside the canvas boundries
+            TrimLine(ref x1, ref y1, ref x2, ref y2);
+
+            int dx, dy;
+
+            dx = x2 - x1;      /* the horizontal distance of the line */
+            dy = y2 - y1;      /* the vertical distance of the line */
+
+            if (dy == 0) /* The line is horizontal */
+            {
+                DrawHorizontalLine(color, dx, x1, y1);
+                return;
+            }
+
+            if (dx == 0) /* the line is vertical */
+            {
+                DrawVerticalLine(color, dy, x1, y1);
+                return;
+            }
+
+            /* the line is neither horizontal neither vertical, is diagonal then! */
+            DrawDiagonalLine(color, dx, dy, x1, y1);
+        }
+
+        public virtual void DoubleBuffer_DrawRectangle(uint color, int x, int y, int width, int height)
+        {
+            /* The check of the validity of x and y are done in DrawLine() */
+
+            /* The vertex A is where x,y are */
+            int xa = x;
+            int ya = y;
+
+            /* The vertex B has the same y coordinate of A but x is moved of width pixels */
+            int xb = x + width;
+            int yb = y;
+
+            /* The vertex C has the same x coordiate of A but this time is y that is moved of height pixels */
+            int xc = x;
+            int yc = y + height;
+
+            /* The Vertex D has x moved of width pixels and y moved of height pixels */
+            int xd = x + width;
+            int yd = y + height;
+
+            /* Draw a line betwen A and B */
+            DoubleBuffer_DrawLine(color, xa, ya, xb, yb);
+
+            /* Draw a line between A and C */
+            DoubleBuffer_DrawLine(color, xa, ya, xc, yc);
+
+            /* Draw a line between B and D */
+            DoubleBuffer_DrawLine(color, xb, yb, xd, yd);
+
+            /* Draw a line between C and D */
+            DoubleBuffer_DrawLine(color, xc, yc, xd, yd);
+        }
+
+        private void DrawDiagonalLine(uint color, int dx, int dy, int x1, int y1)
+        {
+            int i, sdx, sdy, dxabs, dyabs, x, y, px, py;
+
+            dxabs = Math.Abs(dx);
+            dyabs = Math.Abs(dy);
+            sdx = Math.Sign(dx);
+            sdy = Math.Sign(dy);
+            x = dyabs >> 1;
+            y = dxabs >> 1;
+            px = x1;
+            py = y1;
+
+            if (dxabs >= dyabs) /* the line is more horizontal than vertical */
+            {
+                for (i = 0; i < dxabs; i++)
+                {
+                    y += dyabs;
+                    if (y >= dxabs)
+                    {
+                        y -= dxabs;
+                        py += sdy;
+                    }
+                    px += sdx;
+                    DoubleBuffer_SetPixel((uint)px, (uint)py, color);
+                }
+            }
+            else /* the line is more vertical than horizontal */
+            {
+                for (i = 0; i < dyabs; i++)
+                {
+                    x += dxabs;
+                    if (x >= dyabs)
+                    {
+                        x -= dyabs;
+                        px += sdx;
+                    }
+                    py += sdy;
+                    DoubleBuffer_SetPixel((uint)px, (uint)py, color);
                 }
             }
         }

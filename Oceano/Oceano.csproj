@@ -17,16 +17,22 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
-        <VBEResolution>640x480x32</VBEResolution>
-        <Timeout>5</Timeout>
-        <OptimizationLevel>2</OptimizationLevel>
-        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
         <CompressionType>Gzip</CompressionType>
+        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
+        <OptimizationLevel>2</OptimizationLevel>
         <DebugEnabled>False</DebugEnabled>
-        <VMWareEdition>Player</VMWareEdition>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<CompileVBEMultiboot>True</CompileVBEMultiboot>
+		<VBEResolution>1024x768x32</VBEResolution>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\wallpaper.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\wallpaper.bmp" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
@@ -35,8 +41,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="PrismGraphics">
-        <HintPath>Gui\Drivers\VBE\PrismGraphics.dll</HintPath>
+      <Reference Include="PrismGL2D">
+        <HintPath>Resources\PrismGL2D.dll</HintPath>
       </Reference>
     </ItemGroup>
 

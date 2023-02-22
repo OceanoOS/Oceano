@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.4.33213.308
+VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oceano", "Oceano.csproj", "{EE7ED133-04AD-4540-88AC-84A9F6712B21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oceano", "Oceano\Oceano.csproj", "{F4447449-FFD2-425A-9192-539513D955E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE7ED133-04AD-4540-88AC-84A9F6712B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE7ED133-04AD-4540-88AC-84A9F6712B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE7ED133-04AD-4540-88AC-84A9F6712B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE7ED133-04AD-4540-88AC-84A9F6712B21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4447449-FFD2-425A-9192-539513D955E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4447449-FFD2-425A-9192-539513D955E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4447449-FFD2-425A-9192-539513D955E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4447449-FFD2-425A-9192-539513D955E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B3556DC4-BF12-4E92-ACDA-B23818C54C8D}
+		SolutionGuid = {86BA95CB-4B37-41FC-80B5-9CADAAEF61D1}
 	EndGlobalSection
 EndGlobal
