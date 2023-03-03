@@ -19,31 +19,14 @@
         <PxeInterface>192.168.0.8</PxeInterface>
         <CompressionType>Gzip</CompressionType>
         <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
-        <OptimizationLevel>2</OptimizationLevel>
+        <OptimizationLevel>1</OptimizationLevel>
         <DebugEnabled>False</DebugEnabled>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<CompileVBEMultiboot>True</CompileVBEMultiboot>
-		<VBEResolution>1024x768x32</VBEResolution>
+	    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
-
-    <ItemGroup>
-      <None Remove="Resources\wallpaper.bmp" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Resources\wallpaper.bmp" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="PrismGL2D">
-        <HintPath>Resources\PrismGL2D.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
 </Project>
