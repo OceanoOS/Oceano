@@ -17,11 +17,6 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
-        <CompressionType>Gzip</CompressionType>
-        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
-        <OptimizationLevel>1</OptimizationLevel>
-        <DebugEnabled>False</DebugEnabled>
-	    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,4 +24,11 @@
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="PrismGL2D">
+        <HintPath>GUI\PrismGL2D.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

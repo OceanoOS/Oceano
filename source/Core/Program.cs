@@ -1,5 +1,6 @@
 using Cosmos.System;
 using Cosmos.Core;
+using PrismGL2D.Extentions;
 using Oceano.GUI;
 
 namespace Oceano.Core
@@ -15,18 +16,15 @@ namespace Oceano.Core
         public static string CPUVendor = CPU.GetCPUVendorName().ToString();
         #endregion
         #region Graphics
-        Graphics graphics = new(1024,768,"SVGAII");
+        public static VBECanvas Canvas { get; set; } = new();
         #endregion
         protected override void BeforeRun()
         {
-            graphics.Init();
+            Desktop.BeforeRun();
         }
         protected override void Run()
         {
-            graphics.Clear(PrismGraphics.Color.Black);
-            graphics.SetPixel((int)MouseManager.X, (int)MouseManager.Y,PrismGraphics.Color.White);
-            graphics.DrawString(20,20,graphics.SVGAIICanvas.GetFPS().ToString(),PrismGraphics.Color.White,PrismGraphics.Fonts.Font.Fallback);
-            graphics.Update();
+            Desktop.Run();
         }
     }
 }
