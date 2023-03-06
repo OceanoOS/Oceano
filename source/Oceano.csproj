@@ -17,7 +17,21 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
+        <CompressionType>Gzip</CompressionType>
+        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
+        <DebugEnabled>False</DebugEnabled>
+        <Timeout>5</Timeout>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\program.bmp" />
+      <None Remove="Resources\wallpaper.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\program.bmp" />
+      <EmbeddedResource Include="Resources\wallpaper.bmp" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
@@ -26,8 +40,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="PrismGL2D">
-        <HintPath>GUI\PrismGL2D.dll</HintPath>
+      <Reference Include="PrismGraphics">
+        <HintPath>Resources\PrismGraphics.dll</HintPath>
       </Reference>
     </ItemGroup>
 
