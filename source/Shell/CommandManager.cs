@@ -1,5 +1,5 @@
-﻿using Cosmos.Core.Memory;
-using Oceano.Shell.Commands;
+﻿using Oceano.Shell.Commands;
+using System;
 using System.Collections.Generic;
 
 namespace Oceano.Shell
@@ -7,37 +7,36 @@ namespace Oceano.Shell
 
     public class CommandManager
     {
-        private readonly List<Command> commands;
+        private List<Command> commands;
 
         public CommandManager()
         {
-            this.commands = new List<Command>
-            {
-                new Info("info")
-            };
+            this.commands = new();
+            this.commands.Add(new Info("info"));
+            this.commands.Add(new Kbm("kbm"));
         }
 
-        public string ProcessInput(string input)
+        public String processInput(String input)
         {
-            string[] split = input.Split(' ');
-            string label = split[0];
+            String[] split = input.Split(' ');
+            String label = split[0];
 
-            List<string> args = new();
+            List<String> args = new List<String>();
 
             int ctr = 0;
-            foreach (string s in split)
+            foreach (String s in split)
             {
                 if (ctr != 0)
                     args.Add(s);
                 ++ctr;
             }
+
             foreach (Command cmd in this.commands)
             {
                 if (cmd.name == label)
                     return cmd.Invoke(args.ToArray());
 
             }
-            Heap.Collect();
             return "Command \"" + label + "\" not found.";
         }
     }

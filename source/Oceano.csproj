@@ -21,28 +21,13 @@
         <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
         <DebugEnabled>False</DebugEnabled>
         <Timeout>5</Timeout>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
-
-    <ItemGroup>
-      <None Remove="Resources\program.bmp" />
-      <None Remove="Resources\wallpaper.bmp" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Resources\program.bmp" />
-      <EmbeddedResource Include="Resources\wallpaper.bmp" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="PrismGraphics">
-        <HintPath>Resources\PrismGraphics.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>
