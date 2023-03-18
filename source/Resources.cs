@@ -9,9 +9,9 @@ namespace Oceano
 {
     public static class Resources
     {
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.program.bmp")]
-        public static byte[] program;
-        [ManifestResourceStream(ResourceName = "Oceano.Resources.wallpaper.bmp")]
-        public static byte[] wallpaper;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.desktop.bmp")]
+        public static byte[] desktop;
+        [ManifestResourceStream(ResourceName = "Oceano.Resources.menu.bmp")]
+        public static byte[] menu;
     }
 }

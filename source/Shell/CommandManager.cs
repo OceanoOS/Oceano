@@ -7,21 +7,24 @@ namespace Oceano.Shell
 
     public class CommandManager
     {
-        private List<Command> commands;
+        private readonly List<Command> commands;
 
         public CommandManager()
         {
-            this.commands = new();
-            this.commands.Add(new Info("info"));
-            this.commands.Add(new Kbm("kbm"));
+            this.commands = new()
+            {
+                new(""),
+                new Kbm("kbm"),
+                new VM("vmtools")
+            };
         }
 
-        public String processInput(String input)
+        public String ProcessInput(String input)
         {
             String[] split = input.Split(' ');
             String label = split[0];
 
-            List<String> args = new List<String>();
+            List<String> args = new();
 
             int ctr = 0;
             foreach (String s in split)

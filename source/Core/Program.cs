@@ -1,18 +1,19 @@
-﻿using Cosmos.Core;
-using Sys = Cosmos.System;
-using System;
+﻿using Cosmos.System;
+using Cosmos.System.FileSystem;
+using Cosmos.System.FileSystem.VFS;
+using Cosmos.System.Graphics;
+using Oceano.GUI;
 using Oceano.Shell;
 
 namespace Oceano.Core
 {
-    public class Program : Sys.Kernel
+    public class Program : Kernel
     {
-        public static string Name = "Oceano";
-        public static string Version = "1.0.0";
-        public static string TotalRam = CPU.GetAmountOfRAM().ToString();
-        public static string CpuName = CPU.GetCPUBrandString();
-        public static string CpuVendor = CPU.GetCPUVendorName();
-        public CommandManager commandManager;
+        public static string Name { get; set; } = "Oceano";
+        public static string Version { get; set; } = "1.0.0";
+        public static CosmosVFS FileSystem { get; set; } = new();
+        public static CommandManager CommandManager { get; set; } = new();
+        public static Graphics Graphics { get; set; } = new(true);
         protected override void BeforeRun()
         {
 
@@ -20,10 +21,7 @@ namespace Oceano.Core
 
         protected override void Run()
         {
-            String repsonse;
-            String input = Console.ReadLine();
-            repsonse = this.commandManager.processInput(input);
-            Console.WriteLine(repsonse);
+            Graphics.Update();
         }
     }
 }
