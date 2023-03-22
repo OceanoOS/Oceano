@@ -15,7 +15,19 @@ namespace Oceano.Shell
             {
                 new(""),
                 new Kbm("kbm"),
-                new VM("vmtools")
+                new VM("vmtools"),
+                new Touch("touch"),
+                new Del("del"),
+                new Mkdir("mkdir"),
+                new Rmdir("rmdir"),
+                new Run("run"),
+                new StartMIV("miv"),
+                new Clear("clear"),
+                new Ls("ls"),
+                new Ls("dir"),
+                new Cd("cd"),
+                new Ipconfig("ipconfig"),
+                new Gui("gui")
             };
         }
 

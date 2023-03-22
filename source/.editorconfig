@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# CA2211: Non-constant fields should not be visible
+dotnet_diagnostic.CA2211.severity = none
+
+# IDE0052: Rimuovi i membri privati non letti
+dotnet_diagnostic.IDE0052.severity = none
+
+# CA1069: Enums values should not be duplicated
+dotnet_diagnostic.CA1069.severity = none

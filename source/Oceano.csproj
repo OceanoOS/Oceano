@@ -17,35 +17,31 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
-        <CompressionType>Gzip</CompressionType>
         <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
-        <OptimizationLevel>1</OptimizationLevel>
-        <VBEResolution>1280x720x32</VBEResolution>
+        <CompileVBEMultiboot>False</CompileVBEMultiboot>
+        <VBEResolution></VBEResolution>
+        <CompressionType>Gzip</CompressionType>
         <DebugEnabled>False</DebugEnabled>
+        <Timeout>5</Timeout>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\desktop.bmp" />
-      <None Remove="Resources\menu.bmp" />
+      <None Remove="Resources\font.psf" />
+      <None Remove="Resources\program.bmp" />
+      <None Remove="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\desktop.bmp" />
-      <EmbeddedResource Include="Resources\menu.bmp" />
+      <EmbeddedResource Include="Resources\font.psf" />
+      <EmbeddedResource Include="Resources\program.bmp" />
+      <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="PrismGL2D">
-        <HintPath>Resources\PrismGL2D.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>

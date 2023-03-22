@@ -1,16 +1,25 @@
-﻿using Cosmos.System;
-using IL2CPU.API.Attribs;
-using PrismGL2D;
-using PrismGL2D.Extentions;
+﻿using Cosmos.HAL;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Cosmos.System;
+using Kernel = Oceano.Core.Program;
+using Cosmos.System.Graphics;
+using System.Drawing;
+using Cosmos.Core.Memory;
+using Oceano.Core.Graphics;
 
 namespace Oceano.GUI
 {
-    public class Graphics
+    public static class Graphics
     {
-        public VBECanvas Canvas { get; set; } = new();
-        public uint Width;
-        public uint Height;
-        readonly int[] cursor = new int[]
+        public static uint Width;
+        public static uint Height;
+        public static Bitmap wallpaper = new(Resources.wallpaper);
+        public static Bitmap programlogo = new(Resources.program);
+        static readonly int[] cursor = new int[]
             {
                 1,0,0,0,0,0,0,0,0,0,0,0,
                 1,1,0,0,0,0,0,0,0,0,0,0,
@@ -32,32 +41,30 @@ namespace Oceano.GUI
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
             };
-        Image Desktop = Image.FromBitmap(Resources.desktop);
-        public Graphics()
+        public static Dock dock = new();
+        public static List<App> apps = new();
+        public static void Init()
         {
-            this.Width = Canvas.Width;
-            this.Height = Canvas.Height;
+            Kernel.VMWareSVGAII = new();
+            Kernel.VMWareSVGAII.SetMode(800, 600, 32);
+            Width = 800;
+            Height = 600;
+            MouseManager.ScreenWidth = Width;
+            MouseManager.ScreenHeight = Height;
+            MouseManager.X = Width / 2;
+            MouseManager.Y = Height / 2;
+            apps.Add(new(300, 200, 20, 30));
         }
-        public Graphics(bool Mouse)
+        public static void Update()
         {
-            this.Width = Canvas.Width;
-            this.Height = Canvas.Height;
-            if (Mouse)
-            {
-                MouseManager.ScreenWidth = this.Width;
-                MouseManager.ScreenHeight = this.Height;
-                MouseManager.X = this.Width / 2;
-                MouseManager.Y = this.Height / 2;
-            }
+            Kernel.VMWareSVGAII.Clear((uint)Color.Black.ToArgb());
+            dock.Update();
+            foreach(App app in apps) { app.Update(); }
+            DrawCursor(Kernel.VMWareSVGAII,MouseManager.X,MouseManager.Y);
+            Heap.Collect();
+            Kernel.VMWareSVGAII.DoubleBufferUpdate();
         }
-        public void Update()
-        {
-            Canvas.Clear(Color.Black);
-            Canvas.DrawImage(0, 0, Desktop, false);
-            DrawCursor(Canvas, MouseManager.X, MouseManager.Y);
-            Canvas.Update();
-        }
-        public void DrawCursor(VBECanvas canvas, uint x, uint y)
+        public static void DrawCursor(VMWareSVGAII vMWareSVGAII, uint x, uint y)
         {
             for (uint h = 0; h < 19; h++)
             {
@@ -65,11 +72,11 @@ namespace Oceano.GUI
                 {
                     if (cursor[h * 12 + w] == 1)
                     {
-                        canvas[w + x, h + y] = Color.White;
+                        vMWareSVGAII.SetPixel(w + x, h + y, (uint)Color.White.ToArgb());
                     }
                     if (cursor[h * 12 + w] == 2)
                     {
-                        canvas[w + x, h + y] = Color.Black;
+                        vMWareSVGAII.SetPixel(w + x, h + y, (uint)Color.Black.ToArgb());
                     }
                 }
             }
