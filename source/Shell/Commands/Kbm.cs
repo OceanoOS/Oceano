@@ -21,7 +21,7 @@ namespace Oceano.Shell.Commands
                     switch (args[1])
                     {
                         default:
-                            response = "us = American, fr = French, de = German, tr = Turkish, es = Spanish";
+                            response = "us = American, fr = French, de = German, tr = Turkish";
                             break;
                         case "us":
                             KeyboardManager.SetKeyLayout(new US_Standard());
@@ -38,10 +38,6 @@ namespace Oceano.Shell.Commands
                         case "tr":
                             KeyboardManager.SetKeyLayout(new TR_StandardQ());
                             response = "TR keyboard setting saved.";
-                            break;
-                        case "es":
-                            KeyboardManager.SetKeyLayout(new ES_Standard());
-                            response = "ES keyboard setting saved.";
                             break;
                     }
                     break;

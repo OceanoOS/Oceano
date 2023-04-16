@@ -27,7 +27,7 @@ namespace Oceano.Shell
                 new Ls("dir"),
                 new Cd("cd"),
                 new Ipconfig("ipconfig"),
-                new Gui("gui")
+                new HtmlView("htmlview")
             };
         }
 

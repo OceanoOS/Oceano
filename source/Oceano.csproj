@@ -27,21 +27,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\font.psf" />
-      <None Remove="Resources\program.bmp" />
-      <None Remove="Resources\wallpaper.bmp" />
+      <None Remove="Resources\arial.ttf" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\font.psf" />
-      <EmbeddedResource Include="Resources\program.bmp" />
-      <EmbeddedResource Include="Resources\wallpaper.bmp" />
+      <EmbeddedResource Include="Resources\arial.ttf" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="CosmosTTF">
+        <HintPath>Resources\CosmosTTF.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
