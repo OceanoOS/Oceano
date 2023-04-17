@@ -7,7 +7,7 @@ namespace CosmosHTML
     {
         public static void ParseHtml(string html)
         {
-            Stack<string> tagStack = new ();
+            Stack<string> tagStack = new();
 
             int pos = 0;
             while (pos < html.Length)

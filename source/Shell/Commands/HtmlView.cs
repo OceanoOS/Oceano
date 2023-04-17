@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Kernel = Oceano.Core.Program;
-using System.Threading.Tasks;
-using CosmosHTML;
+﻿using CosmosHTML;
+using System;
 using System.IO;
+using Kernel = Oceano.Core.Program;
 
 namespace Oceano.Shell.Commands
 {
@@ -28,7 +24,8 @@ namespace Oceano.Shell.Commands
                         response = e.Message;
                     }
                     break;
-                case "": response = "Usage: htmlview [filename]";
+                case "":
+                    response = "Usage: htmlview [filename]";
                     break;
             }
             return response;

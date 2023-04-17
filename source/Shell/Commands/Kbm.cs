@@ -21,23 +21,31 @@ namespace Oceano.Shell.Commands
                     switch (args[1])
                     {
                         default:
-                            response = "us = American, fr = French, de = German, tr = Turkish";
+                            response = "us = American, fr = French, de = German, tr = Turkish, es = Spanish, gb = British";
                             break;
                         case "us":
-                            KeyboardManager.SetKeyLayout(new US_Standard());
+                            KeyboardManager.SetKeyLayout(new USStandardLayout());
                             response = "US keyboard setting saved.";
                             break;
                         case "fr":
-                            KeyboardManager.SetKeyLayout(new FR_Standard());
+                            KeyboardManager.SetKeyLayout(new FRStandardLayout());
                             response = "FR keyboard setting saved.";
                             break;
                         case "de":
-                            KeyboardManager.SetKeyLayout(new DE_Standard());
+                            KeyboardManager.SetKeyLayout(new DEStandardLayout());
                             response = "DE keyboard setting saved.";
                             break;
                         case "tr":
-                            KeyboardManager.SetKeyLayout(new TR_StandardQ());
+                            KeyboardManager.SetKeyLayout(new TRStandardLayout());
                             response = "TR keyboard setting saved.";
+                            break;
+                        case "es":
+                            KeyboardManager.SetKeyLayout(new ESStandardLayout());
+                            response = "ES keyboard setting saved.";
+                            break;
+                        case "gb":
+                            KeyboardManager.SetKeyLayout(new GBStandardLayout());
+                            response = "GB keyboard setting saved.";
                             break;
                     }
                     break;

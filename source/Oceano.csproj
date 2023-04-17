@@ -41,10 +41,4 @@
         <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Reference Include="CosmosTTF">
-        <HintPath>Resources\CosmosTTF.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
 </Project>

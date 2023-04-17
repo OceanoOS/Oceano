@@ -11,3 +11,27 @@ dotnet_diagnostic.CA1069.severity = none
 
 # IDE0059: Assegnazione non necessaria di un valore
 dotnet_diagnostic.IDE0059.severity = none
+
+# IDE1006: Stili di denominazione
+dotnet_diagnostic.IDE1006.severity = none
+
+# IDE0054: Usa l'assegnazione composta
+dotnet_diagnostic.IDE0054.severity = none
+
+# IDE0060: Rimuovere il parametro inutilizzato
+dotnet_diagnostic.IDE0060.severity = none
+
+# IDE0051: Rimuovi i membri privati inutilizzati
+dotnet_diagnostic.IDE0051.severity = none
+
+# IDE0044: Aggiungi modificatore readonly
+dotnet_diagnostic.IDE0044.severity = none
+
+# IDE0018: Dichiarazione di variabile inline
+dotnet_diagnostic.IDE0018.severity = none
+
+# CA1822: Mark members as static
+dotnet_diagnostic.CA1822.severity = none
+
+# IDE0017: Semplifica l'inizializzazione degli oggetti
+dotnet_diagnostic.IDE0017.severity = none
