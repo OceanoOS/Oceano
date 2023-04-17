@@ -8,3 +8,6 @@ dotnet_diagnostic.IDE0052.severity = none
 
 # CA1069: Enums values should not be duplicated
 dotnet_diagnostic.CA1069.severity = none
+
+# IDE0059: Assegnazione non necessaria di un valore
+dotnet_diagnostic.IDE0059.severity = none

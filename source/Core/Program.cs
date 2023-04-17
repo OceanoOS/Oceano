@@ -1,4 +1,5 @@
-﻿using Cosmos.System;
+﻿using Cosmos.Core.Memory;
+using Cosmos.System;
 using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.Graphics;
@@ -19,6 +20,7 @@ namespace Oceano.Core
         public static bool FilesystemEnabled;
         public static string CurrentPath = "";
         public static CommandManager commandManager = new();
+        public static Canvas canvas;
 
         protected override void BeforeRun()
         {
@@ -56,6 +58,7 @@ namespace Oceano.Core
             string response;
             response = commandManager.ProcessInput(input);
             Console.WriteLine(response);
+            Heap.Collect();
         }
     }
 }
