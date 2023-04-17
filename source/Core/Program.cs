@@ -3,7 +3,6 @@ using Cosmos.System;
 using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.Graphics;
-using CosmosTTF;
 using Oceano.GUI;
 using Oceano.Shell;
 using System;
@@ -21,7 +20,7 @@ namespace Oceano.Core
         public static bool FilesystemEnabled;
         public static string CurrentPath = "";
         public static CommandManager commandManager = new();
-        public static Canvas canvas;
+        public static PrismGraphics.Extentions.VMWare.SVGAIICanvas Canvas;
         public static bool GraphicsMode = false;
 
         protected override void BeforeRun()
@@ -38,7 +37,6 @@ namespace Oceano.Core
                 Console.WriteLine(ex.ToString());
                 FilesystemEnabled = false;
             }
-            TTFManager.RegisterFont("default", Resources.arial);
             VGAScreen.SetTextMode(Cosmos.HAL.VGADriver.TextSize.Size80x25);
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;

@@ -31,14 +31,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\arial.ttf" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="PrismGraphics">
+        <HintPath>Resources\PrismGraphics.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

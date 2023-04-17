@@ -27,7 +27,10 @@ namespace Oceano.Shell
                 new Ls("dir"),
                 new Cd("cd"),
                 new HtmlView("htmlview"),
-                new Gui("gui")
+                new Gui("gui"),
+                new Neofetch("neofetch"),
+                new Calc("calc"),
+                new Echo("echo")
             };
         }
 

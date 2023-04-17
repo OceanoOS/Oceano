@@ -1,39 +1,70 @@
-﻿using Cosmos.Core.Memory;
-using Cosmos.System;
-using Cosmos.System.Graphics;
-using CosmosTTF;
-using System.Drawing;
+﻿using Cosmos.System;
+using PrismGraphics;
+using PrismGraphics.Extentions.VMWare;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Kernel = Oceano.Core.Program;
 
 namespace Oceano.GUI
 {
     public static class Graphics
     {
-        public static void Init()
+        static int[] cursor = new int[]
+           {
+                1,0,0,0,0,0,0,0,0,0,0,0,
+                1,1,0,0,0,0,0,0,0,0,0,0,
+                1,2,1,0,0,0,0,0,0,0,0,0,
+                1,2,2,1,0,0,0,0,0,0,0,0,
+                1,2,2,2,1,0,0,0,0,0,0,0,
+                1,2,2,2,2,1,0,0,0,0,0,0,
+                1,2,2,2,2,2,1,0,0,0,0,0,
+                1,2,2,2,2,2,2,1,0,0,0,0,
+                1,2,2,2,2,2,2,2,1,0,0,0,
+                1,2,2,2,2,2,2,2,2,1,0,0,
+                1,2,2,2,2,2,2,2,2,2,1,0,
+                1,2,2,2,2,2,2,2,2,2,2,1,
+                1,2,2,2,2,2,2,1,1,1,1,1,
+                1,2,2,2,1,2,2,1,0,0,0,0,
+                1,2,2,1,0,1,2,2,1,0,0,0,
+                1,2,1,0,0,1,2,2,1,0,0,0,
+                1,1,0,0,0,0,1,2,2,1,0,0,
+                0,0,0,0,0,0,1,2,2,1,0,0,
+                0,0,0,0,0,0,0,1,1,0,0,0
+           };
+        public static void Init(ushort Width, ushort Height)
         {
-            Kernel.canvas = FullScreenCanvas.GetFullScreenCanvas();
-            MouseManager.ScreenWidth = (uint)Kernel.canvas.Mode.Width;
-            MouseManager.ScreenHeight = (uint)Kernel.canvas.Mode.Height;
+            Kernel.Canvas = new(Width, Height);
+            MouseManager.ScreenWidth = Width;
+            MouseManager.ScreenHeight = Height;
             MouseManager.X = MouseManager.ScreenWidth / 2;
             MouseManager.Y = MouseManager.ScreenHeight / 2;
             Kernel.GraphicsMode = true;
         }
         public static void Update()
         {
-            Kernel.canvas.Clear();
-            DrawCursor();
-            Kernel.canvas.DrawStringTTF(Color.White, "Hello", "default", 20,new(2,2));
-            Heap.Collect();
-            Kernel.canvas.Display();
+            Kernel.Canvas.Clear(Color.Black);
+            DrawCursor(Kernel.Canvas, (int)MouseManager.X, (int)MouseManager.Y);
+            Kernel.Canvas.Update();
         }
-        public static void DrawCursor()
+        static void DrawCursor(SVGAIICanvas Canvas, int x, int y)
         {
-            Kernel.canvas.DrawLine(Color.White, (int)MouseManager.X, (int)MouseManager.Y,
-                (int)MouseManager.X + 6, (int)MouseManager.Y);
-            Kernel.canvas.DrawLine(Color.White, (int)MouseManager.X, (int)MouseManager.Y,
-                (int)MouseManager.X, (int)MouseManager.Y + 6);
-            Kernel.canvas.DrawLine(Color.White, (int)MouseManager.X, (int)MouseManager.Y,
-                (int)MouseManager.X + 12, (int)MouseManager.Y + 12);
+            for (int h = 0; h < 19; h++)
+            {
+                for (int w = 0; w < 12; w++)
+                {
+                    if (cursor[h * 12 + w] == 1)
+                    {
+                        Canvas[w + x, h + y] = Color.Black;
+                    }
+                    if (cursor[h * 12 + w] == 2)
+                    {
+                        Canvas[w + x, h + y] = Color.White;
+                    }
+                }
+            }
         }
     }
 }
