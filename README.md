@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/OceanoOS/Oceano/main/Artwork/Logo.png" width="200">
+  </p>
 <h1 align="center">Oceano</h1>
 <p align="center">An operative system created using C# with Cosmos</p>
 <p align="center">
@@ -13,10 +16,9 @@ Oceano is an operating system made possible by Cosmos and its contributors.
 #### Minumum requirements
 - 128 MB of Memory (RAM)
 - x86 or x64 CPU
-- VGA Graphics with VBE extension
 #### Reccomended requirements
 - 512 MB (or more) of Memory (RAM)
 - x86 or x64 CPU
-- A good VGA Graphics card with VBE extension
+- VMWareSVGAII Adapter
 - AC97 Audio card
 - Basic network card
