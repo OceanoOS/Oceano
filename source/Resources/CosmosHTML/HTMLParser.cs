@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CosmosHTML
 {
-    public class HTMLParser
+    public static class HTMLParser
     {
         public static void ParseHtml(string html)
         {

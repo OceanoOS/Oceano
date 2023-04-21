@@ -4,6 +4,7 @@ using PrismGraphics.Extentions.VMWare;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Kernel = Oceano.Core.Program;
@@ -12,7 +13,7 @@ namespace Oceano.GUI
 {
     public static class Graphics
     {
-        static int[] cursor = new int[]
+        static readonly int[] cursor = new int[]
            {
                 1,0,0,0,0,0,0,0,0,0,0,0,
                 1,1,0,0,0,0,0,0,0,0,0,0,
@@ -34,6 +35,7 @@ namespace Oceano.GUI
                 0,0,0,0,0,0,1,2,2,1,0,0,
                 0,0,0,0,0,0,0,1,1,0,0,0
            };
+        public static List<App> apps = new(Kernel.Canvas.Width / 40);
         public static void Init(ushort Width, ushort Height)
         {
             Kernel.Canvas = new(Width, Height);
@@ -42,10 +44,17 @@ namespace Oceano.GUI
             MouseManager.X = MouseManager.ScreenWidth / 2;
             MouseManager.Y = MouseManager.ScreenHeight / 2;
             Kernel.GraphicsMode = true;
+            apps.Add(new("TestApp", false, Image.FromBitmap(Resources.generic), 300, 200, 20, 20));
+            apps.Add(new("TestApp1", false, Image.FromBitmap(Resources.generic), 300, 200, 20, 20));
         }
         public static void Update()
         {
             Kernel.Canvas.Clear(Color.Black);
+            foreach(App app in apps)
+            {
+                app.Update();
+            }
+            Taskbar.Update();
             DrawCursor(Kernel.Canvas, (int)MouseManager.X, (int)MouseManager.Y);
             Kernel.Canvas.Update();
         }

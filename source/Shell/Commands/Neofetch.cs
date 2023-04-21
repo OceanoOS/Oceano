@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Kernel = Oceano.Core.Program;
 namespace Oceano.Shell.Commands
 {
     public class Neofetch : Command
@@ -14,9 +14,9 @@ namespace Oceano.Shell.Commands
             Console.WriteLine();
             Console.Write(@" ,:._       ~-_           "); Console.ForegroundColor = ConsoleColor.White; Console.Write("   ----------"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
-            Console.Write(@"    `\        ~-_         "); Console.Write("   OS: "); Console.ForegroundColor = ConsoleColor.White; Console.Write("Oceano beta1 x86/x64"); Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(@"    `\        ~-_         "); Console.Write("   OS: "); Console.ForegroundColor = ConsoleColor.White; Console.Write("Oceano 1.0.0 x86"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
-            Console.Write(@"      |          `.       "); Console.Write("   Host: "); Console.ForegroundColor = ConsoleColor.White; Console.Write("oceano"); Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(@"      |          `.       "); Console.Write("   Host: "); Console.ForegroundColor = ConsoleColor.White; Console.Write(Kernel.Host); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
             Console.Write(@"     /            ~-_     "); Console.Write("   Kernel: "); Console.ForegroundColor = ConsoleColor.White; Console.Write("Cosmos Dev Kit v106027"); Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();

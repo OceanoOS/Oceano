@@ -11,7 +11,10 @@ namespace Oceano.Shell.Commands
         public Echo(string name) : base(name) { }
         public override string Invoke(string[] args)
         {
-            Console.WriteLine(args);
+            foreach(var s in args)
+            {
+                Console.Write(s + " ");
+            }
             return "";
         }
     }

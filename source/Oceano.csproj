@@ -24,10 +24,16 @@
         <DebugEnabled>False</DebugEnabled>
         <Timeout>5</Timeout>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<VMWareEdition>Player</VMWareEdition>
     </PropertyGroup>
 
     <ItemGroup>
       <None Remove="Resources\arial.ttf" />
+      <None Remove="Resources\generic.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\generic.bmp" />
     </ItemGroup>
 
     <ItemGroup>
