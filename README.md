@@ -14,10 +14,10 @@ Oceano is an operating system made possible by Cosmos and its contributors.
 
 ### 💻 Requirements
 #### Minumum requirements
-- 128 MB of Memory (RAM)
+- 64 MB of Memory (RAM)
 - x86 or x64 CPU
 #### Reccomended requirements
-- 512 MB (or more) of Memory (RAM)
+- 128 MB (or more) of Memory (RAM)
 - x86 or x64 CPU
 - VMWareSVGAII Adapter
 - AC97 Audio card
