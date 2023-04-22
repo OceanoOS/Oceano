@@ -13,11 +13,12 @@ namespace Oceano.GUI
         public static Color color = new(32, 32, 32);
         public static void Update()
         {
+            Kernel.Canvas.DrawLine(X, Y, Width, Height, Color.GoogleBlue);
             Kernel.Canvas.DrawFilledRectangle(X, Y, Width, Height, 0, color);
             int x = 4;
             foreach (App app in Graphics.apps)
             {
-                Kernel.Canvas.DrawImage(x, Y + 4, app.icon, false);
+                Kernel.Canvas.DrawImage(x, Y + 4, app.icon);
                 if (MouseManager.MouseState == MouseState.Left)
                 {
                     if (MouseManager.X >= x & MouseManager.Y >= Y & MouseManager.X <= x + 38 & MouseManager.Y <= Kernel.Canvas.Height)

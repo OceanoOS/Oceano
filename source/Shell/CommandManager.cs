@@ -30,7 +30,10 @@ namespace Oceano.Shell
                 new Gui("gui"),
                 new Neofetch("neofetch"),
                 new Calc("calc"),
-                new Echo("echo")
+                new Echo("echo"),
+                new User("user"),
+                new Shutdown("shutdown"),
+                new Reboot("reboot")
             };
         }
 

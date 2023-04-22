@@ -1,12 +1,7 @@
 ﻿using Cosmos.System;
 using PrismGraphics;
 using PrismGraphics.Extentions.VMWare;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using Kernel = Oceano.Core.Program;
 
 namespace Oceano.GUI
@@ -50,7 +45,7 @@ namespace Oceano.GUI
         public static void Update()
         {
             Kernel.Canvas.Clear(Color.Black);
-            foreach(App app in apps)
+            foreach (App app in apps)
             {
                 app.Update();
             }

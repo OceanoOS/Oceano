@@ -5,6 +5,7 @@ using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.Graphics;
 using Oceano.GUI;
 using Oceano.Shell;
+using Oceano.Users;
 using System;
 using Console = System.Console;
 
@@ -20,8 +21,9 @@ namespace Oceano.Core
         public static bool FilesystemEnabled;
         public static string CurrentPath = "";
         public static CommandManager commandManager = new();
-        public static PrismGraphics.Extentions.VMWare.SVGAIICanvas Canvas;
         public static bool GraphicsMode = false;
+        public static bool LoggedIn = false;
+        public static PrismGraphics.Extentions.VMWare.SVGAIICanvas Canvas { get; set; }
 
         protected override void BeforeRun()
         {
@@ -42,29 +44,37 @@ namespace Oceano.Core
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Welcome to Oceano");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         protected override void Run()
         {
-            if (GraphicsMode)
+            if (LoggedIn)
             {
-                Graphics.Update();
+                if (GraphicsMode)
+                {
+                    Graphics.Update();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(Username);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("@");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(Host);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(" " + CurrentPath + ">");
+                    string input = Console.ReadLine();
+                    string response;
+                    response = commandManager.ProcessInput(input);
+                    Console.WriteLine(response);
+                    Heap.Collect();
+                }
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write(Username);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("@");
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write(Host);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(" " + CurrentPath + ">");
-                string input = Console.ReadLine();
-                string response;
-                response = commandManager.ProcessInput(input);
-                Console.WriteLine(response);
-                Heap.Collect();
+                LoginSystem.Login();
             }
         }
     }

@@ -1,8 +1,8 @@
 ﻿using Cosmos.System;
 using PrismGraphics;
 using PrismGraphics.Fonts;
-using Kernel = Oceano.Core.Program;
 using System;
+using Kernel = Oceano.Core.Program;
 
 namespace Oceano.GUI
 {
@@ -37,7 +37,7 @@ namespace Oceano.GUI
             this.y = y + 22;
             this.width = Convert.ToUInt16(width - 4);
             this.height = Convert.ToUInt16(height - 22 - 1);
-            
+
             this.name = name;
             this.visible = visible;
             this.icon = icon;
@@ -73,9 +73,10 @@ namespace Oceano.GUI
                 this.x = _x + 2;
                 this.y = _y + 22;
             }
-            Kernel.Canvas.DrawFilledRectangle(_x, _y, _width, _height, 0, Color.GetPacked(255,32,32,32));
+            Kernel.Canvas.DrawFilledRectangle(_x, _y, _width, _height, 0, Color.GetPacked(255, 32, 32, 32));
             Kernel.Canvas.DrawRectangle(_x, _y, _width, _height, 0, Color.GoogleBlue);
             Kernel.Canvas.DrawString(_x + 2, _y, name, Font.Fallback, Color.White);
+            Kernel.Canvas.DrawButton(_x + _width - 13, _y - 1, "X", Color.Red, Close);
             Run();
 
         end:;
@@ -83,6 +84,10 @@ namespace Oceano.GUI
 
         public virtual void Run()
         {
+        }
+        public void Close()
+        {
+            visible = false;
         }
     }
 }

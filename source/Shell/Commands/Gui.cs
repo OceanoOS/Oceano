@@ -1,10 +1,5 @@
 ﻿using Oceano.GUI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kernel = Oceano.Core.Program;
 
 namespace Oceano.Shell.Commands
 {
@@ -15,7 +10,7 @@ namespace Oceano.Shell.Commands
         {
             try
             {
-                Graphics.Init(Convert.ToUInt16(args[0]), Convert.ToUInt16(args[1]));
+                Graphics.Init(800, 600);
             }
             catch (Exception ex)
             {

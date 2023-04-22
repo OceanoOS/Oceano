@@ -30,7 +30,7 @@ namespace Oceano.Shell.Commands
                 string response = "Result: " + result.ToString();
                 Console.WriteLine(response);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
