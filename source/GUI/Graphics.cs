@@ -1,4 +1,5 @@
-﻿using Cosmos.System;
+﻿using Cosmos.Core.Memory;
+using Cosmos.System;
 using PrismGraphics;
 using PrismGraphics.Extentions.VMWare;
 using System.Collections.Generic;
@@ -39,8 +40,9 @@ namespace Oceano.GUI
             MouseManager.X = MouseManager.ScreenWidth / 2;
             MouseManager.Y = MouseManager.ScreenHeight / 2;
             Kernel.GraphicsMode = true;
-            apps.Add(new("TestApp", false, Image.FromBitmap(Resources.generic), 300, 200, 20, 20));
-            apps.Add(new("TestApp1", false, Image.FromBitmap(Resources.generic), 300, 200, 20, 20));
+            apps.Add(new Clock());
+            apps.Add(new Notepad());
+            apps.Add(new Information());
         }
         public static void Update()
         {
@@ -51,6 +53,7 @@ namespace Oceano.GUI
             }
             Taskbar.Update();
             DrawCursor(Kernel.Canvas, (int)MouseManager.X, (int)MouseManager.Y);
+            Heap.Collect();
             Kernel.Canvas.Update();
         }
         static void DrawCursor(SVGAIICanvas Canvas, int x, int y)

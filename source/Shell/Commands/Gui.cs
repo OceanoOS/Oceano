@@ -10,7 +10,7 @@ namespace Oceano.Shell.Commands
         {
             try
             {
-                Graphics.Init(800, 600);
+                Graphics.Init(Convert.ToUInt16(args[0]), Convert.ToUInt16(args[1]));
             }
             catch (Exception ex)
             {

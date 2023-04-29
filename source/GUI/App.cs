@@ -74,7 +74,6 @@ namespace Oceano.GUI
                 this.y = _y + 22;
             }
             Kernel.Canvas.DrawFilledRectangle(_x, _y, _width, _height, 0, Color.GetPacked(255, 32, 32, 32));
-            Kernel.Canvas.DrawRectangle(_x, _y, _width, _height, 0, Color.GoogleBlue);
             Kernel.Canvas.DrawString(_x + 2, _y, name, Font.Fallback, Color.White);
             Kernel.Canvas.DrawButton(_x + _width - 13, _y - 1, "X", Color.Red, Close);
             Run();

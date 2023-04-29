@@ -7,6 +7,7 @@ using Oceano.GUI;
 using Oceano.Shell;
 using Oceano.Users;
 using System;
+using System.IO;
 using Console = System.Console;
 
 namespace Oceano.Core
@@ -45,6 +46,18 @@ namespace Oceano.Core
             Console.WriteLine("Welcome to Oceano");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
+            try
+            {
+                if (File.Exists(@"0:\hostname.cfg"))
+                {
+                    string hostname = File.ReadAllText(@"0:\hostname.cfg");
+                    Host = hostname;
+                }
+            }
+            catch
+            {
+                Host = "oceano";
+            }
         }
 
         protected override void Run()

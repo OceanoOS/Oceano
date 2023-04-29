@@ -33,7 +33,8 @@ namespace Oceano.Shell
                 new Echo("echo"),
                 new User("user"),
                 new Shutdown("shutdown"),
-                new Reboot("reboot")
+                new Reboot("reboot"),
+                new Hostname("hostname")
             };
         }
 

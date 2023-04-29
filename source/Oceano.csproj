@@ -32,13 +32,19 @@
       <None Remove="Resources\canvas.bmp" />
       <None Remove="Resources\clock.bmp" />
       <None Remove="Resources\generic.bmp" />
-      <None Remove="Resources\wallpaper.bmp" />
+      <None Remove="Resources\info.bmp" />
+      <None Remove="Resources\logo.bmp" />
+      <None Remove="Resources\notepad.bmp" />
+      <None Remove="Resources\shutdown.bmp" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="Resources\clock.bmp" />
       <EmbeddedResource Include="Resources\generic.bmp" />
-      <EmbeddedResource Include="Resources\wallpaper.bmp" />
+      <EmbeddedResource Include="Resources\info.bmp" />
+      <EmbeddedResource Include="Resources\logo.bmp" />
+      <EmbeddedResource Include="Resources\notepad.bmp" />
+      <EmbeddedResource Include="Resources\shutdown.bmp" />
     </ItemGroup>
 
     <ItemGroup>
