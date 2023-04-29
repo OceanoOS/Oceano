@@ -30,6 +30,7 @@ namespace Oceano.Shell.Commands
             Console.WriteLine("miv [path]: start the MIV editor.");
             Console.WriteLine("user: user manager.");
             Console.WriteLine("vmtools: show if you are running oceano in a virtual machine.");
+            Console.WriteLine("For more help visit the website: https://oceano.tk/");
             return "";
         }
     }
