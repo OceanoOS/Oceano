@@ -34,7 +34,8 @@ namespace Oceano.Shell
                 new User("user"),
                 new Shutdown("shutdown"),
                 new Reboot("reboot"),
-                new Hostname("hostname")
+                new Hostname("hostname"),
+                new Help("help")
             };
         }
 
@@ -59,7 +60,7 @@ namespace Oceano.Shell
                     return cmd.Invoke(args.ToArray());
 
             }
-            return "Command \"" + label + "\" not found.";
+            return "Command \"" + label + "\" not found. Write \"help\" for help.";
         }
     }
 }
