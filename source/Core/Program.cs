@@ -1,4 +1,5 @@
 ﻿using Cosmos.Core.Memory;
+using Cosmos.HAL.Drivers.Video;
 using Cosmos.System;
 using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
@@ -16,15 +17,15 @@ namespace Oceano.Core
     {
         public static string Name = "Oceano";
         public static string Version = "1.0.0";
-        public static string Username = "root";
-        public static string Host = "oceano";
+        public static string Username;
+        public static string Host;
         public static CosmosVFS FileSystem;
         public static bool FilesystemEnabled;
-        public static string CurrentPath = "";
+        public static string CurrentPath;
         public static CommandManager commandManager = new();
         public static bool GraphicsMode = false;
         public static bool LoggedIn = false;
-        public static PrismGraphics.Extentions.VMWare.SVGAIICanvas Canvas { get; set; }
+        public static PrismGraphics.Extentions.Display Canvas { get; set; }
 
         protected override void BeforeRun()
         {
@@ -40,7 +41,7 @@ namespace Oceano.Core
                 Console.WriteLine(ex.ToString());
                 FilesystemEnabled = false;
             }
-            VGAScreen.SetTextMode(Cosmos.HAL.VGADriver.TextSize.Size80x25);
+            VGAScreen.SetTextMode(VGADriver.TextSize.Size80x25);
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Welcome to Oceano");
