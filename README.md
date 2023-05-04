@@ -22,3 +22,13 @@ Oceano is an operating system made possible by Cosmos and its contributors.
 - VMWareSVGAII Adapter
 - AC97 Audio card
 - Basic network card
+
+### 🔑 Username and password
+If you haven't created a account or you don't use filesystem, these are the default credentials:
+
+Username: root
+
+Password: password
+
+### ⚠ Warning
+Some features don't work outside vm or even debug. GUI is supported only in VMWare and filesystem is supported with [this](https://github.com/CosmosOS/Cosmos/blob/master/Build/VMWare/Workstation/Filesystem.vmdk) file, use it as vm disk.
