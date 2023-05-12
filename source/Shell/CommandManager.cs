@@ -1,66 +1,66 @@
-﻿using Oceano.Shell.Commands;
+﻿using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
+using Oceano.Shell;
 
 namespace Oceano.Shell
 {
-
-    public class CommandManager
+    public static class CommandManager
     {
-        private readonly List<Command> commands;
+        #region Methods
 
-        public CommandManager()
+        public static ReturnCode TryInvoke(string Name, string[] Args, out string Return)
         {
-            this.commands = new()
+            if (Commands.Count == 0)
             {
-                new(""),
-                new Kbm("kbm"),
-                new VM("vmtools"),
-                new Touch("touch"),
-                new Del("del"),
-                new Mkdir("mkdir"),
-                new Rmdir("rmdir"),
-                new Run("run"),
-                new StartMIV("miv"),
-                new Clear("clear"),
-                new Ls("ls"),
-                new Ls("dir"),
-                new Cd("cd"),
-                new HtmlView("htmlview"),
-                new Gui("gui"),
-                new Neofetch("neofetch"),
-                new Calc("calc"),
-                new Echo("echo"),
-                new User("user"),
-                new Shutdown("shutdown"),
-                new Reboot("reboot"),
-                new Hostname("hostname"),
-                new Help("help")
-            };
-        }
-
-        public String ProcessInput(String input)
-        {
-            String[] split = input.Split(' ');
-            String label = split[0];
-
-            List<String> args = new();
-
-            int ctr = 0;
-            foreach (String s in split)
-            {
-                if (ctr != 0)
-                    args.Add(s);
-                ++ctr;
+                Return = "Command not found.";
+                return ReturnCode.CommandNotFound;
             }
 
-            foreach (Command cmd in this.commands)
+            for (int I = 0; I < Commands.Count; I++)
             {
-                if (cmd.name == label)
-                    return cmd.Invoke(args.ToArray());
-
+                // Use .ToLower to normalize strings.
+                if (Commands[I].Name.ToLower() == Name.ToLower())
+                {
+                    Return = Commands[I].Invoke(Args);
+                    return ReturnCode.Success;
+                }
             }
-            return "Command \"" + label + "\" not found. Write \"help\" for help.";
+            Return = "Command not found.";
+            return ReturnCode.CommandNotFound;
         }
+        public static string Invoke(string Name, string[] Args)
+        {
+            TryInvoke(Name, Args, out string S);
+            return S;
+        }
+        public static string Invoke(string[] Args)
+        {
+            string[] NewArgs = new string[Args.Length - 1];
+            for (int I = 0; I < NewArgs.Length; I++)
+            {
+                NewArgs[I] = Args[I + 1];
+            }
+
+            TryInvoke(Args[0], NewArgs, out string Return);
+            return Return;
+        }
+        public static void Initialize()
+        {
+            _ = new Commands.Help();
+
+            // Log for debugging
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("[ OK ] ");
+            Console.ResetColor();
+            Console.WriteLine("Initialized WaveShell successfully.");
+        }
+
+        #endregion
+
+        #region Fields
+
+        internal static List<Command> Commands { get; set; } = new();
+
+        #endregion
     }
 }

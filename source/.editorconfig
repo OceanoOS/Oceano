@@ -2,3 +2,6 @@
 
 # CA2211: Non-constant fields should not be visible
 dotnet_diagnostic.CA2211.severity = none
+
+# CS0162: È stato rilevato codice non raggiungibile
+dotnet_diagnostic.CS0162.severity = none
