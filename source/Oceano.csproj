@@ -34,4 +34,9 @@
         <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Core\" />
+      <Folder Include="GUI\" />
+    </ItemGroup>
+
 </Project>
