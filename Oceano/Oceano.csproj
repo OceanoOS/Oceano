@@ -18,25 +18,16 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
-        <VBEResolution>1280x720x32</VBEResolution>
         <CompressionType>Gzip</CompressionType>
-        <DebugEnabled>False</DebugEnabled>
         <Timeout>5</Timeout>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<VMWareEdition>Player</VMWareEdition>
+        <StackCorruptionDetectionEnabled>False</StackCorruptionDetectionEnabled>
+        <DebugEnabled>False</DebugEnabled>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Core\" />
-      <Folder Include="GUI\" />
     </ItemGroup>
 
 </Project>
