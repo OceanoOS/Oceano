@@ -1,5 +1,4 @@
 ﻿using Oceano.Shell.Commands.General;
-using Oceano.Shell.Commands.Tasks;
 using System;
 using System.Collections.Generic;
 
@@ -12,8 +11,7 @@ namespace Oceano.Shell
         {
             this.commands = new List<Command>
             {
-                new Time("time"),
-                new TaskList("tasklist")
+                new Time("time")
             };
         }
 

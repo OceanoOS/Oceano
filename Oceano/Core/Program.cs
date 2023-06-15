@@ -1,7 +1,8 @@
 ﻿using Cosmos.Core;
 using Cosmos.System;
 using Cosmos.System.Graphics;
-using Oceano.Tasks;
+using Oceano.GUI;
+using PrismAPI.Hardware.GPU;
 using System.Runtime.InteropServices;
 
 namespace Oceano.Core
@@ -19,17 +20,18 @@ namespace Oceano.Core
         public static string AvailableRAM;
         public static string CPUUptime;
         #endregion
-        #region Tasks
-        public static ProcessManager processManager = new();
+        #region Graphics
+        public static Display display;
         #endregion
         protected override void BeforeRun()
         {
             BootManager.Boot();
+            Graphics.Initialize();
         }
 
         protected override void Run()
         {
-            processManager.Run();
+            Graphics.Update();
         }
     }
 }
