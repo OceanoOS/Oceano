@@ -1,7 +1,9 @@
 ﻿using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.Graphics;
+using Cosmos.System.Graphics.Fonts;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
+using IL2CPU.API.Attribs;
 using System;
 using System.Threading;
 
@@ -11,17 +13,17 @@ namespace Oceano.Core
     {
         public static void Boot()
         {
-            CustomConsole.PrintInfo("Setting 80x25 VGA resoultion...");
+            Console.Clear();
+            CustomConsole.PrintInfo("Starting Console...");
             Thread.Sleep(1000);
             try
             {
-                Console.Clear();
-                VGAScreen.SetTextMode(Cosmos.HAL.Drivers.Video.VGADriver.TextSize.Size80x25);
-                CustomConsole.PrintSuccess("80x25 VGA resolution set.");
+                PCScreenFont vgafont = PCScreenFont.Default;
+                VGAScreen.SetFont(vgafont.CreateVGAFont(), vgafont.Height);
             }
             catch (Exception ex)
             {
-                CustomConsole.PrintError("Error while setting resolution: " + ex.Message);
+                CustomConsole.PrintError("Error While starting console: " + ex.ToString());
             }
             CustomConsole.PrintInfo("Connecting to network via DHCP...");
             try
