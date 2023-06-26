@@ -28,16 +28,35 @@ namespace Oceano.Users
             Console.Write("Enter your username: ");
             string username = Console.ReadLine();
             Console.Write("Enter your password: ");
-            string password = Console.ReadLine();
+            string password = "";
+            ConsoleKey key;
+            do
+            {
+                var keyInfo = Console.ReadKey(intercept: true);
+                key = keyInfo.Key;
+
+                if (key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    Console.Write("\b \b");
+                    password = password[0..^1];
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    Console.Write("*");
+                    password += keyInfo.KeyChar;
+                }
+            } while (key != ConsoleKey.Enter);
 
             if (users.ContainsKey(username) && users[username] == password)
             {
+                Console.WriteLine();
                 Console.WriteLine("Login successful!");
                 Kernel.Username = username;
                 Kernel.LoggedIn = true;
             }
             else
             {
+                Console.WriteLine();
                 Console.WriteLine("Invalid username or password.");
             }
         }
