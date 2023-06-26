@@ -1,8 +1,7 @@
 ﻿using Cosmos.Core;
 using Cosmos.System;
-using Oceano.Utilities;
-using PrismAPI.Hardware.GPU;
-using System.Drawing;
+using Cosmos.System.FileSystem;
+using Oceano.Services;
 
 namespace Oceano.Core
 {
@@ -17,12 +16,16 @@ namespace Oceano.Core
         public static string CPUVendor = CPU.GetCPUVendorName();
         public static string CPUCycleSpeed = CPU.GetCPUCycleSpeed().ToString();
         #endregion
+        #region Filesystem
+        public static CosmosVFS fs;
+        #endregion
         protected override void BeforeRun()
         {
             BootManager.Boot();
         }
         protected override void Run()
         {
+            TaskManager.Update();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Oceano.Services
 {
@@ -15,17 +11,17 @@ namespace Oceano.Services
         }
         public static void Update()
         {
-            foreach(var task in tasks)
+            foreach (var task in tasks)
             {
-                if(task.priority == Priority.High)
+                if (task.priority == Priority.High)
                 {
                     task.Run();
                 }
-                else if(task.priority == Priority.Medium)
+                else if (task.priority == Priority.Medium)
                 {
                     task.Run();
                 }
-                else if(task.priority == Priority.Low)
+                else if (task.priority == Priority.Low)
                 {
                     task.Run();
                 }

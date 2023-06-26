@@ -1,6 +1,8 @@
 ﻿using Oceano.Shell.Commands.General;
 using System;
 using System.Collections.Generic;
+using Oceano.Shell.Commands.Time;
+using Oceano.Shell.Commands.Disks;
 
 namespace Oceano.Shell
 {
@@ -12,7 +14,14 @@ namespace Oceano.Shell
             this.commands = new List<Command>
             {
                 new("", ""),
-                new Clear("clear", "Clear the console.")
+                new Clear("clear", "Clear the console."),
+                new History("history", "View the command history."),
+                new Date("date", "View the current date and time."),
+                new Sleep("sleep", "Pause the console for a few seconds."),
+                new Uptime("uptime", "Get the CPU Uptime."),
+                new Man("man", "Get a list with the commands and the functions."),
+                new ListDisk("lsblk", "Get a list of the disks."),
+                new Format("mkfs", "Format a disk.")
             };
         }
 

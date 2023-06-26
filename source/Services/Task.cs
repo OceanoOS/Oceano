@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oceano.Services
 {
@@ -22,7 +18,7 @@ namespace Oceano.Services
         }
         public void Run()
         {
-            if(running)
+            if (running)
             {
                 a();
             }
