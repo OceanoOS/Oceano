@@ -11,7 +11,8 @@ namespace Oceano.Shell
         {
             this.commands = new List<Command>
             {
-                new Time("time")
+                new("", ""),
+                new Clear("clear", "Clear the console.")
             };
         }
 
