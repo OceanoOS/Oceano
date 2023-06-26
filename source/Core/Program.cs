@@ -2,6 +2,7 @@
 using Cosmos.System;
 using Cosmos.System.FileSystem;
 using Oceano.Services;
+using Oceano.Users;
 
 namespace Oceano.Core
 {
@@ -16,16 +17,32 @@ namespace Oceano.Core
         public static string CPUVendor = CPU.GetCPUVendorName();
         public static string CPUCycleSpeed = CPU.GetCPUCycleSpeed().ToString();
         #endregion
+
         #region Filesystem
         public static CosmosVFS fs;
+        public static string CurrentPath = "0:\\";
         #endregion
+
+        #region Login
+        public static string Username;
+        public static bool LoggedIn = false;
+        #endregion
+
+
         protected override void BeforeRun()
         {
             BootManager.Boot();
         }
         protected override void Run()
         {
-            TaskManager.Update();
+            if (!LoggedIn)
+            {
+                LoginSystem.Login();
+            }
+            else
+            {
+                TaskManager.Update();
+            }
         }
     }
 }

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using Oceano.Shell.Commands.Time;
 using Oceano.Shell.Commands.Disks;
+using Oceano.Shell.Commands.Users;
+using Oceano.Shell.Commands.Filesystem;
 
 namespace Oceano.Shell
 {
@@ -21,7 +23,12 @@ namespace Oceano.Shell
                 new Uptime("uptime", "Get the CPU Uptime."),
                 new Man("man", "Get a list with the commands and the functions."),
                 new ListDisk("lsblk", "Get a list of the disks."),
-                new Format("mkfs", "Format a disk.")
+                new Format("mkfs", "Format a disk."),
+                new UserAdd("adduser","Create a new user."),
+                new Ls("ls", "Directory listing."),
+                new Copy("cp", "Copy a file."),
+                new Remove("rm", "Remove a file or a directory."),
+                new Move("mv", "Move a file.")
             };
         }
 
