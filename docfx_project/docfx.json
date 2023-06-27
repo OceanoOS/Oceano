@@ -48,7 +48,7 @@
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-      "default",
+      "Templates/oceano",
       "modern"
     ],
     "postProcessors": [],
