@@ -1,14 +1,17 @@
-﻿namespace Oceano.Users
+﻿using System.Collections.Generic;
+
+namespace Oceano.Users
 {
     public enum Permission
     {
-        None = 0,
+        Everyone = 0,
         User = 1,
         Root = 2
     }
-    public enum AccessPermissions
+    public static class Access
     {
-        True = 0,
-        False = 1
+        public static Dictionary<string, Permission> folders = new();
+        public static Dictionary<string, Permission> files = new();
+
     }
 }

@@ -9,7 +9,6 @@ using Oceano.Shell.Commands.ACPI;
 using Oceano.Shell.Commands.Apps;
 using Oceano.Shell.Commands.Network;
 
-
 namespace Oceano.Shell
 {
     public class CommandManager
@@ -44,7 +43,8 @@ namespace Oceano.Shell
                 new HTMLView("htmlview", "Parse a HTML file."),
                 new IniView("iniview", "Parse a INI file."),
                 new Ping("ping", "Send a IP request to a domain."),
-                new SetKbMap("setkbmap", "Set a keyboard layout.")
+                new SetKbMap("setkbmap", "Set a keyboard layout."),
+                new ExecuteFile("sh", "Execute a shell file.")
             };
         }
 
