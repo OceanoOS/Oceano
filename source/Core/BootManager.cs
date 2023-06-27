@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Cosmos.System.Graphics.Fonts;
 using Oceano.Services;
 using Cosmos.System.FileSystem.VFS;
@@ -12,13 +11,14 @@ namespace Oceano.Core
 {
     public static class BootManager
     {
+        public static Task shellprocess = new("shproc", "Used to make shell working", Priority.High, Shell.Update, true);
         public static void Boot()
         {
             CustomConsole.PrintInfo("Initializing Console...");
             try
             {
                 VGAScreen.SetFont(PCScreenFont.Default.CreateVGAFont(), PCScreenFont.Default.Height);
-                TaskManager.RegisterTask(new("Shell Service", "Used to make shell working", Priority.High, Shell.Update, true));
+                TaskManager.RegisterTask(shellprocess);
                 CustomConsole.PrintSuccess("Initialized Shell and Console.");
             }
             catch(Exception ex)

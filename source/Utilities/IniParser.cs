@@ -6,7 +6,7 @@ namespace Oceano.Utilities
 {
     public class IniParser
     {
-        private readonly Dictionary<string, Dictionary<string, string>> sections;
+        public readonly Dictionary<string, Dictionary<string, string>> sections;
 
         public IniParser()
         {

@@ -6,6 +6,8 @@ using Oceano.Shell.Commands.Disks;
 using Oceano.Shell.Commands.Users;
 using Oceano.Shell.Commands.Filesystem;
 using Oceano.Shell.Commands.ACPI;
+using Oceano.Shell.Commands.Apps;
+using Cosmos.HAL.Drivers.USB;
 
 namespace Oceano.Shell
 {
@@ -33,9 +35,13 @@ namespace Oceano.Shell
                 new Move("mv", "Move a file."),
                 new Create("touch", "Create a new file."),
                 new Read("cat", "Read all text in a file."),
+                new ChangeDirectory("cd","Change the working directory."),
                 new Shutdown("shutdown", "Shutdown the computer."),
                 new Reboot("reboot", "Reboot the computer."),
-                new Halt("halt", "Halt the CPU.")
+                new Halt("halt", "Halt the CPU."),
+                new MIVEditor("miv", "Start the MIV Text Editor (VIM like)."),
+                new HTMLView("htmlview", "Parse a HTML file."),
+                new IniView("iniview", "Parse a INI file."),
             };
         }
 

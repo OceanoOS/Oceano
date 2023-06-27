@@ -13,6 +13,7 @@ namespace Oceano.Core
         public static List<string> history = new();
         public static void Update()
         {
+            Console.WriteLine();
             Console.Write(">");
             string input = Console.ReadLine();
             string response = commandManager.ProcessInput(input);
