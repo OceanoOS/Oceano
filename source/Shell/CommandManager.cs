@@ -16,7 +16,7 @@ namespace Oceano.Shell
             this.commands = new List<Command>
             {
                 new("", ""),
-                new Echo("echo", "Print text in the screen.");
+                new Echo("echo", "Print text in the screen."),
                 new Clear("clear", "Clear the console."),
                 new History("history", "View the command history."),
                 new Date("date", "View the current date and time."),
