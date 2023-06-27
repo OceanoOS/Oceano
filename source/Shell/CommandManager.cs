@@ -5,6 +5,7 @@ using Oceano.Shell.Commands.Time;
 using Oceano.Shell.Commands.Disks;
 using Oceano.Shell.Commands.Users;
 using Oceano.Shell.Commands.Filesystem;
+using Oceano.Shell.Commands.ACPI;
 
 namespace Oceano.Shell
 {
@@ -31,7 +32,10 @@ namespace Oceano.Shell
                 new Remove("rm", "Remove a file or a directory."),
                 new Move("mv", "Move a file."),
                 new Create("touch", "Create a new file."),
-                new Read("cat", "Read all text in a file.")
+                new Read("cat", "Read all text in a file."),
+                new Shutdown("shutdown", "Shutdown the computer."),
+                new Reboot("reboot", "Reboot the computer."),
+                new Halt("halt", "Halt the CPU.")
             };
         }
 
