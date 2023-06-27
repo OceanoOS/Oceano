@@ -16,6 +16,7 @@ namespace Oceano.Shell
             this.commands = new List<Command>
             {
                 new("", ""),
+                new Echo("echo", "Print text in the screen.");
                 new Clear("clear", "Clear the console."),
                 new History("history", "View the command history."),
                 new Date("date", "View the current date and time."),
@@ -28,7 +29,9 @@ namespace Oceano.Shell
                 new Ls("ls", "Directory listing."),
                 new Copy("cp", "Copy a file."),
                 new Remove("rm", "Remove a file or a directory."),
-                new Move("mv", "Move a file.")
+                new Move("mv", "Move a file."),
+                new Create("touch", "Create a new file."),
+                new Read("cat", "Read all text in a file.")
             };
         }
 
