@@ -24,7 +24,7 @@ jobs:
         cd Cosmos
         sudo make
         sudo make install
-        sudo make nuget-install
+        make nuget-install
 
     - name: Run DocFX
       run: docfx docfx_project/docfx.json
