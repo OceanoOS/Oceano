@@ -1,0 +1,35 @@
+name: DocFX
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  publish-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Chekout
+      uses: actions/checkout@v3
+    - name: Dotnet Setup
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.x
+
+    - name: Install DocFX
+      run: dotnet tool update -g docfx
+
+    - name: Install Cosmos
+      run: |
+        git clone https://github.com/CosmosOS/Cosmos
+        cd Cosmos
+        sudo make
+
+    - name: Run DocFX
+      run: docfx DocFX/DocFX.json
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: DocFX/_site
+        destination_dir: Docs
