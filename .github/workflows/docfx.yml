@@ -25,7 +25,7 @@ jobs:
         sudo make
 
     - name: Run DocFX
-      run: docfx DocFX/DocFX.json
+      run: docfx docfx_project/docfx.json
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
