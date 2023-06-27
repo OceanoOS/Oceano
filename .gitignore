@@ -397,6 +397,7 @@ FodyWeavers.xsd
 # DocFx
 *.html
 *.js
+*.css
 
 # JetBrains Rider
 *.sln.iml
