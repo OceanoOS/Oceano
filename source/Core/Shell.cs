@@ -21,7 +21,10 @@ namespace Oceano.Core
             {
                 Console.WriteLine(response);
             }
-            history.Add(input);
+            if (input != "")
+            {
+                history.Add(input);
+            }
         }
     }
 }

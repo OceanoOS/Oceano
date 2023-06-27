@@ -1,11 +1,9 @@
-﻿using Cosmos.System.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Cosmos.System.FileSystem.VFS;
+using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Oceano.Services;
-using Cosmos.System.FileSystem.VFS;
+using System;
 
 namespace Oceano.Core
 {
@@ -21,7 +19,7 @@ namespace Oceano.Core
                 TaskManager.RegisterTask(shellprocess);
                 CustomConsole.PrintSuccess("Initialized Shell and Console.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorScreen("Error while starting console: " + ex.Message);
             }
@@ -35,6 +33,16 @@ namespace Oceano.Core
             catch
             {
                 CustomConsole.PrintWarning("Filesystem is disabled.");
+            }
+            CustomConsole.PrintInfo("Connecting to network via DHCP...");
+            try
+            {
+                using var xClient = new DHCPClient();
+                xClient.SendDiscoverPacket();
+            }
+            catch
+            {
+                CustomConsole.PrintError("Connecting to network failed.");
             }
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();

@@ -7,7 +7,8 @@ using Oceano.Shell.Commands.Users;
 using Oceano.Shell.Commands.Filesystem;
 using Oceano.Shell.Commands.ACPI;
 using Oceano.Shell.Commands.Apps;
-using Cosmos.HAL.Drivers.USB;
+using Oceano.Shell.Commands.Network;
+
 
 namespace Oceano.Shell
 {
@@ -42,6 +43,8 @@ namespace Oceano.Shell
                 new MIVEditor("miv", "Start the MIV Text Editor (VIM like)."),
                 new HTMLView("htmlview", "Parse a HTML file."),
                 new IniView("iniview", "Parse a INI file."),
+                new Ping("ping", "Send a IP request to a domain."),
+                new SetKbMap("setkbmap", "Set a keyboard layout.")
             };
         }
 

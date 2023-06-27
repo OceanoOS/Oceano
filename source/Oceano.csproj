@@ -28,14 +28,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Core\Resources\sound.wav" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Core\Resources\sound.wav" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
