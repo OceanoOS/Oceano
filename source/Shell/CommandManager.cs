@@ -44,7 +44,8 @@ namespace Oceano.Shell
                 new IniView("iniview", "Parse a INI file."),
                 new Ping("ping", "Send a IP request to a domain."),
                 new SetKbMap("setkbmap", "Set a keyboard layout."),
-                new ExecuteFile("sh", "Execute a shell file.")
+                new ExecuteFile("sh", "Execute a shell file."),
+                new Information("neofetch", "Display system information.")
             };
         }
 
