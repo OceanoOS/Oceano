@@ -1,7 +1,7 @@
 ﻿using Oceano.Core;
 using System;
 using System.IO;
-using Kernel = Oceano.Core.Program;
+
 namespace Oceano.Shell.Commands.Filesystem
 {
     public class Read : Command
@@ -12,7 +12,7 @@ namespace Oceano.Shell.Commands.Filesystem
             string response = "";
             try
             {
-                response = File.ReadAllText(Kernel.CurrentPath + args[0]);
+                response = File.ReadAllText(Directory.GetCurrentDirectory() + args[0]);
             }
             catch (Exception ex)
             {

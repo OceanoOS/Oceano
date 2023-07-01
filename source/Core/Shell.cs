@@ -1,9 +1,7 @@
 ﻿using Oceano.Shell;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Oceano.Core
 {
@@ -14,7 +12,24 @@ namespace Oceano.Core
         public static void Update()
         {
             Console.WriteLine();
-            Console.Write(">");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(Program.Username);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("@");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(Program.Host);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(":" + Directory.GetCurrentDirectory());
+            Console.ForegroundColor = ConsoleColor.Blue;
+            if(Program.Username == "root")
+            {
+                Console.Write("#");
+            }
+            else
+            {
+                Console.Write("$ ");
+            }
+            Console.ResetColor();
             string input = Console.ReadLine();
             string response = commandManager.ProcessInput(input);
             if (response != "")

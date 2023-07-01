@@ -1,7 +1,6 @@
 ﻿using Oceano.Core;
 using System;
 using System.IO;
-using Kernel = Oceano.Core.Program;
 
 namespace Oceano.Shell.Commands.Filesystem
 {
@@ -12,7 +11,7 @@ namespace Oceano.Shell.Commands.Filesystem
         {
             try
             {
-                File.Create(Kernel.CurrentPath + args[0]);
+                File.Create(Directory.GetCurrentDirectory() + args[0]);
                 CustomConsole.PrintSuccess("File created successfully");
             }
             catch (Exception ex)

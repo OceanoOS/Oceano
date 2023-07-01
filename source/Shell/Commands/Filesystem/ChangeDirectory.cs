@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kernel = Oceano.Core.Program;
+﻿using System.IO;
 
 namespace Oceano.Shell.Commands.Filesystem
 {
@@ -15,11 +9,7 @@ namespace Oceano.Shell.Commands.Filesystem
         {
             if (Directory.Exists(args[0]))
             {
-                Kernel.CurrentPath = args[0];
-            }
-            if (!Kernel.CurrentPath.EndsWith('\\'))
-            {
-                Kernel.CurrentPath += "\\";
+                Directory.SetCurrentDirectory(args[0]);
             }
             return "";
         }

@@ -25,6 +25,7 @@ namespace Oceano.Core
 
         #region Login
         public static string Username;
+        public static string Host = "oceano";
         public static bool LoggedIn = false;
         #endregion
 

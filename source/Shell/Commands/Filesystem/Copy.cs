@@ -1,7 +1,6 @@
 ﻿using Oceano.Core;
 using System;
 using System.IO;
-using Kernel = Oceano.Core.Program;
 
 namespace Oceano.Shell.Commands.Filesystem
 {
@@ -14,7 +13,7 @@ namespace Oceano.Shell.Commands.Filesystem
             {
                 if (!File.Exists(args[1]))
                 {
-                    File.Copy(Kernel.CurrentPath + args[0], Kernel.CurrentPath + args[1]);
+                    File.Copy(Directory.GetCurrentDirectory() + args[0], Directory.GetCurrentDirectory() + args[1]);
                 }
                 else
                 {
@@ -22,7 +21,7 @@ namespace Oceano.Shell.Commands.Filesystem
                     string input = Console.ReadLine();
                     switch (input)
                     {
-                        case "y": File.Copy(Kernel.CurrentPath + args[0], Kernel.CurrentPath + args[1], true); break;
+                        case "y": File.Copy(Directory.GetCurrentDirectory() + args[0], Directory.GetCurrentDirectory() + args[1], true); break;
                         default: break;
                     }
                 }

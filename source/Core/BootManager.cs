@@ -4,6 +4,7 @@ using Cosmos.System.Graphics.Fonts;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Oceano.Services;
 using System;
+using System.IO;
 
 namespace Oceano.Core
 {
@@ -29,6 +30,7 @@ namespace Oceano.Core
                 Program.fs = new();
                 VFSManager.RegisterVFS(Program.fs);
                 CustomConsole.PrintSuccess("Filesystem initialized successfully.");
+                Directory.SetCurrentDirectory("0:\\");
             }
             catch
             {

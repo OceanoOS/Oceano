@@ -1,7 +1,6 @@
 ﻿using Oceano.Core;
 using System;
 using System.IO;
-using Kernel = Oceano.Core.Program;
 
 namespace Oceano.Shell.Commands.Filesystem
 {
@@ -12,13 +11,13 @@ namespace Oceano.Shell.Commands.Filesystem
         {
             try
             {
-                if (Directory.Exists(Kernel.CurrentPath + args[0]))
+                if (Directory.Exists(Directory.GetCurrentDirectory() + args[0]))
                 {
-                    Directory.Delete(Kernel.CurrentPath + args[0], true);
+                    Directory.Delete(Directory.GetCurrentDirectory() + args[0], true);
                 }
-                else if (File.Exists(Kernel.CurrentPath + args[0]))
+                else if (File.Exists(Directory.GetCurrentDirectory() + args[0]))
                 {
-                    File.Delete(Kernel.CurrentPath + args[0]);
+                    File.Delete(Directory.GetCurrentDirectory() + args[0]);
                 }
                 CustomConsole.PrintSuccess("File or directory deleted successfully!");
             }
