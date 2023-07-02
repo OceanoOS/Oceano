@@ -20,10 +20,10 @@ namespace Oceano.Core
             Console.Write(Program.Host);
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(":" + Directory.GetCurrentDirectory());
-            Console.ForegroundColor = ConsoleColor.Blue;
-            if(Program.Username == "root")
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            if (Program.Username == "root")
             {
-                Console.Write("#");
+                Console.Write("# ");
             }
             else
             {

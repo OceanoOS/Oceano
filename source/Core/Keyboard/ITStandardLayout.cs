@@ -3,12 +3,12 @@
 namespace Cosmos.System.ScanMaps
 {
     /// <summary>
-    /// Represents the standard English (US) keyboard layout.
+    /// Represents the standard Italian (IT) keyboard layout.
     /// </summary>
     public class ITStandardLayout : ScanMapBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="USStandardLayout"/> class.
+        /// Initializes a new instance of the <see cref="ITStandardLayout"/> class.
         /// </summary>
         public ITStandardLayout()
         {

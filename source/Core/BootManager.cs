@@ -3,6 +3,7 @@ using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Oceano.Services;
+using Oceano.Shell;
 using System;
 using System.IO;
 
@@ -45,6 +46,16 @@ namespace Oceano.Core
             catch
             {
                 CustomConsole.PrintError("Connecting to network failed.");
+            }
+            CustomConsole.PrintInfo("Searching boot.sh...");
+            if (File.Exists("0:\\boot.sh"))
+            {
+                ShellLanguage.Execute("0:\\boot.sh");
+                CustomConsole.PrintSuccess("Boot script executed!");
+            }
+            else
+            {
+                CustomConsole.PrintInfo("No boot.sh found.");
             }
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();

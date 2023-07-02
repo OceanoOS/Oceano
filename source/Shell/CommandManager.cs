@@ -36,6 +36,7 @@ namespace Oceano.Shell
                 new Create("touch", "Create a new file."),
                 new Read("cat", "Read all text in a file."),
                 new ChangeDirectory("cd","Change the working directory."),
+                new CreateDirectory("mkdir", "Create a new directory."),
                 new Shutdown("shutdown", "Shutdown the computer."),
                 new Reboot("reboot", "Reboot the computer."),
                 new Halt("halt", "Halt the CPU."),
@@ -45,7 +46,7 @@ namespace Oceano.Shell
                 new Ping("ping", "Send a IP request to a domain."),
                 new SetKbMap("setkbmap", "Set a keyboard layout."),
                 new ExecuteFile("sh", "Execute a shell file."),
-                new Information("neofetch", "Display system information.")
+                new Information("neofetch", "Display system information."),
             };
         }
 

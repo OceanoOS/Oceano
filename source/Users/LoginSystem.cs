@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oceano.Shell;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Kernel = Oceano.Core.Program;
@@ -53,6 +54,10 @@ namespace Oceano.Users
                 Console.WriteLine("Login successful!");
                 Kernel.Username = username;
                 Kernel.LoggedIn = true;
+                if (File.Exists("0:\\login.sh"))
+                {
+                    ShellLanguage.Execute("0:\\login.sh");
+                }
             }
             else
             {
