@@ -47,6 +47,7 @@ namespace Oceano.Shell
                 new SetKbMap("setkbmap", "Set a keyboard layout."),
                 new ExecuteFile("sh", "Execute a shell file."),
                 new Information("neofetch", "Display system information."),
+                new HostName("hostname", "Change host name.")
             };
         }
 

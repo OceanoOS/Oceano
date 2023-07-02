@@ -31,6 +31,8 @@ namespace Oceano.Core
                 Program.fs = new();
                 VFSManager.RegisterVFS(Program.fs);
                 CustomConsole.PrintSuccess("Filesystem initialized successfully.");
+                string hostname = File.ReadAllText("0:\\hostname.cfg");
+                Program.Host = hostname;
                 Directory.SetCurrentDirectory("0:\\");
             }
             catch
