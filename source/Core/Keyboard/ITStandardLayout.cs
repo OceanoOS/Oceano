@@ -8,7 +8,7 @@ namespace Cosmos.System.ScanMaps
     public class ITStandardLayout : ScanMapBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ITStandardLayout"/> class.
+        /// Initializes a new instance of the <see cref="ITStandardLayout"/> class. Still WIP.
         /// </summary>
         public ITStandardLayout()
         {

@@ -11,8 +11,14 @@ using Oceano.Shell.Commands.Network;
 
 namespace Oceano.Shell
 {
+    /// <summary>
+    /// Command Manager class, used for interations with <see cref="Command"/>
+    /// </summary>
     public class CommandManager
     {
+        /// <summary>
+        /// Command list.
+        /// </summary>
         public List<Command> commands;
         public CommandManager()
         {
@@ -50,7 +56,11 @@ namespace Oceano.Shell
                 new HostName("hostname", "Change host name.")
             };
         }
-
+        /// <summary>
+        /// Process input from a string.
+        /// </summary>
+        /// <param name="input">Input.</param>
+        /// <returns></returns>
         public string ProcessInput(string input)
         {
             string[] split = input.Split(' ');
