@@ -3,6 +3,7 @@ using Cosmos.System;
 using Cosmos.System.FileSystem;
 using Oceano.Services;
 using Oceano.Users;
+using PrismAPI.Hardware.GPU;
 using System.IO;
 
 namespace Oceano.Core
@@ -59,6 +60,10 @@ namespace Oceano.Core
         /// Check if user is logged in.
         /// </summary>
         public static bool LoggedIn = false;
+        #endregion
+
+        #region Graphics
+        public static Display display;
         #endregion
         protected override void BeforeRun()
         {

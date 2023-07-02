@@ -2,6 +2,7 @@
 using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Oceano.GUI;
 using Oceano.Services;
 using Oceano.Shell;
 using System;
@@ -12,6 +13,7 @@ namespace Oceano.Core
     public static class BootManager
     {
         public static Task shellprocess = new("shproc", "Used to make shell working", Priority.High, Shell.Update, true);
+        public static Task owm = new("owm", "Oceano Window Manager", Priority.High, WindowManager.Update, true);
         public static void Boot()
         {
             CustomConsole.PrintInfo("Initializing Console...");
