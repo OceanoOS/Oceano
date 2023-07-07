@@ -24,7 +24,6 @@
         <DebugEnabled>False</DebugEnabled>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<CompileVBEMultiboot>False</CompileVBEMultiboot>
-		<VBEResolution>1024x768x32</VBEResolution>
     </PropertyGroup>
 
     <ItemGroup>
@@ -32,7 +31,10 @@
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
 		<PackageReference Include="Cosmos.HAL2" Version="0-*" NoWarn="NU1604" />
-		<PackageReference Include="PrismAPI" Version="1.0.3" />
 	</ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Nuova cartella\" />
+    </ItemGroup>
 
 </Project>
