@@ -32,3 +32,5 @@ Password: password
 
 ### ⚠ Warning
 Some features don't work outside vm or even debug. GUI is supported only in VMWare and filesystem is supported with [this](https://github.com/CosmosOS/Cosmos/blob/master/Build/VMWare/Workstation/Filesystem.vmdk) file, use it as vm disk.
+
+### Oceano is not mantained anymore. It will be replaced by BootNet
