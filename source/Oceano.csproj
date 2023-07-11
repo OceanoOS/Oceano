@@ -22,19 +22,18 @@
         <Timeout>5</Timeout>
         <StackCorruptionDetectionEnabled>False</StackCorruptionDetectionEnabled>
         <DebugEnabled>False</DebugEnabled>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<CompileVBEMultiboot>False</CompileVBEMultiboot>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <CompileVBEMultiboot>False</CompileVBEMultiboot>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-		<PackageReference Include="Cosmos.HAL2" Version="0-*" NoWarn="NU1604" />
-	</ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Nuova cartella\" />
+        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604"/>
+        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604"/>
+        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604"/>
+        <PackageReference Include="Cosmos.HAL2" Version="0-*" NoWarn="NU1604"/>
     </ItemGroup>
+
+
+
 
 </Project>

@@ -1,23 +1,24 @@
 ﻿using Cosmos.System;
-using Cosmos.System.Graphics;
+using Oceano.Core.Drivers;
 
-namespace Oceano.Core
+namespace Oceano.Core;
+
+public class Program : Kernel
 {
-    public class Program : Kernel
+    #region Fields
+    public static VMWareSVGAII vMWareSVGAII { get; set; }
+    #endregion
+
+    #region Methods
+
+    protected override void BeforeRun()
     {
-        #region Methods
-        protected override void BeforeRun()
-        {
-
-        }
-        protected override void Run()
-        {
-
-        }
-        #endregion
-
-        #region Fields
-        public static Canvas canvas;
-        #endregion
+        
     }
+
+    protected override void Run()
+    {
+    }
+
+    #endregion
 }
